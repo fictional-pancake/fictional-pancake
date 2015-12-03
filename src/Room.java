@@ -1,3 +1,6 @@
+import java.util.Iterator;
+import java.util.List;
+
 public class Room {
     Room north;
     Room south;
@@ -7,6 +10,7 @@ public class Room {
     Room down;
     private String description;
     private String name;
+    private List<Item> items;
     private boolean visited = false;
     public Room goNorth() {
         return north;
@@ -33,6 +37,11 @@ public class Room {
         String tr = getName();
         if(!v) {
             tr += "\n"+getDescription();
+        }
+        Iterator<Item> it = items.iterator();
+        while(it.hasNext()) {
+            Item i = it.next();
+            tr += "\nThere is "+i.getName()+" here.";
         }
         return tr;
     }
