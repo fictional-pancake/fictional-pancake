@@ -3,34 +3,35 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Room {
-    Room north;
-    Room south;
-    Room west;
-    Room east;
-    Room up;
-    Room down;
+    private Room[] dirs = new Room[6];
     private String description;
     private String name;
     private List<Item> items;
     private List<Character> chars;
     private boolean visited = false;
     public Room goNorth() {
-        return north;
+        return dirs[Side.NORTH];
     }
     public Room goSouth() {
-        return south;
+        return dirs[Side.SOUTH];
     }
     public Room goWest() {
-        return west;
+        return dirs[Side.WEST];
     }
     public Room goEast() {
-        return east;
+        return dirs[Side.EAST];
     }
     public Room goUp() {
-        return up;
+        return dirs[Side.UP];
     }
     public Room goDown() {
-        return down;
+        return dirs[Side.DOWN];
+    }
+    public Room goDir(int s) {
+        return dirs[s];
+    }
+    public void setDir(int s, Room r) {
+        dirs[s] = r;
     }
     public String getDescription() {
         return description;

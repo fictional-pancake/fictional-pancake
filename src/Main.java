@@ -40,27 +40,17 @@ public class Main {
         switch(t[0]) {
             case "north":
             case "n":
-                goTo(room.goNorth());
-                break;
             case "south":
             case "s":
-                goTo(room.goSouth());
-                break;
             case "west":
             case "w":
-                goTo(room.goWest());
-                break;
             case "east":
             case "e":
-                goTo(room.goEast());
-                break;
             case "down":
             case "d":
-                goTo(room.goDown());
-                break;
             case "up":
             case "u":
-                goTo(room.goUp());
+                goTo(room.goDir(Side.fromChar(t[0].charAt(0))));
                 break;
             case "quit":
                 System.out.println("Goodbye.");
