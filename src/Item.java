@@ -1,9 +1,9 @@
 public class Item {
-    private String name;
+    private String[] names;
     private String description;
 
     public String getName() {
-        return name;
+        return names[0];
     }
 
     public String getInventoryEntry() {
@@ -15,7 +15,20 @@ public class Item {
     }
 
     public Item(String name, String description) {
-        this.name = name;
+        this(new String[] {name}, description);
+    }
+
+    public Item(String[] names, String description) {
+        this.names = names;
         this.description = description;
+    }
+
+    public boolean matches(String inp) {
+        for(int i = 0; i < names.length; i++) {
+            if(inp.equalsIgnoreCase(names[i])) {
+                return true;
+            }
+        }
+        return false;
     }
 }

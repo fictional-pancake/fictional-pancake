@@ -3,7 +3,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
-    public static final Room nullRoom = new Room("Unimplemented Room", "You have stumbled upon a room that hasn't been coded yet.  There is no escape.");
+    public static final Room nullRoom = new Room("Unimplemented Room", "You have stumbled upon a room that hasn't been coded yet.  There is no escape.", new Item[]{}, new Character[]{});
+    public static final String[] omnipresent = {"narrator", "you", "sky", "air", "game", "room", "code", "intelligence"};
     private static Room room;
     public static void main(String[] args) {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -64,6 +65,41 @@ public class Main {
             case "quit":
                 System.out.println("Goodbye.");
                 System.exit(0);
+                break;
+            case "take":
+            case "get":
+            case "pickup":
+            case "obtain":
+                if(t.length==3 && (t[1].equalsIgnoreCase("the") || t[1].equalsIgnoreCase("a"))) {
+                    t = new String[] {t[0], t[2]};
+                }
+                if(t.length == 1) {
+                    System.out.println(t[0].substring(0,1).toUpperCase()+t[0].substring(1)+" what?");
+                }
+                if(!trailing(t,2)) {
+                    boolean found = false;
+                    Item[] roomItems = room.getItems();
+                    for (int i = 0; i < roomItems.length; i++) {
+                        if (roomItems[i].matches(t[1])) {
+                            Item it = room.takeItem(i);
+                            System.out.println("You pick up " + it.getName() + ".");
+                            found = true;
+                            break;
+                        }
+                    }
+                    if(found) break;
+                    for (int i = 0; i < omnipresent.length; i++) {
+                        if (omnipresent[i].equalsIgnoreCase(t[1])) {
+                            System.out.println("You can't " + t[0] + " that.");
+                            found = true;
+                            break;
+                        }
+                    }
+                    if(!found) {
+                        System.out.println("I don't see that here.");
+                    }
+                }
+                break;
             default:
                 System.out.println("What would it mean to "+(go?"go ":"")+t[0]+"?");
         }
