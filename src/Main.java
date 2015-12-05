@@ -37,7 +37,8 @@ public class Main {
                 "Cell",
                 "You are in an old-looking prison cell.  It is dimly lit by a torch outside.  There is a door to the north.",
                 new Item[] {},
-                new Character[]{new ExitBlockingCharacter("guard", "He looks tired, and he smells of onions.", new Item[]{}, 10)}
+                new Character[]{new ExitBlockingCharacter("guard", "He looks tired, and he smells of onions.", new Item[]{}, 10)},
+                true
         );
         Room corridor = new Room("East end of corridor",
                 "You are in a small corridor going west.  There is a open door to the south, and a hole to the east.",
@@ -49,8 +50,11 @@ public class Main {
                 "The Hobo's Cave",
                 "You are in a damp cave. There is a hole in the west wall and a long tunnel to the south with a faint light at the end.",
                 new Item[] {},
-                new Character[]{new Character("hobo", "He is an old man sitting in the corner, dressed in rags. He looks hungry.",
-                        new Item[]{new Weapon(new String[] {"steel sword", "sword", "steel"}, "The Hobo's steel sword.", 100)}, 100)}
+                new Character[]{new Character("hobo", "He is an old man sitting in the corner, dressed in rags, holding a torch. He looks hungry.",
+                        new Item[]{
+                                new Weapon(new String[] {"steel sword", "sword", "steel"}, "The Hobo's steel sword.", 100),
+                                new Item(new String[]{"the Hobo's torch", "torch"}, "It is a simple stick with coal on the end.  It is alight with a small flame.")
+                        }, 100)}
         );
         corridor.connectTo(hoboCave, Side.EAST);
         Room ladderRoom = new Room(
@@ -295,5 +299,40 @@ public class Main {
     public static void kill() {
         System.out.println("You are dead.");
         System.exit(0);
+    }
+    public static boolean isLight() {
+        // check if room is always lit (outside, starting cell, etc.)
+        if(room.isAlwaysLit()) {
+            return true;
+        }
+        // check for light source in player's inventory
+        Item[] playerItems = player.getInventory();
+        for(Item i : playerItems) {
+            if(i.matches("torch")) {
+                // found the torch!
+                return true;
+            }
+        }
+        // check for light source on room floor
+        Item[] roomItems = room.getItems();
+        for(Item i : roomItems) {
+            if(i.matches("torch")) {
+                // found the torch
+                return true;
+            }
+        }
+        // check for light source in NPC's inventories
+        Character[] roomChars = room.getCharacters();
+        for(Character c : roomChars) {
+            Item[] charItems = c.getInventory();
+            for(Item i : charItems) {
+                if(i.matches("torch")) {
+                    // found the torch
+                    return true;
+                }
+            }
+        }
+        // if not lit
+        return false;
     }
 }

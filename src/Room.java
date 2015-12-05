@@ -9,6 +9,7 @@ public class Room implements IDescribable {
     private List<Item> items;
     private List<Character> chars;
     private boolean visited = false;
+    private boolean alwaysLit = false;
     public Room goNorth() {
         return goDir(Side.NORTH);
     }
@@ -31,10 +32,14 @@ public class Room implements IDescribable {
         Iterator<Character> it = chars.iterator();
         while(it.hasNext()) {
             Character c = it.next();
-            if(c instanceof ExitBlockingCharacter) {
+            if (c instanceof ExitBlockingCharacter) {
                 // character is blocking the exit
                 return null;
             }
+        }
+        if(!Main.isLight() && Math.random() < 0.9) {
+            System.out.println("You were eaten by a grue.");
+            Main.kill();
         }
         return dirs[s];
     }
@@ -45,25 +50,31 @@ public class Room implements IDescribable {
         return description;
     }
     public String getFullDescription(boolean v) {
-        // show name
-        String tr = getName();
-        if(!v) {
-            // first visit, or manual look; show description
-            tr += "\n"+getDescription();
+        if(Main.isLight()) {
+            // show name
+            String tr = getName();
+            if (!v) {
+                // first visit, or manual look; show description
+                tr += "\n" + getDescription();
+            }
+            // list items
+            Iterator<Item> it = items.iterator();
+            while (it.hasNext()) {
+                Item i = it.next();
+                tr += "\nThere is " + i.getName() + " here.";
+            }
+            // list characters
+            Iterator<Character> ci = chars.iterator();
+            while (ci.hasNext()) {
+                Character c = ci.next();
+                tr += "\n" + c.getEntry();
+            }
+            return tr;
         }
-        // list items
-        Iterator<Item> it = items.iterator();
-        while(it.hasNext()) {
-            Item i = it.next();
-            tr += "\nThere is "+i.getName()+" here.";
+        else {
+            // darkness
+            return "It is pitch dark.  You are likely to be eaten by a grue.";
         }
-        // list characters
-        Iterator<Character> ci = chars.iterator();
-        while(ci.hasNext()) {
-            Character c = ci.next();
-            tr += "\n"+c.getEntry();
-        }
-        return tr;
     }
     public String getName() {
         return name;
@@ -79,7 +90,7 @@ public class Room implements IDescribable {
         this.items.add(i);
     }
 
-    public Room(String name, String description, Item[] items, Character[] chars) {
+    public Room(String name, String description, Item[] items, Character[] chars, boolean light) {
         this.name = name;
         this.description = description;
         this.items = new ArrayList<Item>();
@@ -90,6 +101,10 @@ public class Room implements IDescribable {
         for(int i = 0; i < chars.length; i++) {
             this.chars.add(chars[i]);
         }
+        this.alwaysLit = light;
+    }
+    public Room(String name, String description, Item[] items, Character[] chars) {
+        this(name, description, items, chars, false);
     }
 
     public Item[] getItems() {
@@ -110,5 +125,9 @@ public class Room implements IDescribable {
     public void connectTo(Room r, int s) {
         setDir(s, r);
         r.setDir(Side.opposite[s], this);
+    }
+
+    public boolean isAlwaysLit() {
+        return alwaysLit;
     }
 }
