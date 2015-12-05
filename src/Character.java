@@ -37,21 +37,28 @@ public class Character implements IDescribable {
     }
 
     public void damage(double damage) {
+        // reduce health
         this.health -= damage;
         if(damage != 0) {
+            // damage was actually done
             if (this instanceof Player) {
+                // player being attacked
                 System.out.println("He strikes back!");
             } else {
+                // player attacking
                 System.out.println("You hit the " + getName() + ".");
             }
         }
         if(health <= 0) {
+            // character is dead
             if(this instanceof Player) {
+                // player is dead
                 Main.kill();
             }
             else {
                 System.out.println("The " + getName() + " died.");
             }
+            // drop inventory
             Room r = Main.getCurrentRoom();
             r.removeCharacter(this);
             Iterator<Item> it = inventory.iterator();
@@ -61,6 +68,7 @@ public class Character implements IDescribable {
             }
         }
         else if(!(this instanceof Player)) {
+            // NPC, fight back
             Iterator<Item> it = inventory.iterator();
             while(it.hasNext()) {
                 Item i = it.next();
@@ -69,6 +77,7 @@ public class Character implements IDescribable {
                     return;
                 }
             }
+            // if all else fails, use hands
             hands.use(Main.player);
         }
     }

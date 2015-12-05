@@ -9,6 +9,7 @@ public class Main {
     public static final String[] omnipresent = {"narrator", "you", "sky", "air", "game", "room", "code", "intelligence"};
     private static Room room;
     public static void main(String[] args) {
+        //setup
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         goTo(setupRooms());
         System.out.println("The guard sets down some food and a spork.");
@@ -17,12 +18,14 @@ public class Main {
         while(true) {
             System.out.print(">");
             String cmd;
+            // read command
             try {
                 cmd = br.readLine();
             } catch (IOException e) {
                 e.printStackTrace();
                 break;
             }
+            // parse and execute command
             readCommand(cmd);
         }
     }
@@ -65,6 +68,7 @@ public class Main {
     }
     public static void readCommand(String str) {
         String[] t = str.split(" ");
+        // workaround for go
         boolean go = t[0].equals("go");
         if(go) {
             if(!trailing(t,2)) {
@@ -84,6 +88,7 @@ public class Main {
             case "d":
             case "up":
             case "u":
+                // go that direction
                 goTo(room.goDir(Side.fromChar(t[0].charAt(0))));
                 break;
             case "quit":
@@ -104,6 +109,7 @@ public class Main {
                     }
                     break;
                 }
+                // strip out "the" and "a"
                 if(t.length==3 && (t[1].equalsIgnoreCase("the") || t[1].equalsIgnoreCase("a"))) {
                     t = new String[] {t[0], t[2]};
                 }
@@ -112,9 +118,11 @@ public class Main {
                 }
                 if(!trailing(t,2)) {
                     boolean found = false;
+                    // loop through items in room
                     Item[] roomItems = room.getItems();
                     for (int i = 0; i < roomItems.length; i++) {
                         if (roomItems[i].matches(t[1])) {
+                            // found a match!
                             Item it = room.takeItem(i);
                             System.out.println("You pick up " + it.getName() + ".");
                             player.addToInventory(it);
@@ -123,6 +131,7 @@ public class Main {
                         }
                     }
                     if(found) break;
+                    // check omnipresents
                     for (int i = 0; i < omnipresent.length; i++) {
                         if (omnipresent[i].equalsIgnoreCase(t[1])) {
                             System.out.println("You can't " + t[0] + " that.");
@@ -137,6 +146,7 @@ public class Main {
                 break;
             case "attack":
             case "kill":
+                // "attack" and "kill" actually just rearrange t and leave it to "use" to handle it
                 if(!trailing(t,4)) {
                     if(t.length == 1) {
                         System.out.println(firstCapital(t[0])+" what?");
@@ -163,6 +173,7 @@ public class Main {
                         System.out.println("I don't know how to do that.");
                     }
                     else {
+                        // look for a match in inventory
                         Item[] items = player.getInventory();
                         Item item = null;
                         for(int i = 0; i < items.length; i++) {
@@ -171,6 +182,7 @@ public class Main {
                                 break;
                             }
                         }
+                        // check if it's hands
                         if(Character.hands.matches(t[1])) {
                             item = Character.hands;
                         }
@@ -178,14 +190,18 @@ public class Main {
                             System.out.println("I don't see that here.");
                         }
                         else if(item instanceof Usable) {
+                            // It's usable!
                             if(t.length == 2) {
+                                // simple use
                                 ((Usable)item).use();
                             }
                             else {
+                                // search for character to use on
                                 Character[] roomChars = room.getCharacters();
                                 for(int i = 0; i < roomChars.length; i++) {
                                     if(roomChars[i].getName().equalsIgnoreCase(t[3])) {
                                         ((Usable)item).use(roomChars[i]);
+                                        break;
                                     }
                                 }
                             }

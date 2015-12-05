@@ -32,6 +32,7 @@ public class Room implements IDescribable {
         while(it.hasNext()) {
             Character c = it.next();
             if(c instanceof ExitBlockingCharacter) {
+                // character is blocking the exit
                 return null;
             }
         }
@@ -44,15 +45,19 @@ public class Room implements IDescribable {
         return description;
     }
     public String getFullDescription(boolean v) {
+        // show name
         String tr = getName();
         if(!v) {
+            // first visit, or manual look; show description
             tr += "\n"+getDescription();
         }
+        // list items
         Iterator<Item> it = items.iterator();
         while(it.hasNext()) {
             Item i = it.next();
             tr += "\nThere is "+i.getName()+" here.";
         }
+        // list characters
         Iterator<Character> ci = chars.iterator();
         while(ci.hasNext()) {
             Character c = ci.next();
