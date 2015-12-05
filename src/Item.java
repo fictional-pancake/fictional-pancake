@@ -1,4 +1,4 @@
-public class Item {
+public class Item implements IDescribable {
     protected String[] names;
     private String description;
 

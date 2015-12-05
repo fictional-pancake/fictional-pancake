@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Room {
+public class Room implements IDescribable {
     private Room[] dirs = new Room[6];
     private String description;
     private String name;

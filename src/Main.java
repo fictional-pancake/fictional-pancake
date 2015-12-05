@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Iterator;
 
 public class Main {
     public static final Room nullRoom = new Room("Unimplemented Room", "You have stumbled upon a room that hasn't been coded yet.  There is no escape.", new Item[]{}, new Character[]{});
@@ -201,6 +202,57 @@ public class Main {
                 Item[] playerItems = player.getInventory();
                 for(int i = 0; i < playerItems.length; i++) {
                     System.out.println(playerItems[i].getInventoryEntry());
+                }
+                break;
+            case "look":
+            case "l":
+            case "ls":
+            case "examine":
+            case "what":
+                if(trailing(t,2)) {}
+                else if(t.length == 1) {
+                    // look at room
+                    System.out.println(room.getFullDescription(false));
+                }
+                else {
+                    // look at item or character
+                    IDescribable item = null;
+                    // check player inventory first
+                    Item[] inv = player.getInventory();
+                    for(Item i : inv) {
+                        if(i.matches(t[1])) {
+                            item = i;
+                            break;
+                        }
+                    }
+                    if(item == null) {
+                        // no match yet, check items in room
+                        Item[] roomItems = room.getItems();
+                        for (Item i : roomItems) {
+                            if (i.matches(t[1])) {
+                                item = i;
+                                break;
+                            }
+                        }
+                        if(item == null) {
+                            // still no match, check characters in room
+                            Character[] roomChars = room.getCharacters();
+                            for(Character c : roomChars) {
+                                if(c.getName().equals(t[1])) {
+                                    item = c;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    if(item != null) {
+                        // Yay, got a match!
+                        System.out.println(item.getDescription());
+                    }
+                    else {
+                        // Aww, no match.
+                        System.out.println("I don't see that here.");
+                    }
                 }
                 break;
             default:
