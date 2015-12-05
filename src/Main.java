@@ -8,7 +8,10 @@ public class Main {
     private static Room room;
     public static void main(String[] args) {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        goTo(nullRoom);
+        goTo(setupRooms());
+        System.out.println("The guard sets down some food and a spork.");
+        room.addItem(new Item(new String[]{"some food", "food", "cabbage"}, "It appears to be cabbage."));
+        room.addItem(new Item(new String[]{"a spork", "spork", "fork", "spoon"}, "It is approximately 60% spoon and 40% fork."));
         while(true) {
             System.out.print(">");
             String cmd;
@@ -20,6 +23,16 @@ public class Main {
             }
             readCommand(cmd);
         }
+    }
+    public static Room setupRooms() {
+        Room cell = new Room(
+                "Cell",
+                "You are in an old-looking prison cell.  It is dimly lit by a torch outside.  There is a door to the north.",
+                new Item[] {},
+                new Character[]{new ExitBlockingCharacter("a guard", "He looks tired, and he smells of onions.", new Item[]{})});
+        Room corridor = new Room("Corridor", "You are in a small corridor.  There is a open door to the south, and a hole to the east.", new Item[]{new Item(new String[]{"a torch", "torch"}, "It is a simple stick with coal on the end.  It is alight with a small flame.")}, new Character[]{});
+        cell.connectTo(corridor, Side.NORTH);
+        return cell;
     }
     public static void addScore(int a) {}
     public static boolean trailing(Object[] o, int n) {

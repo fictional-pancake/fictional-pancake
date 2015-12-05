@@ -22,4 +22,8 @@ public class Character {
             this.inventory.add(inventory[i]);
         }
     }
+
+    public String getEntry() {
+        return "There is "+getName()+" here.";
+    }
 }

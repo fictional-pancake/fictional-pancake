@@ -10,24 +10,31 @@ public class Room {
     private List<Character> chars;
     private boolean visited = false;
     public Room goNorth() {
-        return dirs[Side.NORTH];
-    }
-    public Room goSouth() {
-        return dirs[Side.SOUTH];
-    }
-    public Room goWest() {
-        return dirs[Side.WEST];
-    }
-    public Room goEast() {
-        return dirs[Side.EAST];
-    }
-    public Room goUp() {
-        return dirs[Side.UP];
+        return goDir(Side.NORTH);
     }
     public Room goDown() {
-        return dirs[Side.DOWN];
+        return goDir(Side.DOWN);
+    }
+    public Room goSouth() {
+        return goDir(Side.SOUTH);
+    }
+    public Room goUp() {
+        return goDir(Side.UP);
+    }
+    public Room goWest() {
+        return goDir(Side.WEST);
+    }
+    public Room goEast() {
+        return goDir(Side.EAST);
     }
     public Room goDir(int s) {
+        Iterator<Character> it = chars.iterator();
+        while(it.hasNext()) {
+            Character c = it.next();
+            if(c instanceof ExitBlockingCharacter) {
+                return null;
+            }
+        }
         return dirs[s];
     }
     public void setDir(int s, Room r) {
@@ -49,7 +56,7 @@ public class Room {
         Iterator<Character> ci = chars.iterator();
         while(ci.hasNext()) {
             Character c = ci.next();
-            tr += "\nThere is "+c.getName()+" here.";
+            tr += "\n"+c.getEntry();
         }
         return tr;
     }
@@ -61,6 +68,10 @@ public class Room {
     }
     public void visit() {
         visited = true;
+    }
+
+    public void addItem(Item i) {
+        this.items.add(i);
     }
 
     public Room(String name, String description, Item[] items, Character[] chars) {
@@ -82,5 +93,10 @@ public class Room {
 
     public Item takeItem(int index) {
         return items.remove(index);
+    }
+
+    public void connectTo(Room r, int s) {
+        setDir(s, r);
+        r.setDir(Side.opposite[s], this);
     }
 }
