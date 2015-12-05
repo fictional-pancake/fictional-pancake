@@ -39,8 +39,8 @@ public class Main {
                 new Item[] {},
                 new Character[]{new ExitBlockingCharacter("guard", "He looks tired, and he smells of onions.", new Item[]{}, 10)}
         );
-        Room corridor = new Room("Corridor",
-                "You are in a small corridor.  There is a open door to the south, and a hole to the east.",
+        Room corridor = new Room("East end of corridor",
+                "You are in a small corridor going west.  There is a open door to the south, and a hole to the east.",
                 new Item[]{new Item(new String[]{"a torch", "torch"}, "It is a simple stick with coal on the end.  It is alight with a small flame.")},
                 new Character[]{}
         );
@@ -50,9 +50,16 @@ public class Main {
                 "You are in a damp cave. There is a hole in the west wall and a long tunnel to the south with a faint light at the end.",
                 new Item[] {},
                 new Character[]{new Character("hobo", "He is an old man sitting in the corner, dressed in rags. He looks hungry.",
-                        new Item[]{new Weapon(new String[] {"sword", "steel sword", "steel"}, "The Hobo's steel sword.", 100)}, 100)}
+                        new Item[]{new Weapon(new String[] {"steel sword", "sword", "steel"}, "The Hobo's steel sword.", 100)}, 100)}
         );
         corridor.connectTo(hoboCave, Side.EAST);
+        Room ladderRoom = new Room(
+                "West end of corridor",
+                "You are in a small corridor going east.  There is a ladder in the wall here, leading through a hole in the ceiling.",
+                new Item[]{},
+                new Character[]{}
+        );
+        corridor.connectTo(ladderRoom, Side.WEST);
         return cell;
     }
     public static void addScore(int a) {}
