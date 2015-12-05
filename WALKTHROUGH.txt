@@ -1,1 +1,42 @@
+kill guard
+take food
+take leaf
+go north
+take torch
+go east
+give food to hobo
+go west
+go west
+go up
+take orb
+go up
+take shirt
+empty shirt
+go east
+go south
+push button
+go east
+read scroll
+go west
+go north
+go north
+use orb on buffalo
+go south
+go west
+go down
+go down
+go down
+...
+go east
+go east
+go south
+put leaf in hole
+put leaf in hole
+put leaf in hole
+put leaf in hole
+put leaf in hole
+put leaf in hole
+put leaf in hole
+kill hobo somehow
+go south
 Win.
