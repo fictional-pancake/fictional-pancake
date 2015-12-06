@@ -6,6 +6,6 @@ public class ExitBlockingCharacter extends Character {
 
     @Override
     public String getEntry() {
-        return "There is "+getName()+" here, blocking all exits.";
+        return "There is a "+getName()+" here, blocking all exits.";
     }
 }

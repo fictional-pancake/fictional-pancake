@@ -1,5 +1,5 @@
 public class Item {
-    private String[] names;
+    protected String[] names;
     private String description;
 
     public String getName() {

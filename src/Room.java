@@ -90,9 +90,16 @@ public class Room {
     public Item[] getItems() {
         return items.toArray(new Item[0]);
     }
+    public Character[] getCharacters() {
+        return chars.toArray(new Character[0]);
+    }
 
     public Item takeItem(int index) {
         return items.remove(index);
+    }
+
+    public void removeCharacter(Character c) {
+        chars.remove(c);
     }
 
     public void connectTo(Room r, int s) {
