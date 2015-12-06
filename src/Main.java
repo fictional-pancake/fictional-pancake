@@ -33,9 +33,22 @@ public class Main {
                 "Cell",
                 "You are in an old-looking prison cell.  It is dimly lit by a torch outside.  There is a door to the north.",
                 new Item[] {},
-                new Character[]{new ExitBlockingCharacter("guard", "He looks tired, and he smells of onions.", new Item[]{})});
-        Room corridor = new Room("Corridor", "You are in a small corridor.  There is a open door to the south, and a hole to the east.", new Item[]{new Item(new String[]{"a torch", "torch"}, "It is a simple stick with coal on the end.  It is alight with a small flame.")}, new Character[]{});
+                new Character[]{new ExitBlockingCharacter("guard", "He looks tired, and he smells of onions.", new Item[]{})}
+        );
+        Room corridor = new Room("Corridor",
+                "You are in a small corridor.  There is a open door to the south, and a hole to the east.",
+                new Item[]{new Item(new String[]{"a torch", "torch"}, "It is a simple stick with coal on the end.  It is alight with a small flame.")},
+                new Character[]{}
+        );
         cell.connectTo(corridor, Side.NORTH);
+        Room hoboCave = new Room(
+                "The Hobo's Cave",
+                "You are in a damp cave. There is a hole in the west wall and a long tunnel to the south with a faint light at the end.",
+                new Item[] {},
+                new Character[]{new Character("hobo", "He is an old man sitting in the corner, dressed in rags. He looks hungry.",
+                        new Item[]{new Weapon(new String[] {"sword", "steel sword", "steel"}, "The Hobo's steel sword.", 100)})}
+        );
+        corridor.connectTo(hoboCave, Side.EAST);
         return cell;
     }
     public static void addScore(int a) {}
