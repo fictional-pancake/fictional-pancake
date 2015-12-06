@@ -12,7 +12,7 @@ public class Main {
         goTo(setupRooms());
         System.out.println("The guard sets down some food and a spork.");
         room.addItem(new Item(new String[]{"some food", "food", "cabbage"}, "It appears to be cabbage."));
-        room.addItem(new Weapon(new String[]{"a spork", "spork", "fork", "spoon"}, "It is approximately 60% spoon and 40% fork.", 5));
+        room.addItem(new Weapon(new String[]{"a spork", "spork", "fork", "spoon"}, "It is approximately 60% spoon and 40% fork.", 10));
         while(true) {
             System.out.print(">");
             String cmd;
@@ -33,7 +33,7 @@ public class Main {
                 "Cell",
                 "You are in an old-looking prison cell.  It is dimly lit by a torch outside.  There is a door to the north.",
                 new Item[] {},
-                new Character[]{new ExitBlockingCharacter("guard", "He looks tired, and he smells of onions.", new Item[]{})}
+                new Character[]{new ExitBlockingCharacter("guard", "He looks tired, and he smells of onions.", new Item[]{}, 10)}
         );
         Room corridor = new Room("Corridor",
                 "You are in a small corridor.  There is a open door to the south, and a hole to the east.",
@@ -139,12 +139,15 @@ public class Main {
                 if(!trailing(t,4)) {
                     if(t.length == 1) {
                         System.out.println(firstCapital(t[0])+" what?");
+                        break;
                     }
                     else if(t.length == 2) {
                         System.out.println("With what do you wish to "+t[0]+"?");
+                        break;
                     }
                     else if(t.length == 3) {
                         System.out.println("I don't know how to do that.");
+                        break;
                     }
                     else {
                         t = new String[] {"use", t[3], "on", t[1]};
@@ -166,6 +169,9 @@ public class Main {
                                 item = items[i];
                                 break;
                             }
+                        }
+                        if(Character.hands.matches(t[1])) {
+                            item = Character.hands;
                         }
                         if(item == null) {
                             System.out.println("I don't see that here.");

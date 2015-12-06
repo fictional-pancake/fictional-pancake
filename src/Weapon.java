@@ -17,7 +17,13 @@ public class Weapon extends Usable {
 
     public void use(Character c) {
         if(Math.random() < 0.2) {
-            System.out.println("You missed.");
+            if(c instanceof Player) {
+                System.out.println("He missed.");
+            }
+            else {
+                System.out.println("You missed.");
+            }
+            c.damage(0);
         }
         else {
             c.damage(damage);

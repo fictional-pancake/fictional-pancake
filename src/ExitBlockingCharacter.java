@@ -1,7 +1,7 @@
 public class ExitBlockingCharacter extends Character {
 
-    public ExitBlockingCharacter(String name, String description, Item[] inventory) {
-        super(name, description, inventory);
+    public ExitBlockingCharacter(String name, String description, Item[] inventory, double health) {
+        super(name, description, inventory, health);
     }
 
     @Override

@@ -8,6 +8,8 @@ public class Character {
     private List<Item> inventory;
     private double health;
 
+    public static final Weapon hands = new Weapon(new String[] {"pair of hands", "hands"}, "You can't tell much about it.", 1);
+
     public String getName() {
         return name;
     }
@@ -36,11 +38,12 @@ public class Character {
 
     public void damage(double damage) {
         this.health -= damage;
-        if(this instanceof Player) {
-            System.out.println("He strikes back!");
-        }
-        else {
-            System.out.println("You hit the " + getName() + ".");
+        if(damage != 0) {
+            if (this instanceof Player) {
+                System.out.println("He strikes back!");
+            } else {
+                System.out.println("You hit the " + getName() + ".");
+            }
         }
         if(health <= 0) {
             if(this instanceof Player) {
@@ -57,14 +60,16 @@ public class Character {
                 r.addItem(i);
             }
         }
-        else {
+        else if(!(this instanceof Player)) {
             Iterator<Item> it = inventory.iterator();
             while(it.hasNext()) {
                 Item i = it.next();
                 if(i instanceof Weapon) {
                     ((Usable)i).use(Main.player);
+                    return;
                 }
             }
+            hands.use(Main.player);
         }
     }
     public void addToInventory(Item thing) {
