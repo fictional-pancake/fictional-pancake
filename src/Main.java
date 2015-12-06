@@ -78,12 +78,26 @@ public class Main {
         return s.substring(0,1).toUpperCase()+s.substring(1);
     }
     public static void readCommand(String str) {
-        String[] t = str.split(" ");
+        String[] t = str.toLowerCase().split(" ");
+        // check if they even typed anything
+        if(t.length == 0 || t[0].length() == 0) {
+            System.out.println("What do you want to do?");
+            return;
+        }
         // workaround for go
         boolean go = t[0].equals("go");
         if(go) {
             if(!trailing(t,2)) {
-                t = new String[] {t[1]};
+                if(t.length == 1) {
+                    System.out.println("Go where?");
+                    return;
+                }
+                else {
+                    t = new String[]{t[1]};
+                }
+            }
+            else {
+                return;
             }
         }
         switch(t[0]) {
@@ -99,12 +113,16 @@ public class Main {
             case "d":
             case "up":
             case "u":
-                // go that direction
-                goTo(room.goDir(Side.fromChar(t[0].charAt(0))));
+                if(!trailing(t,1)) {
+                    // go that direction
+                    goTo(room.goDir(Side.fromChar(t[0].charAt(0))));
+                }
                 break;
             case "quit":
-                System.out.println("Goodbye.");
-                System.exit(0);
+                if(!trailing(t,1)) {
+                    System.out.println("Goodbye.");
+                    System.exit(0);
+                }
                 break;
             case "take":
             case "get":
@@ -126,6 +144,7 @@ public class Main {
                 }
                 if(t.length == 1) {
                     System.out.println(firstCapital(t[0])+" what?");
+                    break;
                 }
                 if(!trailing(t,2)) {
                     boolean found = false;
@@ -198,7 +217,7 @@ public class Main {
                             item = Character.hands;
                         }
                         if(item == null) {
-                            System.out.println("I don't see that here.");
+                            System.out.println("You don't have that.");
                         }
                         else if(item instanceof Usable) {
                             // It's usable!
@@ -225,10 +244,12 @@ public class Main {
                 break;
             case "inventory":
             case "i":
-                System.out.println("You have the following items:");
-                Item[] playerItems = player.getInventory();
-                for(int i = 0; i < playerItems.length; i++) {
-                    System.out.println(playerItems[i].getInventoryEntry());
+                if(!trailing(t,1)) {
+                    System.out.println("You have the following items:");
+                    Item[] playerItems = player.getInventory();
+                    for (int i = 0; i < playerItems.length; i++) {
+                        System.out.println(playerItems[i].getInventoryEntry());
+                    }
                 }
                 break;
             case "look":
@@ -236,6 +257,9 @@ public class Main {
             case "ls":
             case "examine":
             case "what":
+                if(t.length == 3 && t[1].equals("at")) {
+                    t = new String[] {t[0], t[2]};
+                }
                 if(trailing(t,2)) {}
                 else if(t.length == 1) {
                     // look at room
