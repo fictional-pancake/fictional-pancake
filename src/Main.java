@@ -157,6 +157,14 @@ public class Main {
                     }
                 }
                 break;
+            case "inventory":
+            case "i":
+                System.out.println("You have the following items:");
+                Item[] playerItems = player.getInventory();
+                for(int i = 0; i < playerItems.length; i++) {
+                    System.out.println(playerItems[i].getInventoryEntry());
+                }
+                break;
             default:
                 System.out.println("What would it mean to "+(go?"go ":"")+t[0]+"?");
         }

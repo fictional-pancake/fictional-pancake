@@ -51,4 +51,8 @@ public class Character {
     public void addToInventory(Item thing) {
         inventory.add(thing);
     }
+
+    public Item[] getInventory() {
+        return inventory.toArray(new Item[0]);
+    }
 }
