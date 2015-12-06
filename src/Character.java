@@ -48,4 +48,7 @@ public class Character {
             }
         }
     }
+    public void addToInventory(Item thing) {
+        inventory.add(thing);
+    }
 }

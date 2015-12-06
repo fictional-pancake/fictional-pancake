@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 
 public class Main {
     public static final Room nullRoom = new Room("Unimplemented Room", "You have stumbled upon a room that hasn't been coded yet.  There is no escape.", new Item[]{}, new Character[]{});
+    public static final Player player = new Player(new Item[]{});
     public static final String[] omnipresent = {"narrator", "you", "sky", "air", "game", "room", "code", "intelligence"};
     private static Room room;
     public static void main(String[] args) {
@@ -76,6 +77,16 @@ public class Main {
             case "get":
             case "pickup":
             case "obtain":
+                // take all
+                if (t.length==2 && t[1].equals("all")) {
+                    int numItems = room.getItems().length;
+                    for (int i = 0; i < numItems; i++) {
+                        Item it = room.takeItem(0);
+                        System.out.println("You pick up " + it.getName() + ".");
+                        player.addToInventory(it);
+                    }
+                    break;
+                }
                 if(t.length==3 && (t[1].equalsIgnoreCase("the") || t[1].equalsIgnoreCase("a"))) {
                     t = new String[] {t[0], t[2]};
                 }
@@ -89,6 +100,7 @@ public class Main {
                         if (roomItems[i].matches(t[1])) {
                             Item it = room.takeItem(i);
                             System.out.println("You pick up " + it.getName() + ".");
+                            player.addToInventory(it);
                             found = true;
                             break;
                         }
