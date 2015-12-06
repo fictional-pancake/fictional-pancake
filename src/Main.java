@@ -4,10 +4,30 @@ import java.io.InputStreamReader;
 import java.util.Iterator;
 
 public class Main {
+    /**
+     * A room for temporary usage
+     */
     public static final Room nullRoom = new Room("Unimplemented Room", "You have stumbled upon a room that hasn't been coded yet.  There is no escape.", new Item[]{}, new Character[]{});
+
+    /**
+     * The player object
+     */
     public static final Player player = new Player(new Item[]{});
+
+    /**
+     * List of objects which always exist, but cannot be interacted with
+     */
     public static final String[] omnipresent = {"narrator", "you", "sky", "air", "game", "room", "code", "intelligence"};
+
+    /**
+     * The current room
+     */
     private static Room room;
+
+    /**
+     * Run game
+     * @param args the argument array.  Ignored currently
+     */
     public static void main(String[] args) {
         //setup
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -29,9 +49,19 @@ public class Main {
             readCommand(cmd);
         }
     }
+
+    /**
+     * Get the current room
+     * @return the current room
+     */
     public static Room getCurrentRoom() {
         return room;
     }
+
+    /**
+     * Set up the rooms
+     * @return the starting room
+     */
     public static Room setupRooms() {
         Room cell = new Room(
                 "Cell",
@@ -66,7 +96,19 @@ public class Main {
         corridor.connectTo(ladderRoom, Side.WEST);
         return cell;
     }
+
+    /**
+     * Does nothing
+     * @param a a useless parameter
+     */
     public static void addScore(int a) {}
+
+    /**
+     * Check an array for trailing elements, and print an error message if present
+     * @param o the array to check
+     * @param n the maximum length it should have
+     * @return whether the array passes
+     */
     public static boolean trailing(Object[] o, int n) {
         if(o.length > n) {
             System.out.println("Too much information!");
@@ -74,9 +116,20 @@ public class Main {
         }
         return false;
     }
+
+    /**
+     * Make the first character of a string capital
+     * @param s the string to change
+     * @return the string after changing the capitalization
+     */
     public static String firstCapital(String s) {
         return s.substring(0,1).toUpperCase()+s.substring(1);
     }
+
+    /**
+     * Parse a command
+     * @param str the command to parse
+     */
     public static void readCommand(String str) {
         String[] t = str.toLowerCase().split(" ");
         // check if they even typed anything
@@ -324,6 +377,11 @@ public class Main {
                 System.out.println("What would it mean to "+(go?"go ":"")+t[0]+"?");
         }
     }
+
+    /**
+     * Go into a room and print info
+     * @param r the room to enter
+     */
     public static void goTo(Room r) {
         if(r==null) {
             System.out.println("You can't go that way.");
@@ -334,10 +392,19 @@ public class Main {
         r.visit();
         System.out.println(r.getFullDescription(v));
     }
+
+    /**
+     * Show death message
+     */
     public static void kill() {
         System.out.println("You are dead.");
         System.exit(0);
     }
+
+    /**
+     * Check if the current room is lit
+     * @return whether the current room is lit
+     */
     public static boolean isLight() {
         // check if room is always lit (outside, starting cell, etc.)
         if(room.isAlwaysLit()) {
