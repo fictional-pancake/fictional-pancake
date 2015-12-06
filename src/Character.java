@@ -85,6 +85,10 @@ public class Character implements IDescribable {
         inventory.add(thing);
     }
 
+    public Item takeItem(int index) {
+        return inventory.remove(index);
+    }
+
     public Item[] getInventory() {
         return inventory.toArray(new Item[0]);
     }

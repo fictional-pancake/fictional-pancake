@@ -306,6 +306,20 @@ public class Main {
                     }
                 }
                 break;
+            case "drop":
+                if(!trailing(t,2)) {
+                    // look through player inventory
+                    Item[] playerItems = player.getInventory();
+                    for(int i = 0; i < playerItems.length; i++) {
+                        if(playerItems[i].matches(t[1])) {
+                            // found it!
+                            Item it = player.takeItem(i);
+                            room.addItem(it);
+                            System.out.println("Dropped "+it.getName()+".");
+                        }
+                    }
+                }
+                break;
             default:
                 System.out.println("What would it mean to "+(go?"go ":"")+t[0]+"?");
         }
