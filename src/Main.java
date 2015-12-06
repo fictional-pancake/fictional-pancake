@@ -46,6 +46,9 @@ public class Main {
         }
         return false;
     }
+    public static String firstCapital(String s) {
+        return s.substring(0,1).toUpperCase()+s.substring(1);
+    }
     public static void readCommand(String str) {
         String[] t = str.split(" ");
         boolean go = t[0].equals("go");
@@ -91,7 +94,7 @@ public class Main {
                     t = new String[] {t[0], t[2]};
                 }
                 if(t.length == 1) {
-                    System.out.println(t[0].substring(0,1).toUpperCase()+t[0].substring(1)+" what?");
+                    System.out.println(firstCapital(t[0])+" what?");
                 }
                 if(!trailing(t,2)) {
                     boolean found = false;
@@ -118,6 +121,22 @@ public class Main {
                     }
                 }
                 break;
+            case "attack":
+            case "kill":
+                if(!trailing(t,4)) {
+                    if(t.length == 1) {
+                        System.out.println(firstCapital(t[0])+" what?");
+                    }
+                    else if(t.length == 2) {
+                        System.out.println("With what do you wish to "+t[0]+"?");
+                    }
+                    else if(t.length == 3) {
+                        System.out.println("I don't know how to do that.");
+                    }
+                    else {
+                        t = new String[] {"use", t[3], "on", t[1]};
+                    }
+                }
             case "use":
                 if(!trailing(t,4)) {
                     if(t.length == 1) {
@@ -127,7 +146,7 @@ public class Main {
                         System.out.println("I don't know how to do that.");
                     }
                     else {
-                        Item[] items = room.getItems();
+                        Item[] items = player.getInventory();
                         Item item = null;
                         for(int i = 0; i < items.length; i++) {
                             if(items[i].matches(t[1])) {
