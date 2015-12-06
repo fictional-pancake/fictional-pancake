@@ -46,7 +46,7 @@ public class Main {
                 "You are in a damp cave. There is a hole in the west wall and a long tunnel to the south with a faint light at the end.",
                 new Item[] {},
                 new Character[]{new Character("hobo", "He is an old man sitting in the corner, dressed in rags. He looks hungry.",
-                        new Item[]{new Weapon(new String[] {"sword", "steel sword", "steel"}, "The Hobo's steel sword.", 100)})}
+                        new Item[]{new Weapon(new String[] {"sword", "steel sword", "steel"}, "The Hobo's steel sword.", 100)}, 100)}
         );
         corridor.connectTo(hoboCave, Side.EAST);
         return cell;
