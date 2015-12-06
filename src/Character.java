@@ -36,15 +36,34 @@ public class Character {
 
     public void damage(double damage) {
         this.health -= damage;
-        System.out.println("You hit the "+getName()+".");
+        if(this instanceof Player) {
+            System.out.println("He strikes back!");
+        }
+        else {
+            System.out.println("You hit the " + getName() + ".");
+        }
         if(health <= 0) {
-            System.out.println("The "+getName()+" died.");
+            if(this instanceof Player) {
+                Main.kill();
+            }
+            else {
+                System.out.println("The " + getName() + " died.");
+            }
             Room r = Main.getCurrentRoom();
             r.removeCharacter(this);
             Iterator<Item> it = inventory.iterator();
             while(it.hasNext()) {
                 Item i = it.next();
                 r.addItem(i);
+            }
+        }
+        else {
+            Iterator<Item> it = inventory.iterator();
+            while(it.hasNext()) {
+                Item i = it.next();
+                if(i instanceof Weapon) {
+                    ((Usable)i).use(Main.player);
+                }
             }
         }
     }

@@ -211,4 +211,8 @@ public class Main {
         r.visit();
         System.out.println(r.getFullDescription(v));
     }
+    public static void kill() {
+        System.out.println("You are dead.");
+        System.exit(0);
+    }
 }
