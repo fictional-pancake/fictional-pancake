@@ -222,6 +222,15 @@ public class Main {
                             break;
                         }
                     }
+                    // you can't take characters
+                    Character[] roomChars = room.getCharacters();
+                    for(Character c : roomChars) {
+                        if(c.getName().equalsIgnoreCase(t[1])) {
+                            System.out.println("You can't "+ t[0] + " that.");
+                            found = true;
+                            break;
+                        }
+                    }
                     if(!found) {
                         System.out.println("I don't see that here.");
                     }
