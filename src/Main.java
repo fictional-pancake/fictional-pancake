@@ -67,7 +67,7 @@ public class Main {
                 "Cell",
                 "You are in an old-looking prison cell.  It is dimly lit by a torch outside.  There is a door to the north.",
                 new Item[] {},
-                new Character[]{new ExitBlockingCharacter("guard", "He looks tired, and he smells of onions.", new Item[]{}, 10)},
+                new Character[]{new Character("guard", "He looks tired, and he smells of onions.", new Item[]{}, 10).setBlockingExits()},
                 true
         );
         Room corridor = new Room("East end of corridor",

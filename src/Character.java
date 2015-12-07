@@ -24,6 +24,11 @@ public class Character implements IDescribable {
     private double health;
 
     /**
+     * Whether this character is blocking all exits
+     */
+    private boolean blockingExits;
+
+    /**
      * A weapon reference to represent bare hands
      */
     public static final Weapon hands = new Weapon(new String[] {"pair of hands", "hands"}, "You can't tell much about it.", 1);
@@ -68,7 +73,7 @@ public class Character implements IDescribable {
      * @return the room entry for this Character
      */
     public String getEntry() {
-        return "There is a "+getName()+" here.";
+        return "There is a "+getName()+" here"+(blockingExits?", blocking all exits":"")+".";
     }
 
     /**
@@ -144,5 +149,22 @@ public class Character implements IDescribable {
      */
     public Item[] getInventory() {
         return inventory.toArray(new Item[0]);
+    }
+
+    /**
+     * Set this character to block all exits
+     * @return this character
+     */
+    public Character setBlockingExits() {
+        blockingExits = true;
+        return this;
+    }
+
+    /**
+     * Check whether this character is blocking exits
+     * @return whether this character is blocking exits
+     */
+    public boolean isBlockingExits() {
+        return blockingExits;
     }
 }

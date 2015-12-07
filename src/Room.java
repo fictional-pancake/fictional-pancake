@@ -95,7 +95,7 @@ public class Room implements IDescribable {
         Iterator<Character> it = chars.iterator();
         while(it.hasNext()) {
             Character c = it.next();
-            if (c instanceof ExitBlockingCharacter) {
+            if (c.isBlockingExits()) {
                 // character is blocking the exit
                 return null;
             }
