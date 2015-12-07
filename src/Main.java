@@ -89,11 +89,29 @@ public class Main {
         corridor.connectTo(hoboCave, Side.EAST);
         Room ladderRoom = new Room(
                 "West end of corridor",
-                "You are in a small corridor going east.  There is a ladder in the wall here, leading through a hole in the ceiling.",
+                "You are in a small corridor going east.  There is a ladder on the wall here, leading through a hole in the ceiling.",
                 new Item[]{},
                 new Character[]{}
         );
         corridor.connectTo(ladderRoom, Side.WEST);
+        Room museumBasement = new Room(
+                "Museum Basement",
+                "You are in what appears to be the basement of a museum. There are many exhibits here which are not currently on display. There is a hole in the floor with a ladder leading down into the darkness. Stairs in the corner lead upward.",
+                new Item[]{
+                        new Usable(new String[] {"an orb", "orb", "shiny"}, "A small orb. It is glowing softly but doesn't seem to light up anything around it.")
+                },
+                new Character[] {}
+        );
+        museumBasement.connectTo(ladderRoom, Side.DOWN);
+        Room closet = new Room(
+                "Museum Closet",
+                "You are in a small side closet. The stairs lead back down into the basement of the museum. There is an entryway on the east wall that looks like it used to contain a door.",
+                new Item[]{
+                        new Item(new String[] {"a shirt", "shirt", "Hawaiian", "fancy"}, "A fancy Hawaiian shirt. It's exactly your size!")
+                },
+                new Character[] {}
+        );
+        closet.connectTo(museumBasement, Side.DOWN);
         return cell;
     }
 
@@ -138,7 +156,7 @@ public class Main {
             return;
         }
         // workaround for go
-        boolean go = t[0].equals("go");
+        boolean go = t[0].equals("go") || t[0].equals("cd");
         if(go) {
             if(!trailing(t,2)) {
                 if(t.length == 1) {
