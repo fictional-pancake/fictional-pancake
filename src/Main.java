@@ -111,6 +111,13 @@ public class Main {
                 new Character[] {}
         );
         closet.connectTo(museumBasement, Side.DOWN);
+        Room lobby = new Room(
+                "Museum Lobby",
+                "You are in the lobby of the museum. It appears to be abandoned. Hallways go off to the south and north, likely leading to various exhibits.",
+                new Item[]{},
+                new Character[]{}
+        );
+        lobby.connectTo(closet, Side.WEST);
         return cell;
     }
 
