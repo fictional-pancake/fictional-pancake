@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Iterator;
 
 public class Main {
     /**
@@ -107,7 +106,7 @@ public class Main {
                 "Museum Closet",
                 "You are in a small side closet. The stairs lead back down into the basement of the museum. There is an entryway on the east wall that looks like it used to contain a door.",
                 new Item[]{
-                        new Item(new String[] {"a shirt", "shirt", "Hawaiian", "fancy"}, "A fancy Hawaiian shirt. It's exactly your size!")
+                        new ItemShirt(new String[] {"a shirt", "shirt", "Hawaiian", "fancy"}, "A fancy Hawaiian shirt. It's exactly your size!", new Item[]{new Item(new String[] {"a blue crystalline leaf", "leaf", "blue", "crystal", "crystalline"}, "A shiny blue crystalline leaf.")})
                 },
                 new Character[] {}
         );
@@ -120,7 +119,6 @@ public class Main {
      * @param a a useless parameter
      */
     public static void addScore(int a) {}
-
     /**
      * Check an array for trailing elements, and print an error message if present
      * @param o the array to check
@@ -206,6 +204,7 @@ public class Main {
                         Item it = room.takeItem(0);
                         System.out.println("You pick up " + it.getName() + ".");
                         player.addToInventory(it);
+                        it.onPickup();
                     }
                     break;
                 }
@@ -227,6 +226,7 @@ public class Main {
                             Item it = room.takeItem(i);
                             System.out.println("You pick up " + it.getName() + ".");
                             player.addToInventory(it);
+                            it.onPickup();
                             found = true;
                             break;
                         }

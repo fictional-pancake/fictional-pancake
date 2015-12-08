@@ -58,4 +58,8 @@ public class Item implements IDescribable {
         }
         return false;
     }
+
+    public void onPickup() {
+
+    }
 }
