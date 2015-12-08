@@ -97,7 +97,7 @@ public class Main {
                 "Museum Basement",
                 "You are in what appears to be the basement of a museum. There are many exhibits here which are not currently on display. There is a hole in the floor with a ladder leading down into the darkness. Stairs in the corner lead upward.",
                 new Item[]{
-                        new Usable(new String[] {"an orb", "orb", "shiny"}, "A small orb. It is glowing softly but doesn't seem to light up anything around it.")
+                        new ItemOrb(new String[] {"an orb", "orb", "shiny"}, "A small orb. It is glowing softly but doesn't seem to light up anything around it.")
                 },
                 new Character[] {}
         );
@@ -118,6 +118,18 @@ public class Main {
                 new Character[]{}
         );
         lobby.connectTo(closet, Side.WEST);
+        Room nativeAmericanExhibit = new Room(
+                "Native American Exhibit",
+                "You are in a museum exhibit room highlighting history and culture of Native American people.  There are exits to the north and east.",
+                new Item[]{
+                        new Weapon(new String[] {"a spear", "spear"}, "It is a spear with a wooden handle.  You aren't sure what the tip is made of.", 15),
+                        new Item(new String[] {"an arrowhead", "arrowhead"}, "It is an arrowhead, similar to the tip of the spear.")
+                },
+                new Character[]{
+                        new CharacterBuffalo("buffalo", "It is a brownish-green buffalo.", new Item[]{})
+                }
+        );
+        nativeAmericanExhibit.connectTo(lobby, Side.NORTH);
         return cell;
     }
 

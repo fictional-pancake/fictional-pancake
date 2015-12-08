@@ -144,11 +144,30 @@ public class Character implements IDescribable {
     }
 
     /**
+     * Remove an item from this Character's inventory
+     * @param item the item to remove
+     */
+    public void removeItem(Item item) {
+        inventory.remove(item);
+    }
+
+    /**
      * Get a list of items in the Character's inventory
      * @return a list of items in the Character's inventory
      */
     public Item[] getInventory() {
         return inventory.toArray(new Item[0]);
+    }
+
+    public boolean hasItem(String name) {
+        Iterator<Item> it = inventory.iterator();
+        while(it.hasNext()) {
+            Item i = it.next();
+            if(i.matches(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
