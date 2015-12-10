@@ -293,6 +293,9 @@ public class Main {
                         t = new String[] {"use", t[3], "on", t[1]};
                     }
                 }
+            case "press":
+            case "open":
+            case "close":
             case "use":
                 if(!trailing(t,4)) {
                     if(t.length == 1) {
@@ -300,6 +303,19 @@ public class Main {
                     }
                     else if(t.length == 3) {
                         System.out.println("I don't know how to do that.");
+                    }
+                    else if(t[1].equals("door")) {
+                        // they are trying to open a door
+                        // find the door in the room
+                        Character[] characters = room.getCharacters();
+                        Character door = null;
+                        for (int i = 0; i < characters.length; i++) {
+                            if (characters[i] instanceof CharacterDoor) {
+                                door = characters[i];
+                                break;
+                            }
+                        }
+                        ((CharacterDoor)door).toggleOpen();
                     }
                     else {
                         // look for a match in inventory
