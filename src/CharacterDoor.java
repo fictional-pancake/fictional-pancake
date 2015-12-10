@@ -1,21 +1,22 @@
 import java.util.ArrayList;
 
-public class CharacterDoor extends Character {
-    private boolean open;
+public class CharacterDoor extends Character implements IUsable {
+    LinkableBoolean open = new LinkableBoolean();
     private int side;
     public CharacterDoor(String name, String description, int side, boolean open) {
+        super(name, description, new Item[]{});
+        this.side = side;
+        this.open.value = open;
+    }
+    public CharacterDoor(String name, String description, int side, LinkableBoolean open) {
         super(name, description, new Item[]{});
         this.side = side;
         this.open = open;
     }
 
-    /**
-     * Check if the door is blocking the given exit
-     * @param checkSide the number of the side to check for being blocked
-     * @return true if that side is being blocked, else false
-     */
+    @Override
     public boolean isBlockingExit(int checkSide) {
-        if (checkSide == this.side) {
+        if (checkSide == this.side && !isOpen()) {
             return true;
         }
         return false;
@@ -31,11 +32,32 @@ public class CharacterDoor extends Character {
     }
 
     public void toggleOpen() {
-        if (this.open == false) {
-            this.open = true;
+        if (!isOpen()) {
+            open.value = true;
+            System.out.println("You open the door.");
         }
         else {
-            this.open = false;
+            open.value = false;
+            System.out.println("You close the door.");
         }
+    }
+
+    public boolean isOpen() {
+        return open.value;
+    }
+
+    @Override
+    public void use() {
+        toggleOpen();
+    }
+
+    @Override
+    public void use(Character c) {
+        System.out.println("You can't do that.");
+    }
+
+    @Override
+    public String getEntry() {
+        return "";
     }
 }

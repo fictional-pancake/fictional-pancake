@@ -1,4 +1,4 @@
-public class Usable extends Item {
+public class Usable extends Item implements IUsable {
 
     /**
      * Construct a Usable with a name and a description

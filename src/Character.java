@@ -200,4 +200,14 @@ public class Character implements IDescribable {
     public boolean isBlockingExits() {
         return blockingExits;
     }
+
+    /**
+     * Check if the door is blocking the given exit
+     * @param side the number of the side to check for being blocked
+     * @return true if that side is being blocked, else false
+     */
+    public boolean isBlockingExit(int side) {
+        if(isBlockingExits()) return true;
+        return false;
+    }
 }

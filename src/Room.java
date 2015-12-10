@@ -95,20 +95,18 @@ public class Room implements IDescribable {
         Iterator<Character> it = chars.iterator();
         while(it.hasNext()) {
             Character c = it.next();
-            if (c instanceof CharacterDoor){
-                if (((CharacterDoor) c).isBlockingExit(s)) {
-                    // character is blocking this exit
-                    return null;
-                }
-            }
-            if (c.isBlockingExits()) {
-                // character is blocking all exits
+            if(c.isBlockingExit(s)) {
+                // character is blocking this exit
+                System.out.println("The "+c.getName()+" is blocking the way.");
                 return null;
             }
         }
         if(!Main.isLight() && Math.random() < 0.9) {
             System.out.println("You were eaten by a grue.");
             Main.kill();
+        }
+        if(dirs[s] == null) {
+            System.out.println("You can't go that way.");
         }
         return dirs[s];
     }
@@ -149,7 +147,7 @@ public class Room implements IDescribable {
             Iterator<Character> ci = chars.iterator();
             while (ci.hasNext()) {
                 Character c = ci.next();
-                tr += "\n" + c.getEntry();
+                tr = (tr + "\n" + c.getEntry()).trim();
             }
             return tr;
         }

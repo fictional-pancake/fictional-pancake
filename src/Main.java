@@ -37,7 +37,7 @@ public class Main {
         goTo(setupRooms());
         System.out.println("The guard sets down some food and a spork.");
         room.addItem(new Item(new String[]{"some food", "food", "cabbage"}, "It appears to be cabbage.", 20));
-        room.addItem(new Weapon(new String[]{"a spork", "spork", "fork", "spoon"}, "It is approximately 60% spoon and 40% fork.", 10, 25));
+        room.addItem(new Weapon(new String[]{"a spork", "spork", "fork", "spoon"}, "It is approximately 60% spoon and 40% fork.  It looks quite sharp.", 10, 25));
         while(true) {
             System.out.print(">");
             String cmd;
@@ -74,17 +74,24 @@ public class Main {
      * @return the starting room
      */
     public static Room setupRooms() {
+        LinkableBoolean cellDoor = new LinkableBoolean();
+        cellDoor.value = true;
         Room cell = new Room(
                 "Cell",
                 "You are in an old-looking prison cell.  It is dimly lit by a torch outside.  There is a door to the north.",
                 new Item[] {},
-                new Character[]{new Character("guard", "He looks tired, and he smells of onions.", new Item[]{}, 10).setBlockingExits()},
+                new Character[]{
+                        new Character("guard", "He looks tired, and he smells of onions.", new Item[]{}, 10).setBlockingExits(),
+                        new CharacterDoor("door", "It is a metal door.", Side.NORTH, cellDoor)
+                },
                 true
         );
         Room corridor = new Room("East end of corridor",
                 "You are in a small corridor going west.  There is a open door to the south, and a hole to the east.",
                 new Item[]{new Item(new String[]{"a torch", "torch"}, "It is a simple stick with coal on the end.  It is alight with a small flame.", 40)},
-                new Character[]{}
+                new Character[]{
+                        new CharacterDoor("door", "It is a metal door.", Side.SOUTH, cellDoor)
+                }
         );
         cell.connectTo(corridor, Side.NORTH);
         Room hoboCave = new Room(
@@ -316,27 +323,24 @@ public class Main {
                     else if(t.length == 3) {
                         System.out.println("I don't know how to do that.");
                     }
-                    else if(t[1].equals("door")) {
-                        // they are trying to open a door
-                        // find the door in the room
-                        Character[] characters = room.getCharacters();
-                        Character door = null;
-                        for (int i = 0; i < characters.length; i++) {
-                            if (characters[i] instanceof CharacterDoor) {
-                                door = characters[i];
-                                break;
-                            }
-                        }
-                        ((CharacterDoor)door).toggleOpen();
-                    }
                     else {
+                        Object item = null;
                         // look for a match in inventory
                         Item[] items = player.getInventory();
-                        Item item = null;
                         for(int i = 0; i < items.length; i++) {
                             if(items[i].matches(t[1])) {
                                 item = items[i];
                                 break;
+                            }
+                        }
+                        if(item == null) {
+                            // look for a character
+                            Character[] chars = room.getCharacters();
+                            for(Character c : chars) {
+                                if (c.getName().equalsIgnoreCase(t[1])) {
+                                    item = c;
+                                    break;
+                                }
                             }
                         }
                         // check if it's hands
@@ -346,18 +350,18 @@ public class Main {
                         if(item == null) {
                             System.out.println("You don't have that.");
                         }
-                        else if(item instanceof Usable) {
+                        else if(item instanceof IUsable) {
                             // It's usable!
                             if(t.length == 2) {
                                 // simple use
-                                ((Usable)item).use();
+                                ((IUsable)item).use();
                             }
                             else {
                                 // search for character to use on
                                 Character[] roomChars = room.getCharacters();
                                 for(int i = 0; i < roomChars.length; i++) {
                                     if(roomChars[i].getName().equalsIgnoreCase(t[3])) {
-                                        ((Usable)item).use(roomChars[i]);
+                                        ((IUsable)item).use(roomChars[i]);
                                         break;
                                     }
                                 }
@@ -477,7 +481,6 @@ public class Main {
      */
     public static void goTo(Room r) {
         if(r==null) {
-            System.out.println("You can't go that way.");
             return;
         }
         room = r;
