@@ -123,7 +123,7 @@ public class Main {
         museumBasement.connectTo(ladderRoom, Side.DOWN);
         Room closet = new Room(
                 "Museum Closet",
-                "You are in a small side closet. The stairs lead back down into the basement of the museum. There is an entryway on the east wall that looks like it used to contain a door.",
+                "You are in a small side closet. Stairs lead down out of sight. There is an entryway on the east wall that looks like it used to contain a door.",
                 new Item[]{
                         new ItemShirt(new String[] {"a shirt", "shirt", "Hawaiian", "fancy"}, "A fancy Hawaiian shirt. It's exactly your size!", new Item[]{new Item(new String[] {"a blue crystalline leaf", "leaf", "blue", "crystal", "crystalline"}, "A shiny blue crystalline leaf.")}, 55)
                 },
@@ -132,7 +132,7 @@ public class Main {
         closet.connectTo(museumBasement, Side.DOWN);
         Room lobby = new Room(
                 "Museum Lobby",
-                "You are in the lobby of the museum. It appears to be abandoned. Hallways go off to the south and north, likely leading to various exhibits.",
+                "You are in the lobby of a museum. It appears to be abandoned. Hallways go off to the south and north, likely leading to various exhibits, and there is a small room to the west.",
                 new Item[]{},
                 new Character[]{}
         );

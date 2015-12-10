@@ -194,6 +194,14 @@ public class Character implements IDescribable {
     }
 
     /**
+     * Return the health of the character
+     * @return the health of the character
+     */
+    public double getHealth() {
+        return health;
+    }
+
+    /**
      * Check whether this character is blocking exits
      * @return whether this character is blocking exits
      */
