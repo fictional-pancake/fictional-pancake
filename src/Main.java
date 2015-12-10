@@ -22,6 +22,10 @@ public class Main {
      * The current room
      */
     private static Room room;
+    /**
+     * The player's current score
+     */
+    private static double score;
 
     /**
      * Run game
@@ -47,6 +51,14 @@ public class Main {
             // parse and execute command
             readCommand(cmd);
         }
+    }
+
+    /**
+     * Add to the player's running score
+     * @param add amount of score to add
+     */
+    public static void addScore(int add) {
+        score += add;
     }
 
     /**
@@ -133,11 +145,6 @@ public class Main {
         return cell;
     }
 
-    /**
-     * Does nothing
-     * @param a a useless parameter
-     */
-    public static void addScore(int a) {}
     /**
      * Check an array for trailing elements, and print an error message if present
      * @param o the array to check
@@ -356,6 +363,9 @@ public class Main {
                         }
                     }
                 }
+                break;
+            case "score":
+                System.out.println("Your current score is " + score);
                 break;
             case "inventory":
             case "i":
