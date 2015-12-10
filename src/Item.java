@@ -9,6 +9,15 @@ public class Item implements IDescribable {
      */
     private String description;
 
+    /**
+     * The weight of the item
+     */
+    private int weight;
+
+    /**
+     * Get the primary name for this item
+     * @return the primary name of the item
+     */
     public String getName() {
         return names[0];
     }
@@ -36,13 +45,24 @@ public class Item implements IDescribable {
     }
 
     /**
-     * Construct an item with names and a description
+     * Construct an item with names and a description, weight will default to 100
      * @param names the names of the item
      * @param description the description of the item
      */
     public Item(String[] names, String description) {
+        this(names, description, 100);
+    }
+
+    /**
+     * Construct an item with names, a description, and weight
+     * @param names the names of the item
+     * @param description the description of the item
+     * @param weight the weight value of the item
+     */
+    public Item(String[] names, String description, int weight) {
         this.names = names;
         this.description = description;
+        this.weight = weight;
     }
 
     /**
@@ -59,7 +79,18 @@ public class Item implements IDescribable {
         return false;
     }
 
+    /**
+     * Perform an action when the item is picked up
+     */
     public void onPickup() {
 
+    }
+
+    /**
+     * Get the weight of the object
+     * @return the weight of the object
+     */
+    public int getWeight() {
+        return this.weight;
     }
 }

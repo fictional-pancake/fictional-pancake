@@ -1,7 +1,7 @@
 public class ItemShirt extends Item {
     private Item[] items;
-    public ItemShirt(String[] names, String description, Item[] items) {
-        super(names, description);
+    public ItemShirt(String[] names, String description, Item[] items, int weight) {
+        super(names, description, weight);
         this.items = items;
     }
     @Override

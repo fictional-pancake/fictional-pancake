@@ -22,8 +22,8 @@ public class Weapon extends Usable {
      * @param description the description of this weapon
      * @param damage the damage dealt by this weapon
      */
-    public Weapon(String[] names, String description, double damage) {
-        super(names, description);
+    public Weapon(String[] names, String description, double damage, int weight) {
+        super(names, description, weight);
         this.damage = damage;
     }
 

@@ -15,8 +15,8 @@ public class Usable extends Item {
      * @param names the names of the Usable
      * @param description the description of the Usable
      */
-    public Usable(String[] names, String description) {
-        super(names, description);
+    public Usable(String[] names, String description, int weight) {
+        super(names, description, weight);
     }
 
     /**

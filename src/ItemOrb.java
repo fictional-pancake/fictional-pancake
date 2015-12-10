@@ -1,6 +1,6 @@
 public class ItemOrb extends Usable {
-    public ItemOrb(String[] names, String description) {
-        super(names, description);
+    public ItemOrb(String[] names, String description, int weight) {
+        super(names, description, weight);
     }
     public void use() {
         System.out.println("Nothing happened.");

@@ -31,7 +31,7 @@ public class Character implements IDescribable {
     /**
      * A weapon reference to represent bare hands
      */
-    public static final Weapon hands = new Weapon(new String[] {"pair of hands", "hands"}, "You can't tell much about it.", 1);
+    public static final Weapon hands = new Weapon(new String[] {"pair of hands", "hands"}, "You can't tell much about it.", 1, 10);
 
     public String getName() {
         return name;
@@ -157,6 +157,20 @@ public class Character implements IDescribable {
      */
     public Item[] getInventory() {
         return inventory.toArray(new Item[0]);
+    }
+
+    /**
+     * Get the total weight of all items in the character's inventory
+     * @return the weight of the character's inventory
+     */
+    public int getInventoryWeight() {
+        int totalWeight = 0;
+        Iterator<Item> it = inventory.iterator();
+        while(it.hasNext()) {
+            Item i = it.next();
+            totalWeight += i.getWeight();
+        }
+        return totalWeight;
     }
 
     public boolean hasItem(String name) {
