@@ -22,10 +22,16 @@ public class Main {
      * The current room
      */
     private static Room room;
+
     /**
      * The player's current score
      */
     private static double score;
+
+    /**
+     * Number of moves made
+     */
+    private static int moves;
 
     /**
      * Run game
@@ -50,6 +56,7 @@ public class Main {
             }
             // parse and execute command
             readCommand(cmd);
+            moves++;
         }
     }
 
@@ -374,7 +381,16 @@ public class Main {
                 }
                 break;
             case "score":
-                System.out.println("Your current score is " + score);
+                System.out.println("Your current score is " + score + ".");
+                break;
+            case "turns":
+            case "moves":
+                if (moves == 1) {
+                    System.out.println("You have made 1 move.");
+                }
+                else {
+                    System.out.println("You have made " + moves + " moves.");
+                }
                 break;
             case "inventory":
             case "i":
@@ -494,6 +510,8 @@ public class Main {
      */
     public static void kill() {
         System.out.println("You are dead.");
+        System.out.println("Moves: " + moves);
+        System.out.println("Score: " + score);
         System.exit(0);
     }
 
