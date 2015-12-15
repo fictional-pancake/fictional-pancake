@@ -42,8 +42,8 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         goTo(setupRooms());
         System.out.println("The guard sets down some food and a spork.");
-        room.addItem(new Item(new String[]{"some food", "food", "cabbage"}, "It appears to be cabbage.", 20));
-        room.addItem(new Weapon(new String[]{"a spork", "spork", "fork", "spoon"}, "It is approximately 60% spoon and 40% fork.  It looks quite sharp.", 10, 25));
+        room.addItem(new Item(new String[]{"some food", "food", "cabbage"}, "It appears to be cabbage.", 40));
+        room.addItem(new Weapon(new String[]{"a spork", "spork", "fork", "spoon"}, "It is approximately 60% spoon and 40% fork.  It looks quite sharp.", 10, 5));
         while(true) {
             System.out.print(">");
             String cmd;
@@ -95,7 +95,7 @@ public class Main {
         );
         Room corridor = new Room("East end of corridor",
                 "You are in a small corridor going west.  There is a open door to the south, and a hole to the east.",
-                new Item[]{new Item(new String[]{"a torch", "torch"}, "It is a simple stick with coal on the end.  It is alight with a small flame.", 40)},
+                new Item[]{new Item(new String[]{"a torch", "torch"}, "It is a simple stick with coal on the end.  It is alight with a small flame.", 15)},
                 new Character[]{
                         new CharacterDoor("door", "It is a metal door.", Side.SOUTH, cellDoor)
                 }
@@ -107,8 +107,8 @@ public class Main {
                 new Item[] {},
                 new Character[]{new Character("hobo", "He is an old man sitting in the corner, dressed in rags, holding a torch. He looks hungry.",
                         new Item[]{
-                                new Weapon(new String[] {"steel sword", "sword", "steel"}, "The Hobo's steel sword.", 100, 125),
-                                new Item(new String[]{"the Hobo's torch", "torch"}, "It is a simple stick with coal on the end.  It is alight with a small flame.", 40)
+                                new Weapon(new String[] {"steel sword", "sword", "steel"}, "The Hobo's steel sword.", 100, 40),
+                                new Item(new String[]{"the Hobo's torch", "torch"}, "It is a simple stick with coal on the end.  It is alight with a small flame.", 10)
                         }, 100)}
         );
         corridor.connectTo(hoboCave, Side.EAST);
@@ -123,7 +123,7 @@ public class Main {
                 "Museum Basement",
                 "You are in what appears to be the basement of a museum. There are many exhibits here which are not currently on display. There is a hole in the floor with a ladder leading down into the darkness. Stairs in the corner lead upward.",
                 new Item[]{
-                        new ItemOrb(new String[] {"an orb", "orb", "shiny"}, "A small orb. It is glowing softly but doesn't seem to light up anything around it.", 60)
+                        new ItemOrb(new String[] {"an orb", "orb", "shiny"}, "A small orb. It is glowing softly but doesn't seem to light up anything around it.", 100)
                 },
                 new Character[] {}
         );
@@ -132,7 +132,7 @@ public class Main {
                 "Museum Closet",
                 "You are in a small side closet. Stairs lead down out of sight. There is an entryway on the east wall that looks like it used to contain a door.",
                 new Item[]{
-                        new ItemShirt(new String[] {"a shirt", "shirt", "Hawaiian", "fancy"}, "A fancy Hawaiian shirt. It's exactly your size!", new Item[]{new Item(new String[] {"a blue crystalline leaf", "leaf", "blue", "crystal", "crystalline"}, "A shiny blue crystalline leaf.")}, 55)
+                        new ItemShirt(new String[] {"a shirt", "shirt", "Hawaiian", "fancy"}, "A fancy Hawaiian shirt. It's exactly your size!", new Item[]{new Item(new String[] {"a blue crystalline leaf", "leaf", "blue", "crystal", "crystalline"}, "A shiny blue crystalline leaf.")}, 30)
                 },
                 new Character[] {}
         );
@@ -148,8 +148,8 @@ public class Main {
                 "Native American Exhibit",
                 "You are in a museum exhibit room highlighting history and culture of Native American people.  There are exits to the north and east.",
                 new Item[]{
-                        new Weapon(new String[] {"a spear", "spear"}, "It is a spear with a wooden handle.  You aren't sure what the tip is made of.", 15, 100),
-                        new Item(new String[] {"an arrowhead", "arrowhead"}, "It is an arrowhead, similar to the tip of the spear.", 40)
+                        new Weapon(new String[] {"a spear", "spear"}, "It is a spear with a wooden handle.  You aren't sure what the tip is made of.", 15, 75),
+                        new Item(new String[] {"an arrowhead", "arrowhead"}, "It is an arrowhead, similar to the tip of the spear.", 25)
                 },
                 new Character[]{
                         new CharacterBuffalo("buffalo", "It is a brownish-green buffalo.", new Item[]{})
@@ -227,6 +227,7 @@ public class Main {
                     goTo(room.goDir(Side.fromChar(t[0].charAt(0))));
                 }
                 break;
+            case "exit":
             case "quit":
                 if(!trailing(t,1)) {
                     System.out.println("Goodbye.");
