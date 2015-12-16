@@ -21,6 +21,6 @@ public class CharacterDinoButton extends Character implements IUsable {
 
     @Override
     public void use(Character c) {
-
+        System.out.println("You can't do that.");
     }
 }
