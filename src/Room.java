@@ -267,4 +267,12 @@ public class Room implements IDescribable {
     public boolean isAlwaysLit() {
         return alwaysLit;
     }
+
+    /**
+     * Set the description of the room
+     * @param description the description for the room
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

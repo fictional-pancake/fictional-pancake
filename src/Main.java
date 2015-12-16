@@ -146,7 +146,7 @@ public class Main {
         lobby.connectTo(closet, Side.WEST);
         Room nativeAmericanExhibit = new Room(
                 "Native American Exhibit",
-                "You are in a museum exhibit room highlighting history and culture of Native American people.  There are exits to the north and east.",
+                "You are in a museum exhibit room highlighting history and culture of Native American people.  The exit is to the east.",
                 new Item[]{
                         new Weapon(new String[] {"a spear", "spear"}, "It is a spear with a wooden handle.  You aren't sure what the tip is made of.", 15, 75),
                         new Item(new String[] {"an arrowhead", "arrowhead"}, "It is an arrowhead, similar to the tip of the spear.", 25)
@@ -155,7 +155,18 @@ public class Main {
                         new CharacterBuffalo("buffalo", "It is a brownish-green buffalo.", new Item[]{})
                 }
         );
-        nativeAmericanExhibit.connectTo(lobby, Side.NORTH);
+        lobby.connectTo(nativeAmericanExhibit, Side.NORTH);
+        Room dinosaurExhibit = new Room(
+                "Dinosaur Exhibit",
+                "You are in a museum exhibit room celebrating the discovery of dinosaur bones.  There are several reconstructions of dinosaur skeletons around the room.  There are exits to the north and east.",
+                new Item[]{
+
+                },
+                new Character[] {
+                        new CharacterDinoButton("button", "It is a circular red button, about half an inch in diameter.", ladderRoom, null)
+                }
+        );
+        lobby.connectTo(dinosaurExhibit, Side.SOUTH);
         return cell;
     }
 
