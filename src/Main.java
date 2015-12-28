@@ -167,6 +167,15 @@ public class Main {
                 }
         );
         lobby.connectTo(dinosaurExhibit, Side.SOUTH);
+        Room scrollRoom = new Room(
+                "Scroll Room",
+                "You are in what appears to be an unfinished room of the museum.  Large colorful leaves are painted on the walls.  The exit is to the west.",
+                new Item[] {
+                        new Item(new String[] {"a scroll", "scroll", "proclamation", "letter", "legend", "prophecy"}, "The scroll says:\n\"A very long time ago,\nwhen this town was new,\nsomeone came and hid some leaves,\nwhose name nobody knew.\nThe legends say that someone\nwho finds these leaves of old\nmay find the greatest treasure\nthat man could ever hold.\"", 10)
+                },
+                new Character[] {}
+        );
+        dinosaurExhibit.connectTo(scrollRoom, Side.EAST);
         return cell;
     }
 
@@ -435,6 +444,7 @@ public class Main {
             case "ls":
             case "examine":
             case "what":
+            case "read":
                 if(t.length == 3 && t[1].equals("at")) {
                     t = new String[] {t[0], t[2]};
                 }
