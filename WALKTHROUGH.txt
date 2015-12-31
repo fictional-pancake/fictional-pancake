@@ -1,6 +1,6 @@
+take spork
 kill guard
 take food
-take leaf
 go north
 take torch
 go east
@@ -11,7 +11,7 @@ go up
 take orb
 go up
 take shirt
-empty shirt
+take leaf
 go east
 go south
 push button
@@ -21,6 +21,7 @@ go west
 go north
 go north
 use orb on buffalo
+take leaf
 go south
 go west
 go down

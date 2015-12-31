@@ -112,6 +112,8 @@ public class Main {
                         }, 100)}
         );
         corridor.connectTo(hoboCave, Side.EAST);
+        // TODO add leaf temple
+        // TODO allow feeding the hobo
         Room ladderRoom = new Room(
                 "West end of corridor",
                 "You are in a small corridor going east.  There is a ladder on the wall here, leading through a hole in the ceiling.",
@@ -146,7 +148,7 @@ public class Main {
         lobby.connectTo(closet, Side.WEST);
         Room nativeAmericanExhibit = new Room(
                 "Native American Exhibit",
-                "You are in a museum exhibit room highlighting history and culture of Native American people.  The exit is to the east.",
+                "You are in a museum exhibit room highlighting history and culture of Native American people.  The exit is to the south.",
                 new Item[]{
                         new Weapon(new String[] {"a spear", "spear"}, "It is a spear with a wooden handle.  You aren't sure what the tip is made of.", 15, 75),
                         new Item(new String[] {"an arrowhead", "arrowhead"}, "It is an arrowhead, similar to the tip of the spear.", 25)
@@ -341,6 +343,7 @@ public class Main {
                     }
                 }
             case "press":
+            case "push":
             case "open":
             case "close":
             case "use":
