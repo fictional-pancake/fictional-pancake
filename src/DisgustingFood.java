@@ -6,6 +6,6 @@ public class DisgustingFood extends Item implements IEdible {
 
     @Override
     public void eat(String action) {
-        System.out.println("It doesn't look very good.  You can't bring yourself to "+action+" it.");
+        System.out.println("It doesn't look very good.  You can't bring yourself to " + action + " it.");
     }
 }

@@ -1,11 +1,11 @@
 <project name="apcsgame" default="jar">
-	<property name="src" location="src" />
-	<property name="build" location="out" />
-	<target name="compile">
-		<mkdir dir="${build}" />
-		<javac srcdir="${src}" destdir="${build}" />
-	</target>
-	<target name="jar" depends="compile">
-		<jar jarfile="apcsgame.jar" basedir="${build}" manifest="MANIFEST.MF" />
-	</target>
+    <property name="src" location="src"/>
+    <property name="build" location="out"/>
+    <target name="compile">
+        <mkdir dir="${build}"/>
+        <javac srcdir="${src}" destdir="${build}"/>
+    </target>
+    <target name="jar" depends="compile">
+        <jar jarfile="apcsgame.jar" basedir="${build}" manifest="MANIFEST.MF"/>
+    </target>
 </project>

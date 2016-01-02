@@ -33,7 +33,7 @@ public class CharacterDoor extends Character implements IUsable {
      * @param description the description of the door
      * @param side        the side the door is on
      * @param open        whether the door is open
-     * @param locked whether the door is locked
+     * @param locked      whether the door is locked
      */
     public CharacterDoor(String name, String description, int side, LinkableBoolean open, LinkableBoolean locked) {
         super(name, description, new Item[]{});
@@ -51,6 +51,7 @@ public class CharacterDoor extends Character implements IUsable {
 
     /**
      * If the player attacks the door (doesn't actually do anything)
+     *
      * @param damage the amount of damage to deal, 0 to not deal damage
      */
     @Override
@@ -73,6 +74,7 @@ public class CharacterDoor extends Character implements IUsable {
 
     /**
      * Check whether the door is open
+     *
      * @return whether the door is open
      */
     public boolean isOpen() {

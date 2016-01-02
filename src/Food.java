@@ -6,7 +6,7 @@ public class Food extends Item implements IEdible {
 
     @Override
     public void eat(String action) {
-        System.out.println("You "+action+" "+names[0]+".");
+        System.out.println("You " + action + " " + names[0] + ".");
         Main.player.removeItem(this);
     }
 }
