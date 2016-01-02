@@ -134,7 +134,7 @@ public class Main {
                 },
                 new Character[] {}
         );
-        dangerousItemStorage.connectTo(ladderRoom, Side.NORTH);
+        dangerousItemStorage.setDir(Side.UP, ladderRoom);
 
         Room museumBasement = new Room(
                 "Museum Basement",
@@ -184,7 +184,7 @@ public class Main {
 
                 },
                 new Character[] {
-                        new CharacterDinoButton("button", "It is a circular red button, about half an inch in diameter.", ladderRoom, null)
+                        new CharacterDinoButton("button", "It is a circular red button, about half an inch in diameter.", ladderRoom, dangerousItemStorage)
                 }
         );
         dinosaurExhibit.connectTo(lobby, Side.NORTH);
