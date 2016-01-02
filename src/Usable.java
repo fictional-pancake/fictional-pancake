@@ -14,6 +14,7 @@ public class Usable extends Item implements IUsable {
      * Construct a Usable with names and a description
      * @param names the names of the Usable
      * @param description the description of the Usable
+     * @param weight the weight of the Usable
      */
     public Usable(String[] names, String description, int weight) {
         super(names, description, weight);

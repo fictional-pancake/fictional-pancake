@@ -30,11 +30,14 @@ public class CharacterDinoButton extends Character implements IUsable {
 
     @Override
     public void use() {
-        System.out.println("You don't notice anything happen.");
         if(!used) {
+            System.out.println("You hear a faint rumbling below you. It's probably nothing.");
             used = true;
             room1.setDescription(room1.getDescription()+"  There is a hole in the floor here.");
             room1.setDir(Side.DOWN, room2);
+        }
+        else {
+            System.out.println("You don't notice anything happen.");
         }
     }
 

@@ -93,6 +93,7 @@ public class Main {
                 },
                 true
         );
+
         Room corridor = new Room("East end of corridor",
                 "You are in a small corridor going west.  There is a open door to the south, and a hole to the east.",
                 new Item[]{new Item(new String[]{"a torch", "torch"}, "It is a simple stick with coal on the end.  It is alight with a small flame.", 15)},
@@ -100,7 +101,8 @@ public class Main {
                         new CharacterDoor("door", "It is a metal door.", Side.SOUTH, cellDoor)
                 }
         );
-        cell.connectTo(corridor, Side.NORTH);
+        corridor.connectTo(cell, Side.SOUTH);
+
         Room hoboCave = new Room(
                 "The Hobo's Cave",
                 "You are in a damp cave. There is a hole in the west wall and a long tunnel to the south with a faint light at the end.",
@@ -111,16 +113,29 @@ public class Main {
                                 new Item(new String[]{"the Hobo's torch", "torch"}, "It is a simple stick with coal on the end.  It is alight with a small flame.", 10)
                         }, 100)}
         );
-        corridor.connectTo(hoboCave, Side.EAST);
+        hoboCave.connectTo(corridor, Side.WEST);
+
         // TODO add leaf temple
         // TODO allow feeding the hobo
+
         Room ladderRoom = new Room(
                 "West end of corridor",
                 "You are in a small corridor going east.  There is a ladder on the wall here, leading through a hole in the ceiling.",
                 new Item[]{},
                 new Character[]{}
         );
-        corridor.connectTo(ladderRoom, Side.WEST);
+        ladderRoom.connectTo(corridor, Side.EAST);
+
+        Room dangerousItemStorage = new Room(
+                "Dangerous item storage room",
+                "You are in a small storage room with a damp concrete floor. There are a variety of dangerous looking implements attached to the walls.",
+                new Item[] {
+                        new ItemPineappleBomb(new String[] {"pineapple bomb", "pineapple", "bomb", "fruit"}, "It is a delicious looking pineapple. You would assume it was harmless if it weren't for the fuse coming out of the top.", 100)
+                },
+                new Character[] {}
+        );
+        dangerousItemStorage.connectTo(ladderRoom, Side.NORTH);
+
         Room museumBasement = new Room(
                 "Museum Basement",
                 "You are in what appears to be the basement of a museum. There are many exhibits here which are not currently on display. There is a hole in the floor with a ladder leading down into the darkness. Stairs in the corner lead upward.",
@@ -130,15 +145,17 @@ public class Main {
                 new Character[] {}
         );
         museumBasement.connectTo(ladderRoom, Side.DOWN);
+
         Room closet = new Room(
                 "Museum Closet",
                 "You are in a small side closet. Stairs lead down out of sight. There is an entryway on the east wall that looks like it used to contain a door.",
                 new Item[]{
-                        new ItemShirt(new String[] {"a shirt", "shirt", "Hawaiian", "fancy"}, "A fancy Hawaiian shirt. It's exactly your size!", new Item[]{new Item(new String[] {"a blue crystalline leaf", "leaf", "blue", "crystal", "crystalline"}, "A shiny blue crystalline leaf.")}, 30)
+                        new ItemShirt(new String[] {"a shirt", "shirt", "Hawaiian", "fancy"}, "A fancy Hawaiian shirt. It's exactly your size!", new Item[]{new Item(new String[] {"a blue crystalline leaf", "leaf", "blue", "crystal", "crystalline"}, "A shiny blue crystalline leaf.", 5)}, 30)
                 },
                 new Character[] {}
         );
         closet.connectTo(museumBasement, Side.DOWN);
+
         Room lobby = new Room(
                 "Museum Lobby",
                 "You are in the lobby of a museum. It appears to be abandoned. Hallways go off to the south and north, likely leading to various exhibits, and there is a small room to the west.",
@@ -146,6 +163,7 @@ public class Main {
                 new Character[]{}
         );
         lobby.connectTo(closet, Side.WEST);
+
         Room nativeAmericanExhibit = new Room(
                 "Native American Exhibit",
                 "You are in a museum exhibit room highlighting history and culture of Native American people.  The exit is to the south.",
@@ -157,7 +175,8 @@ public class Main {
                         new CharacterBuffalo("buffalo", "It is a brownish-green buffalo.", new Item[]{})
                 }
         );
-        lobby.connectTo(nativeAmericanExhibit, Side.NORTH);
+        nativeAmericanExhibit.connectTo(lobby, Side.SOUTH);
+
         Room dinosaurExhibit = new Room(
                 "Dinosaur Exhibit",
                 "You are in a museum exhibit room celebrating the discovery of dinosaur bones.  There are several reconstructions of dinosaur skeletons around the room.  There are exits to the north and east.",
@@ -168,7 +187,8 @@ public class Main {
                         new CharacterDinoButton("button", "It is a circular red button, about half an inch in diameter.", ladderRoom, null)
                 }
         );
-        lobby.connectTo(dinosaurExhibit, Side.SOUTH);
+        dinosaurExhibit.connectTo(lobby, Side.NORTH);
+
         Room scrollRoom = new Room(
                 "Scroll Room",
                 "You are in what appears to be an unfinished room of the museum.  Large colorful leaves are painted on the walls.  The exit is to the west.",
@@ -177,7 +197,8 @@ public class Main {
                 },
                 new Character[] {}
         );
-        dinosaurExhibit.connectTo(scrollRoom, Side.EAST);
+        scrollRoom.connectTo(dinosaurExhibit, Side.WEST);
+
         return cell;
     }
 
