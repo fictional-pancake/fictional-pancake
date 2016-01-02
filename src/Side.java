@@ -5,7 +5,17 @@ public class Side {
     public static final int WEST = 3;
     public static final int UP = 4;
     public static final int DOWN = 5;
+
+    /**
+     * Map directions to their opposites
+     */
     public static int[] opposite = {SOUTH, NORTH, WEST, EAST, DOWN, UP};
+
+    /**
+     * Return a direction, given the first character
+     * @param c the character to use
+     * @return the direction associated with that character
+     */
     public static int fromChar(char c) {
         switch(c) {
             case 'n':

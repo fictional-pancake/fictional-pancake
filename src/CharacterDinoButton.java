@@ -1,8 +1,27 @@
 public class CharacterDinoButton extends Character implements IUsable {
 
+    /**
+     * Whether the button has already been used
+     */
     private boolean used = false;
+
+    /**
+     * The room to connect
+     */
     private Room room1;
+
+    /**
+     * The room to connect it to
+     */
     private Room room2;
+
+    /**
+     * Construct a DinoButton
+     * @param name the name of the button
+     * @param description the description of the button
+     * @param r1 the room to connect
+     * @param r2 the room to connect it to
+     */
     public CharacterDinoButton(String name, String description, Room r1, Room r2) {
         super(name, description, new Item[]{});
         room1 = r1;

@@ -1,13 +1,36 @@
 import java.util.ArrayList;
 
 public class CharacterDoor extends Character implements IUsable {
+    /**
+     * Whether the door is open
+     */
     LinkableBoolean open = new LinkableBoolean();
+
+    /**
+     * The side the door is on
+     */
     private int side;
+
+    /**
+     * Construct a Door
+     * @param name the name of the door
+     * @param description the description of the door
+     * @param side the side the door is on
+     * @param open whether the door is open
+     */
     public CharacterDoor(String name, String description, int side, boolean open) {
         super(name, description, new Item[]{});
         this.side = side;
         this.open.value = open;
     }
+
+    /**
+     * Construct a Door
+     * @param name the name of the door
+     * @param description the description of the door
+     * @param side the side the door is on
+     * @param open whether the door is open
+     */
     public CharacterDoor(String name, String description, int side, LinkableBoolean open) {
         super(name, description, new Item[]{});
         this.side = side;
@@ -31,6 +54,9 @@ public class CharacterDoor extends Character implements IUsable {
         System.out.println("You can't attack a door. That would be silly!");
     }
 
+    /**
+     * Open/Close the door
+     */
     public void toggleOpen() {
         if (!isOpen()) {
             open.value = true;
@@ -42,6 +68,10 @@ public class CharacterDoor extends Character implements IUsable {
         }
     }
 
+    /**
+     * Check whether the door is open
+     * @return whether the door is open
+     */
     public boolean isOpen() {
         return open.value;
     }

@@ -173,6 +173,11 @@ public class Character implements IDescribable {
         return totalWeight;
     }
 
+    /**
+     * Check if this character has an item
+     * @param name the name of the item to look for
+     * @return whether this character has the item
+     */
     public boolean hasItem(String name) {
         Iterator<Item> it = inventory.iterator();
         while(it.hasNext()) {
