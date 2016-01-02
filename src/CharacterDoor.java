@@ -1,3 +1,5 @@
+import sun.nio.ch.LinuxAsynchronousChannelProvider;
+
 import java.util.ArrayList;
 
 public class CharacterDoor extends Character implements IUsable {
@@ -12,18 +14,9 @@ public class CharacterDoor extends Character implements IUsable {
     private int side;
 
     /**
-     * Construct a Door
-     *
-     * @param name        the name of the door
-     * @param description the description of the door
-     * @param side        the side the door is on
-     * @param open        whether the door is open
+     * Whether the door is locked
      */
-    public CharacterDoor(String name, String description, int side, boolean open) {
-        super(name, description, new Item[]{});
-        this.side = side;
-        this.open.value = open;
-    }
+    LinkableBoolean locked;
 
     /**
      * Construct a Door
@@ -33,10 +26,32 @@ public class CharacterDoor extends Character implements IUsable {
      * @param side        the side the door is on
      * @param open        whether the door is open
      */
-    public CharacterDoor(String name, String description, int side, LinkableBoolean open) {
+    @Deprecated
+    public CharacterDoor(String name, String description, int side, boolean open, boolean locked) {
+        super(name, description, new Item[]{});
+        this.side = side;
+        this.open.value = open;
+        this.locked.value = locked;
+    }
+
+    /**
+     * Construct a Door
+     *
+     * @param name        the name of the door
+     * @param description the description of the door
+     * @param side        the side the door is on
+     * @param open        whether the door is open
+     * @param locked whether the door is locked
+     */
+    public CharacterDoor(String name, String description, int side, LinkableBoolean open, LinkableBoolean locked) {
         super(name, description, new Item[]{});
         this.side = side;
         this.open = open;
+        this.locked = locked;
+    }
+
+    public CharacterDoor(String name, String description, int side, LinkableBoolean open) {
+        this(name, description, side, open, new LinkableBoolean(false));
     }
 
     @Override
@@ -71,12 +86,34 @@ public class CharacterDoor extends Character implements IUsable {
     }
 
     /**
+     * Lock/Unlock the door
+     */
+    public void toggleLocked() {
+        if (!isLocked()) {
+            locked.value = true;
+            System.out.println("You lock the door.");
+        } else {
+            locked.value = false;
+            System.out.println("You unlock the door");
+        }
+    }
+
+    /**
      * Check whether the door is open
      *
      * @return whether the door is open
      */
     public boolean isOpen() {
         return open.value;
+    }
+
+    /**
+     * Check whether the door is locked
+     *
+     * @return whether the door is locked
+     */
+    public boolean isLocked() {
+        return locked.value;
     }
 
     @Override

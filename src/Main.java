@@ -116,9 +116,25 @@ public class Main {
         );
         hoboCave.connectTo(corridor, Side.WEST);
 
-        // TODO add leaf temple
-        // TODO allow feeding the hobo
+        Room hallway = new Room(
+                "Temple Hallway",
+                "You are in a long hallway with a bright light at the south end. To the north is an archway leading to a darker room.",
+                new Item[]{},
+                new Character[]{},
+                true
+        );
+        hallway.connectTo(hoboCave, Side.NORTH);
 
+        Room temple = new Room(
+                "Holey Temple",
+                "You are in a huge room with a very high ceiling. Although there is no discernable light source you can't find a shadow anywhere. In the center is a bronze tree. Around the base of the tree are seven elliptical holes.",
+                new Item[]{},
+                new Character[]{},
+                true
+        );
+        temple.connectTo(hallway, Side.NORTH);
+
+        // TODO allow feeding the hobo
         Room ladderRoom = new Room(
                 "West end of corridor",
                 "You are in a small corridor going east.  There is a ladder on the wall here, leading through a hole in the ceiling.",
@@ -129,13 +145,28 @@ public class Main {
 
         Room dangerousItemStorage = new Room(
                 "Dangerous item storage room",
-                "You are in a small storage room with a damp concrete floor. There are a variety of dangerous looking implements attached to the walls.",
+                "You are in a small storage room with a damp concrete floor. There are a variety of dangerous looking implements attached to the walls. The ceiling is so low that you can climb into the room above. A staircase leads downwards into the darkness.",
                 new Item[] {
                         new ItemPineappleBomb(new String[] {"pineapple bomb", "pineapple", "bomb", "fruit"}, "It is a delicious looking pineapple. You would assume it was harmless if it weren't for the fuse coming out of the top.", 100)
                 },
                 new Character[] {}
         );
-        dangerousItemStorage.connectTo(ladderRoom, Side.NORTH);
+        dangerousItemStorage.connectTo(ladderRoom, Side.UP);
+
+        //TODO make keycard scanner to open door
+        LinkableBoolean labDoor = new LinkableBoolean();
+        labDoor.value = false;
+        CharacterDoor labEntranceDoor = new CharacterDoor("door", "It is a fancy glass door that you can't quite see through.", Side.EAST, labDoor);
+        Room labEntrance = new Room(
+                "Lab Entrance",
+                "You are in front of a fancy translucent glass door with a keycard scanner next to it. The staircase behind you leads back upward.",
+                new Item[]{},
+                new Character[]{
+                        labEntranceDoor,
+                        new CharacterLock("scanner", "It is a high-tech keycard scanner that looks as though it can never be fooled.", labEntranceDoor)
+                }
+        );
+        labEntrance.connectTo(dangerousItemStorage, Side.UP);
 
         Room museumBasement = new Room(
                 "Museum Basement",
