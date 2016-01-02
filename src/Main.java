@@ -204,7 +204,7 @@ public class Main {
                         new Item(new String[] {"an arrowhead", "arrowhead"}, "It is an arrowhead, similar to the tip of the spear.", 25)
                 },
                 new Character[]{
-                        new CharacterBuffalo("buffalo", "It is a brownish-green buffalo.", new Item[]{})
+                        new CharacterBuffalo("buffalo", "It is a brownish-green buffalo.", null)
                 }
         );
         nativeAmericanExhibit.connectTo(lobby, Side.SOUTH);
@@ -564,6 +564,149 @@ public class Main {
                     }
                 }
                 break;
+<<<<<<< 1a5b8c47c46298f995ba73a25c9375c042e4f3a0
+=======
+            case "eat":
+            case "devour":
+            case "nom":
+            case "consume":
+            case "rm":
+            case "bite":
+            case "munch":
+            case "absorb":
+            case "digest":
+            case "wolf":
+            case "ingest":
+            case "chew":
+            case "inhale":
+            case "nibble":
+                if(!trailing(t, 2)) {
+                    Object object = null;
+                    // look through player inventory
+                    Item[] playerItems = player.getInventory();
+                    for (int i = 0; i < playerItems.length; i++) {
+                        if (playerItems[i].matches(t[1])) {
+                            object = playerItems[i];
+                            break;
+                        }
+                    }
+                    if (object == null) {
+                        // still no match, look in room
+                        Item[] roomItems = room.getItems();
+                        for(int i = 0; i < roomItems.length; i++) {
+                            if(roomItems[i].matches(t[1])) {
+                                object = roomItems[i];
+                                break;
+                            }
+                        }
+                    }
+                    if(object != null) {
+                        // found it!
+                        if(object instanceof IEdible) {
+                            // edible!
+                            ((IEdible)object).eat(t[0]);
+                        }
+                        else {
+                            System.out.println("You can't "+t[0]+" that.");
+                        }
+                    }
+                    else {
+                        System.out.println("I don't see that here.");
+                    }
+                }
+                break;
+            case "give":
+            case "award":
+            case "commit":
+            case "grant":
+            case "present":
+            case "provide":
+            case "donate":
+            case "gift":
+            case "entrust":
+            case "furnish":
+            case "dispense":
+            case "administer":
+            case "merge":
+            case "bestow":
+            case "bequeath":
+            case "tip":
+            case "transmit":
+            case "bless":
+                String rewarded;
+                String reward;
+                if(!trailing(t, 4)) {
+                    if(t.length == 1) {
+                        System.out.println(firstCapital(t[0]+" what?"));
+                        break;
+                    }
+                    else if(t.length == 2) {
+                        System.out.println("wat");
+                        break;
+                    }
+                    else if(t.length == 3) {
+                        // give character item
+                        rewarded = t[1];
+                        reward = t[2];
+                    }
+                    else {
+                        if(t[2].equals("to")) {
+                            // give item to character
+                            rewarded = t[3];
+                            reward = t[1];
+                        }
+                        else if(t[2].equals("with") || t[2].equals("the")) {
+                            // bless character with item, give character the item
+                            rewarded = t[1];
+                            reward = t[3];
+                        }
+                        else {
+                            System.out.println("I don't understand.");
+                            break;
+                        }
+                    }
+                    // look for character
+                    Character tophat = null;
+                    Character[] roomChars = room.getCharacters();
+                    for(int i = 0; i < roomChars.length; i++) {
+                        if(roomChars[i].getName().equalsIgnoreCase(rewarded)) {
+                            tophat = roomChars[i];
+                            break;
+                        }
+                    }
+                    if (tophat == null) {
+                        System.out.println("I don't see that here.");
+                        break;
+                    }
+                    Item item = null;
+                    // look for item in inventory
+                    Item[] playerItems = player.getInventory();
+                    for(int i = 0; i < playerItems.length; i++) {
+                        if(playerItems[i].matches(reward)) {
+                            item = playerItems[i];
+                            player.removeItem(item);
+                            break;
+                        }
+                    }
+                    if (item == null) {
+                        // still no match, check room
+                        Item[] roomItems = room.getItems();
+                        for(int i = 0; i < roomItems.length; i++) {
+                            if(roomItems[i].matches(reward)) {
+                                item = room.takeItem(i);
+                                break;
+                            }
+                        }
+                    }
+                    if (item == null) {
+                        System.out.println("I don't see that here.");
+                    }
+                    else {
+                        tophat.give(item);
+                    }
+                }
+                break;
+>>>>>>> Giving items
             default:
                 System.out.println("What would it mean to "+(go?"go ":"")+t[0]+"?");
         }

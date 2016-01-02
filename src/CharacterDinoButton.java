@@ -24,7 +24,7 @@ public class CharacterDinoButton extends Character implements IUsable {
      * @param r2          the room to connect it to
      */
     public CharacterDinoButton(String name, String description, Room r1, Room r2) {
-        super(name, description, new Item[]{});
+        super(name, description, null);
         room1 = r1;
         room2 = r2;
     }

@@ -63,16 +63,20 @@ public class Character implements IDescribable {
     public Character(String name, String description, Item[] inventory, double health) {
         this.name = name;
         this.description = description;
-        this.inventory = new ArrayList<Item>();
-        for (int i = 0; i < inventory.length; i++) {
-            this.inventory.add(inventory[i]);
+        if(inventory != null) {
+            this.inventory = new ArrayList<Item>();
+            for (int i = 0; i < inventory.length; i++) {
+                this.inventory.add(inventory[i]);
+            }
+        }
+        else {
+            this.inventory = null;
         }
         this.health = health;
     }
 
     /**
      * Get the room entry for this Character
-     *
      * @return the room entry for this Character
      */
     public String getEntry() {
@@ -81,7 +85,6 @@ public class Character implements IDescribable {
 
     /**
      * Deal damage to this character and cause it to attack the player
-     *
      * @param damage the amount of damage to deal, 0 to not deal damage
      */
     public void damage(double damage) {
@@ -109,17 +112,18 @@ public class Character implements IDescribable {
             Room r = Main.getCurrentRoom();
             r.removeCharacter(this);
             Iterator<Item> it = inventory.iterator();
-            while (it.hasNext()) {
+            while(it.hasNext()) {
                 Item i = it.next();
                 r.addItem(i);
             }
-        } else if (!(this instanceof Player)) {
+        }
+        else if(!(this instanceof Player)) {
             // NPC, fight back
             Iterator<Item> it = inventory.iterator();
-            while (it.hasNext()) {
+            while(it.hasNext()) {
                 Item i = it.next();
-                if (i instanceof Weapon) {
-                    ((Usable) i).use(Main.player);
+                if(i instanceof Weapon) {
+                    ((Usable)i).use(Main.player);
                     return;
                 }
             }
@@ -130,7 +134,6 @@ public class Character implements IDescribable {
 
     /**
      * Add an item to the Character's inventory
-     *
      * @param thing the item to add
      */
     public void addToInventory(Item thing) {
@@ -139,7 +142,6 @@ public class Character implements IDescribable {
 
     /**
      * Remove an item from this Character's inventory
-     *
      * @param index the index of the item to remove
      * @return the removed item
      */
@@ -149,7 +151,6 @@ public class Character implements IDescribable {
 
     /**
      * Remove an item from this Character's inventory
-     *
      * @param item the item to remove
      */
     public void removeItem(Item item) {
@@ -158,22 +159,38 @@ public class Character implements IDescribable {
 
     /**
      * Get a list of items in the Character's inventory
-     *
      * @return a list of items in the Character's inventory
      */
     public Item[] getInventory() {
-        return inventory.toArray(new Item[0]);
+        if(inventory != null) {
+            return inventory.toArray(new Item[0]);
+        }
+        else {
+            return new Item[0];
+        }
+    }
+
+    /**
+     * Attempt to give an item to the character
+     */
+    public void give(Item item) {
+        if (inventory == null) {
+            System.out.println("You try to offer it, but the "+getName()+" doesn't respond.");
+        }
+        else {
+            inventory.add(item);
+            System.out.println("You give the "+getName()+" "+item.getName()+".");
+        }
     }
 
     /**
      * Get the total weight of all items in the character's inventory
-     *
      * @return the weight of the character's inventory
      */
     public int getInventoryWeight() {
         int totalWeight = 0;
         Iterator<Item> it = inventory.iterator();
-        while (it.hasNext()) {
+        while(it.hasNext()) {
             Item i = it.next();
             totalWeight += i.getWeight();
         }
@@ -182,15 +199,14 @@ public class Character implements IDescribable {
 
     /**
      * Check if this character has an item
-     *
      * @param name the name of the item to look for
      * @return whether this character has the item
      */
     public boolean hasItem(String name) {
         Iterator<Item> it = inventory.iterator();
-        while (it.hasNext()) {
+        while(it.hasNext()) {
             Item i = it.next();
-            if (i.matches(name)) {
+            if(i.matches(name)) {
                 return true;
             }
         }
@@ -199,7 +215,6 @@ public class Character implements IDescribable {
 
     /**
      * Set this character to block all exits
-     *
      * @return this character
      */
     public Character setBlockingExits() {
@@ -209,7 +224,6 @@ public class Character implements IDescribable {
 
     /**
      * Return the health of the character
-     *
      * @return the health of the character
      */
     public double getHealth() {
@@ -218,7 +232,6 @@ public class Character implements IDescribable {
 
     /**
      * Check whether this character is blocking exits
-     *
      * @return whether this character is blocking exits
      */
     public boolean isBlockingExits() {
@@ -227,12 +240,11 @@ public class Character implements IDescribable {
 
     /**
      * Check if the door is blocking the given exit
-     *
      * @param side the number of the side to check for being blocked
      * @return true if that side is being blocked, else false
      */
     public boolean isBlockingExit(int side) {
-        if (isBlockingExits()) return true;
+        if(isBlockingExits()) return true;
         return false;
     }
 }
