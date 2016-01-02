@@ -42,7 +42,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         goTo(setupRooms());
         System.out.println("The guard sets down some food and a spork.");
-        room.addItem(new Item(new String[]{"some food", "food", "cabbage"}, "It appears to be cabbage.", 40));
+        room.addItem(new DisgustingFood(new String[]{"some food", "food", "cabbage"}, "It appears to be cabbage.", 40));
         room.addItem(new Weapon(new String[]{"a spork", "spork", "fork", "spoon"}, "It is approximately 60% spoon and 40% fork.  It looks quite sharp.", 10, 5));
         while(true) {
             System.out.print(">");
@@ -529,6 +529,55 @@ public class Main {
                             room.addItem(it);
                             System.out.println("Dropped "+it.getName()+".");
                         }
+                    }
+                }
+                break;
+            case "eat":
+            case "devour":
+            case "nom":
+            case "consume":
+            case "rm":
+            case "bite":
+            case "munch":
+            case "absorb":
+            case "digest":
+            case "wolf":
+            case "ingest":
+            case "chew":
+            case "inhale":
+            case "nibble":
+                if(!trailing(t, 2)) {
+                    Object object = null;
+                    // look through player inventory
+                    Item[] playerItems = player.getInventory();
+                    for (int i = 0; i < playerItems.length; i++) {
+                        if (playerItems[i].matches(t[1])) {
+                            object = playerItems[i];
+                            break;
+                        }
+                    }
+                    if (object == null) {
+                        // still no match, look in room
+                        Item[] roomItems = room.getItems();
+                        for(int i = 0; i < roomItems.length; i++) {
+                            if(roomItems[i].matches(t[1])) {
+                                object = roomItems[i];
+                                break;
+                            }
+                        }
+                    }
+                    if(object != null) {
+                        // found it!
+                        if(object instanceof IEdible) {
+                            // edible!
+                            ((IEdible)object).eat(t[0]);
+                        }
+                        else {
+                            System.out.println("You can't "+t[0]+" that.");
+                        }
+                    }
+                    else {
+                        System.out.println("I don't see that here.");
                     }
                 }
                 break;
