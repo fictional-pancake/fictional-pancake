@@ -16,6 +16,7 @@ public class Item implements IDescribable {
 
     /**
      * Get the primary name for this item
+     *
      * @return the primary name of the item
      */
     public String getName() {
@@ -24,10 +25,11 @@ public class Item implements IDescribable {
 
     /**
      * Get the inventory entry for this item
+     *
      * @return the inventory entry for this item
      */
     public String getInventoryEntry() {
-        return " - "+getName();
+        return " - " + getName();
     }
 
     public String getDescription() {
@@ -36,17 +38,19 @@ public class Item implements IDescribable {
 
     /**
      * Construct an item with a name and a description
-     * @param name the name of the item
+     *
+     * @param name        the name of the item
      * @param description the description of the item
      */
     @Deprecated
     public Item(String name, String description) {
-        this(new String[] {name}, description);
+        this(new String[]{name}, description);
     }
 
     /**
      * Construct an item with names and a description, weight will default to 100
-     * @param names the names of the item
+     *
+     * @param names       the names of the item
      * @param description the description of the item
      */
     public Item(String[] names, String description) {
@@ -55,9 +59,10 @@ public class Item implements IDescribable {
 
     /**
      * Construct an item with names, a description, and weight
-     * @param names the names of the item
+     *
+     * @param names       the names of the item
      * @param description the description of the item
-     * @param weight the weight value of the item
+     * @param weight      the weight value of the item
      */
     public Item(String[] names, String description, int weight) {
         this.names = names;
@@ -67,12 +72,13 @@ public class Item implements IDescribable {
 
     /**
      * Check whether this item matches a string
+     *
      * @param inp the string to check against
      * @return whether this item matches the string
      */
     public boolean matches(String inp) {
-        for(int i = 0; i < names.length; i++) {
-            if(inp.equalsIgnoreCase(names[i])) {
+        for (int i = 0; i < names.length; i++) {
+            if (inp.equalsIgnoreCase(names[i])) {
                 return true;
             }
         }
@@ -88,6 +94,7 @@ public class Item implements IDescribable {
 
     /**
      * Get the weight of the object
+     *
      * @return the weight of the object
      */
     public int getWeight() {

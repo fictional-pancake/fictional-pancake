@@ -7,7 +7,8 @@ public class Weapon extends Usable {
 
     /**
      * Construct a weapon with a name and a description
-     * @param name the name of this weapon
+     *
+     * @param name        the name of this weapon
      * @param description the description of this weapon
      */
     @Deprecated
@@ -18,9 +19,10 @@ public class Weapon extends Usable {
 
     /**
      * Construct a weapon with names, a description, and an amount of damage
-     * @param names the names of this weapon
+     *
+     * @param names       the names of this weapon
      * @param description the description of this weapon
-     * @param damage the damage dealt by this weapon
+     * @param damage      the damage dealt by this weapon
      */
     public Weapon(String[] names, String description, double damage, int weight) {
         super(names, description, weight);
@@ -28,20 +30,18 @@ public class Weapon extends Usable {
     }
 
     public void use() {
-        System.out.println("Use "+names[1]+" on what?");
+        System.out.println("Use " + names[1] + " on what?");
     }
 
     public void use(Character c) {
-        if(Math.random() < 0.2) {
-            if(c instanceof Player) {
+        if (Math.random() < 0.2) {
+            if (c instanceof Player) {
                 System.out.println("He missed.");
-            }
-            else {
+            } else {
                 System.out.println("You missed.");
             }
             c.damage(0);
-        }
-        else {
+        } else {
             c.damage(damage);
         }
     }

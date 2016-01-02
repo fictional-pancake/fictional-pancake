@@ -40,6 +40,7 @@ public class Room implements IDescribable {
 
     /**
      * Return the room to the north
+     *
      * @return the room to the north
      */
     public Room goNorth() {
@@ -48,6 +49,7 @@ public class Room implements IDescribable {
 
     /**
      * Return the room below
+     *
      * @return the room below
      */
     public Room goDown() {
@@ -56,6 +58,7 @@ public class Room implements IDescribable {
 
     /**
      * Return the room to the south
+     *
      * @return the room to the south
      */
     public Room goSouth() {
@@ -64,6 +67,7 @@ public class Room implements IDescribable {
 
     /**
      * Return the room above
+     *
      * @return the room above
      */
     public Room goUp() {
@@ -72,6 +76,7 @@ public class Room implements IDescribable {
 
     /**
      * Return the room to the west
+     *
      * @return the room to the west
      */
     public Room goWest() {
@@ -80,6 +85,7 @@ public class Room implements IDescribable {
 
     /**
      * Return the room to the east
+     *
      * @return the room to the east
      */
     public Room goEast() {
@@ -88,24 +94,25 @@ public class Room implements IDescribable {
 
     /**
      * Return the room in the specified direction
+     *
      * @param s the direction to go (see {@link Side})
      * @return the room in the specified direction
      */
     public Room goDir(int s) {
         Iterator<Character> it = chars.iterator();
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             Character c = it.next();
-            if(c.isBlockingExit(s)) {
+            if (c.isBlockingExit(s)) {
                 // character is blocking this exit
-                System.out.println("The "+c.getName()+" is blocking the way.");
+                System.out.println("The " + c.getName() + " is blocking the way.");
                 return null;
             }
         }
-        if(!Main.isLight() && Math.random() < 0.9) {
+        if (!Main.isLight() && Math.random() < 0.9) {
             System.out.println("You were eaten by a grue.");
             Main.kill();
         }
-        if(dirs[s] == null) {
+        if (dirs[s] == null) {
             System.out.println("You can't go that way.");
         }
         return dirs[s];
@@ -113,6 +120,7 @@ public class Room implements IDescribable {
 
     /**
      * Set the room in the specified direction
+     *
      * @param s the direction to set (see {@link Side})
      * @param r the room to set
      */
@@ -126,11 +134,12 @@ public class Room implements IDescribable {
 
     /**
      * Get the full description of the room
+     *
      * @param v whether to hide the description
      * @return the full description of the room
      */
     public String getFullDescription(boolean v) {
-        if(Main.isLight()) {
+        if (Main.isLight()) {
             // show name
             String tr = getName();
             if (!v) {
@@ -150,8 +159,7 @@ public class Room implements IDescribable {
                 tr = (tr + "\n" + c.getEntry()).trim();
             }
             return tr;
-        }
-        else {
+        } else {
             // darkness
             return "It is pitch dark.  You are likely to be eaten by a grue.";
         }
@@ -163,6 +171,7 @@ public class Room implements IDescribable {
 
     /**
      * Return whether the room has been visited before
+     *
      * @return whether the room has been visited before
      */
     public boolean getVisited() {
@@ -178,6 +187,7 @@ public class Room implements IDescribable {
 
     /**
      * Add an item to the room
+     *
      * @param i the item to add
      */
     public void addItem(Item i) {
@@ -186,21 +196,22 @@ public class Room implements IDescribable {
 
     /**
      * Construct a room with a name, description, items, characters, and light status
-     * @param name the room's name
+     *
+     * @param name        the room's name
      * @param description the room's description
-     * @param items the room's items
-     * @param chars the room's characters
-     * @param light whether the room is always lit
+     * @param items       the room's items
+     * @param chars       the room's characters
+     * @param light       whether the room is always lit
      */
     public Room(String name, String description, Item[] items, Character[] chars, boolean light) {
         this.name = name;
         this.description = description;
         this.items = new ArrayList<Item>();
-        for(int i = 0; i < items.length; i++) {
+        for (int i = 0; i < items.length; i++) {
             this.items.add(items[i]);
         }
         this.chars = new ArrayList<Character>();
-        for(int i = 0; i < chars.length; i++) {
+        for (int i = 0; i < chars.length; i++) {
             this.chars.add(chars[i]);
         }
         this.alwaysLit = light;
@@ -208,10 +219,11 @@ public class Room implements IDescribable {
 
     /**
      * Construct a room with a name, description, items, and characters
-     * @param name the room's name
+     *
+     * @param name        the room's name
      * @param description the room's description
-     * @param items the room's items
-     * @param chars the room's characters
+     * @param items       the room's items
+     * @param chars       the room's characters
      */
     public Room(String name, String description, Item[] items, Character[] chars) {
         this(name, description, items, chars, false);
@@ -219,6 +231,7 @@ public class Room implements IDescribable {
 
     /**
      * Get an array of items in this room
+     *
      * @return an array of items in this room
      */
     public Item[] getItems() {
@@ -227,6 +240,7 @@ public class Room implements IDescribable {
 
     /**
      * Get an array of characters in the room
+     *
      * @return an array of characters in the room
      */
     public Character[] getCharacters() {
@@ -235,6 +249,7 @@ public class Room implements IDescribable {
 
     /**
      * Remove an item from the room
+     *
      * @param index the index of the item to remove
      * @return the removed item
      */
@@ -244,6 +259,7 @@ public class Room implements IDescribable {
 
     /**
      * Remove a character from the room
+     *
      * @param c the character to remove
      */
     public void removeCharacter(Character c) {
@@ -252,6 +268,7 @@ public class Room implements IDescribable {
 
     /**
      * Connect a room to another room
+     *
      * @param r the room to connect to
      * @param s the side to connect on (see {@link Side})
      */
@@ -262,6 +279,7 @@ public class Room implements IDescribable {
 
     /**
      * Return whether this room is always lit
+     *
      * @return whether this room is always lit
      */
     public boolean isAlwaysLit() {
@@ -270,6 +288,7 @@ public class Room implements IDescribable {
 
     /**
      * Set the description of the room
+     *
      * @param description the description for the room
      */
     public void setDescription(String description) {

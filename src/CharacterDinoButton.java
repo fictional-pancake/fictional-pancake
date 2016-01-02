@@ -17,10 +17,11 @@ public class CharacterDinoButton extends Character implements IUsable {
 
     /**
      * Construct a DinoButton
-     * @param name the name of the button
+     *
+     * @param name        the name of the button
      * @param description the description of the button
-     * @param r1 the room to connect
-     * @param r2 the room to connect it to
+     * @param r1          the room to connect
+     * @param r2          the room to connect it to
      */
     public CharacterDinoButton(String name, String description, Room r1, Room r2) {
         super(name, description, new Item[]{});
@@ -30,13 +31,12 @@ public class CharacterDinoButton extends Character implements IUsable {
 
     @Override
     public void use() {
-        if(!used) {
+        if (!used) {
             System.out.println("You hear a faint rumbling below you. It's probably nothing.");
             used = true;
-            room1.setDescription(room1.getDescription()+"  There is a hole in the floor here.");
+            room1.setDescription(room1.getDescription() + "  There is a hole in the floor here.");
             room1.setDir(Side.DOWN, room2);
-        }
-        else {
+        } else {
             System.out.println("You don't notice anything happen.");
         }
     }

@@ -2,7 +2,8 @@ public class Usable extends Item implements IUsable {
 
     /**
      * Construct a Usable with a name and a description
-     * @param name the name of the Usable
+     *
+     * @param name        the name of the Usable
      * @param description the description of the Usable
      */
     @Deprecated
@@ -12,9 +13,10 @@ public class Usable extends Item implements IUsable {
 
     /**
      * Construct a Usable with names and a description
-     * @param names the names of the Usable
+     *
+     * @param names       the names of the Usable
      * @param description the description of the Usable
-     * @param weight the weight of the Usable
+     * @param weight      the weight of the Usable
      */
     public Usable(String[] names, String description, int weight) {
         super(names, description, weight);
@@ -23,11 +25,14 @@ public class Usable extends Item implements IUsable {
     /**
      * Use the Usable
      */
-    public void use() {}
+    public void use() {
+    }
 
     /**
      * Use the Usable on a Character
+     *
      * @param c the Character to use the Usable on
      */
-    public void use(Character c) {}
+    public void use(Character c) {
+    }
 }

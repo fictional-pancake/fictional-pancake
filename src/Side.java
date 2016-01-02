@@ -13,11 +13,12 @@ public class Side {
 
     /**
      * Return a direction, given the first character
+     *
      * @param c the character to use
      * @return the direction associated with that character
      */
     public static int fromChar(char c) {
-        switch(c) {
+        switch (c) {
             case 'n':
                 return NORTH;
             case 's':
@@ -31,7 +32,7 @@ public class Side {
             case 'd':
                 return DOWN;
             default:
-                throw new IllegalArgumentException("No direction for char "+c);
+                throw new IllegalArgumentException("No direction for char " + c);
         }
     }
 }

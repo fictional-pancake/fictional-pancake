@@ -13,10 +13,11 @@ public class CharacterDoor extends Character implements IUsable {
 
     /**
      * Construct a Door
-     * @param name the name of the door
+     *
+     * @param name        the name of the door
      * @param description the description of the door
-     * @param side the side the door is on
-     * @param open whether the door is open
+     * @param side        the side the door is on
+     * @param open        whether the door is open
      */
     public CharacterDoor(String name, String description, int side, boolean open) {
         super(name, description, new Item[]{});
@@ -26,10 +27,11 @@ public class CharacterDoor extends Character implements IUsable {
 
     /**
      * Construct a Door
-     * @param name the name of the door
+     *
+     * @param name        the name of the door
      * @param description the description of the door
-     * @param side the side the door is on
-     * @param open whether the door is open
+     * @param side        the side the door is on
+     * @param open        whether the door is open
      */
     public CharacterDoor(String name, String description, int side, LinkableBoolean open) {
         super(name, description, new Item[]{});
@@ -47,6 +49,7 @@ public class CharacterDoor extends Character implements IUsable {
 
     /**
      * If the player attacks the door (doesn't actually do anything)
+     *
      * @param damage the amount of damage to deal, 0 to not deal damage
      */
     @Override
@@ -61,8 +64,7 @@ public class CharacterDoor extends Character implements IUsable {
         if (!isOpen()) {
             open.value = true;
             System.out.println("You open the door.");
-        }
-        else {
+        } else {
             open.value = false;
             System.out.println("You close the door.");
         }
@@ -70,6 +72,7 @@ public class CharacterDoor extends Character implements IUsable {
 
     /**
      * Check whether the door is open
+     *
      * @return whether the door is open
      */
     public boolean isOpen() {
