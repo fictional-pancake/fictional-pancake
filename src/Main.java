@@ -275,7 +275,7 @@ public class Main {
             return;
         }
         // workaround for go
-        boolean go = t[0].equals("go") || t[0].equals("cd");
+        boolean go = t[0].equals("go") || t[0].equals("cd") || t[0].equals("walk") || t[0].equals("move") || t[0].equals("relocate");
         if (go) {
             if (!trailing(t, 2)) {
                 if (t.length == 1) {
@@ -308,6 +308,8 @@ public class Main {
                 break;
             case "exit":
             case "quit":
+            case "surrender":
+            case "retire":
                 if (!trailing(t, 1)) {
                     System.out.println("Goodbye.");
                     System.exit(0);
@@ -317,6 +319,10 @@ public class Main {
             case "get":
             case "pickup":
             case "obtain":
+            case "loot":
+            case "cut":
+            case "haul":
+            case "catch":
                 // take all
                 if (t.length == 2 && t[1].equals("all")) {
                     int numItems = room.getItems().length;
@@ -491,6 +497,9 @@ public class Main {
                 break;
             case "inventory":
             case "i":
+            case "supply":
+            case "index":
+            case "items":
                 if (!trailing(t, 1)) {
                     System.out.println("You have the following items:");
                     Item[] playerItems = player.getInventory();
@@ -518,6 +527,20 @@ public class Main {
             case "examine":
             case "what":
             case "read":
+            case "stare":
+            case "peek":
+            case "leer":
+            case "eye":
+            case "glimpse":
+            case "glance":
+            case "view":
+            case "gaze":
+            case "gander":
+            case "survey":
+            case "behold":
+            case "regard":
+            case "notice":
+            case "scrutinize":
                 if (t.length == 3 && t[1].equals("at")) {
                     t = new String[]{t[0], t[2]};
                 }
