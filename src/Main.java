@@ -554,8 +554,6 @@ public class Main {
                     }
                 }
                 break;
-            <<<<<<<1 a5b8c47c46298f995ba73a25c9375c042e4f3a0
-                    =======
             case "eat":
             case "devour":
             case "nom":
@@ -684,11 +682,12 @@ public class Main {
                     if (item == null) {
                         System.out.println("I don't see that here.");
                     } else {
-                        tophat.give(item);
+                        if(!tophat.give(item)) {
+                            player.addToInventory(item);
+                        }
                     }
                 }
                 break;
-            >>>>>>>Giving items
             default:
                 System.out.println("What would it mean to " + (go ? "go " : "") + t[0] + "?");
         }

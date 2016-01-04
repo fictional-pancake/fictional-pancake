@@ -7,6 +7,11 @@ public class CharacterDoor extends Character implements IUsable {
     LinkableBoolean open = new LinkableBoolean();
 
     /**
+     * Whether the door is locked
+     */
+    LinkableBoolean locked = new LinkableBoolean();
+
+    /**
      * The side the door is on
      */
     private int side;
@@ -18,12 +23,25 @@ public class CharacterDoor extends Character implements IUsable {
      * @param description the description of the door
      * @param side        the side the door is on
      * @param open        whether the door is open
+     * @param locked      whether the door is locked
      */
-    @Deprecated
     public CharacterDoor(String name, String description, int side, boolean open, boolean locked) {
         super(name, description, null);
         this.side = side;
         this.open.value = open;
+        this.locked.value = locked;
+    }
+
+    /**
+     * Construct a Door
+     *
+     * @param name        the name of the door
+     * @param description the description of the door
+     * @param side        the side the door is on
+     * @param open        whether the door is open
+     */
+    public CharacterDoor(String name, String description, int side, boolean open) {
+        this(name, description, side, open, false);
     }
 
     /**
@@ -36,7 +54,22 @@ public class CharacterDoor extends Character implements IUsable {
      * @param locked      whether the door is locked
      */
     public CharacterDoor(String name, String description, int side, LinkableBoolean open, LinkableBoolean locked) {
-        super(name, description, new Item[]{});
+        super(name, description, null);
+        this.side = side;
+        this.open = open;
+        this.locked = locked;
+    }
+
+    /**
+     * Construct a Door
+     *
+     * @param name        the name of the door
+     * @param description the description of the door
+     * @param side        the side the door is on
+     * @param open        whether the door is open
+     */
+    public CharacterDoor(String name, String description, int side, LinkableBoolean open) {
+        super(name, description, null);
         this.side = side;
         this.open = open;
     }

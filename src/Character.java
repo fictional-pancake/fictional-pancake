@@ -175,13 +175,17 @@ public class Character implements IDescribable {
 
     /**
      * Attempt to give an item to the character
+     * @param item the item to give
+     * @return whether the item was accepted
      */
-    public void give(Item item) {
+    public boolean give(Item item) {
         if (inventory == null) {
             System.out.println("You try to offer it, but the " + getName() + " doesn't respond.");
+            return false;
         } else {
             inventory.add(item);
             System.out.println("You give the " + getName() + " " + item.getName() + ".");
+            return true;
         }
     }
 
