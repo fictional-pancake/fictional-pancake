@@ -379,6 +379,28 @@ public class Main {
                     }
                 }
                 break;
+            case "punch":
+                if(!trailing(t, 3)) {
+                    if(t.length == 1) {
+                        System.out.println(firstCapital(t[0])+" what?");
+                        break;
+                    }
+                    else if(t.length == 2) {
+                        t = new String[]{"attack", t[1], "with", "hands"};
+                    }
+                    else if(t.length == 3) {
+                        if(t[1].equals("the")) {
+                            t = new String[]{"attack", t[2], "with", "hands"};
+                        }
+                        else {
+                            System.out.println("Too much information!");
+                            break;
+                        }
+                    }
+                }
+                else {
+                    break;
+                }
             case "attack":
             case "kill":
                 // "attack" and "kill" actually just rearrange t and leave it to "use" to handle it
@@ -395,6 +417,9 @@ public class Main {
                     } else {
                         t = new String[]{"use", t[3], "on", t[1]};
                     }
+                }
+                else {
+                    break;
                 }
             case "press":
             case "push":
