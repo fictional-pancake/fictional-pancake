@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 
 public class Main {
     /**
@@ -36,9 +37,12 @@ public class Main {
     /**
      * Run game
      *
-     * @param args the argument array.  Ignored currently
+     * @param args the argument array.  If desired, pass in name of tts program
      */
     public static void main(String[] args) {
+        if(args.length == 1) {
+            System.setOut(new SpeakerStream(args[0]));
+        }
         //setup
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         goTo(setupRooms());
