@@ -9,7 +9,7 @@ public class CharacterDoor extends Character implements IUsable {
     /**
      * Whether the door is locked
      */
-    LinkableBoolean locked = new LinkableBoolean();
+    LinkableBoolean locked = new LinkableBoolean(false);
 
     /**
      * The side the door is on
@@ -96,6 +96,10 @@ public class CharacterDoor extends Character implements IUsable {
      * Open/Close the door
      */
     public void toggleOpen() {
+        if (this.locked.value == true) {
+          System.out.println("The door is locked!");
+          return;
+        }
         if (!isOpen()) {
             open.value = true;
             System.out.println("You open the door.");
