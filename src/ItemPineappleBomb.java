@@ -20,7 +20,7 @@ public class ItemPineappleBomb extends Usable {
     public void use() {
         System.out.println("Hiss, hiss, hiss, BOOM! Suddenly, pineapples.");
         for (int i = 0; i < 10; i++) {
-            Main.getCurrentRoom().addItem(new Item(new String[]{"a pineapple", "pineapple", "fruit"}, "It is a normal pineapple, indistinguishable from all the others. Dig in!", 30));
+            Main.getCurrentRoom().addItem(new Food(new String[]{"a pineapple", "pineapple", "fruit"}, "It is a normal pineapple, indistinguishable from all the others. Dig in!", 30));
         }
         Main.getCurrentRoom().addItem(new Item(new String[]{"a red crystalline leaf", "leaf", "red", "crystal", "crystalline"}, "A shiny red crystalline leaf.", 5));
         Main.player.removeItem(this);
