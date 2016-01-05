@@ -653,6 +653,23 @@ public class Main {
                     }
                 }
                 break;
+            case "put":
+                if(!trailing(t, 4)) {
+                    if(t.length == 1) {
+                        System.out.println(firstCapital(t[0])+" what?");
+                        break;
+                    }
+                    else if(t.length == 2 || t.length == 3) {
+                        System.out.println("wut");
+                        break;
+                    }
+                    else {
+                        t = new String[] {"give", t[1], "to", t[3]};
+                    }
+                }
+                else {
+                    break;
+                }
             case "give":
             case "award":
             case "commit":
