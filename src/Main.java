@@ -158,7 +158,7 @@ public class Main {
                 },
                 new Character[]{}
         );
-        dangerousItemStorage.connectTo(ladderRoom, Side.UP);
+        dangerousItemStorage.setDir(Side.UP, ladderRoom);
 
         //TODO make keycard scanner to open door
         LinkableBoolean labDoor = new LinkableBoolean();
@@ -223,7 +223,7 @@ public class Main {
 
                 },
                 new Character[]{
-                        new CharacterDinoButton("button", "It is a circular red button, about half an inch in diameter.", ladderRoom, null)
+                        new CharacterDinoButton("button", "It is a circular red button, about half an inch in diameter.", ladderRoom, dangerousItemStorage)
                 }
         );
         dinosaurExhibit.connectTo(lobby, Side.NORTH);
