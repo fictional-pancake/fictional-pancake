@@ -104,13 +104,23 @@ public class Room implements IDescribable {
             Character c = it.next();
             if (c.isBlockingExit(s)) {
                 // character is blocking this exit
-                System.out.println("The " + c.getName() + " is blocking the way.");
-                return null;
+                if(!Main.cheatMode) {
+                    System.out.println("The " + c.getName() + " is blocking the way.");
+                    return null;
+                }
+                else {
+                    System.out.println("You cheat past the "+c.getName()+".");
+                }
             }
         }
         if (!Main.isLight() && Math.random() < 0.9) {
-            System.out.println("You were eaten by a grue.");
-            Main.kill();
+            if(!Main.cheatMode) {
+                System.out.println("You were eaten by a grue.");
+                Main.kill();
+            }
+            else {
+                System.out.println("Your cheating vibes repel the grue.  It cannot eat you.");
+            }
         }
         if (dirs[s] == null) {
             System.out.println("You can't go that way.");
@@ -161,7 +171,12 @@ public class Room implements IDescribable {
             return tr;
         } else {
             // darkness
-            return "It is pitch dark.  You are likely to be eaten by a grue.";
+            if(!Main.cheatMode) {
+                return "It is pitch dark.  You are likely to be eaten by a grue.";
+            }
+            else {
+                return "It is pitch dark, but with cheatiness, the grues can't harm you!";
+            }
         }
     }
 

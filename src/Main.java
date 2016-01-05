@@ -2,6 +2,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class Main {
     /**
@@ -35,13 +38,25 @@ public class Main {
     private static int moves;
 
     /**
+     * Whether cheat mode is enabled
+     */
+    public static boolean cheatMode = false;
+
+    /**
      * Run game
      *
-     * @param args the argument array.  If desired, pass in name of tts program
+     * @param args the argument array.
      */
     public static void main(String[] args) {
-        if(args.length == 1) {
-            System.setOut(new SpeakerStream(args[0]));
+        HashMap<String, Boolean> optMap = new HashMap<String, Boolean>();
+        optMap.put("tts", true);
+        optMap.put("cheat", false);
+        HashMap<String, Object> opts = parseOptions(args, new char[]{}, optMap);
+        if(opts.containsKey("tts")) {
+            System.setOut(new SpeakerStream((String)opts.get("tts")));
+        }
+        if(opts.containsKey("cheat")) {
+            cheatMode = true;
         }
         //setup
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -757,6 +772,12 @@ public class Main {
                     }
                 }
                 break;
+            case "cheatoff":
+                if(cheatMode) {
+                    cheatMode = false;
+                    System.out.println("Cheat mode off.");
+                    break;
+                }
             default:
                 System.out.println("What would it mean to " + (go ? "go " : "") + t[0] + "?");
         }
@@ -826,5 +847,62 @@ public class Main {
         }
         // if not lit
         return false;
+    }
+
+    /**
+     * Parse options
+     * @param args      The command-line arguments
+     * @param shortOpts Possible short options
+     * @param longOpts  Possible long options and whether they require an argument
+     * @return the parsed option map
+     */
+    public static HashMap<String,Object> parseOptions(String[] args, char[] shortOpts, HashMap<String, Boolean> longOpts) {
+        HashMap<String,Object> tr = new HashMap<String,Object>();
+        for(int i = 0; i < args.length; i++) {
+            String s = args[i];
+            if(s.length() < 2 || s.charAt(0) != '-') {
+                // too short to be an option
+                System.err.println("Unable to parse option: "+s);
+                System.exit(-1);
+            }
+            else {
+                if(s.charAt(1) == '-') {
+                    // long option
+                    String opt = s.substring(2);
+                    if(longOpts.containsKey(opt)) {
+                        if(longOpts.get(opt)) {
+                            i++;
+                            tr.put(opt, args[i]);
+                        }
+                        else {
+                            tr.put(opt, true);
+                        }
+                    }
+                    else {
+                        System.err.println("Unrecognized option: "+opt);
+                        System.exit(-2);
+                    }
+                }
+                else {
+                    // short options
+                    for(int j = 1; j < s.length(); j++) {
+                        char it = 0;
+                        for(int c = 0; c < shortOpts.length; c++) {
+                            if(shortOpts[c] == s.charAt(j)) {
+                                it = shortOpts[c];
+                            }
+                        }
+                        if(it == 0) {
+                            System.err.println("Unrecognized option: "+s.charAt(j));
+                            System.exit(-2);
+                        }
+                        else {
+                            tr.put(it+"", true);
+                        }
+                    }
+                }
+            }
+        }
+        return tr;
     }
 }
