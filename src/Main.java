@@ -147,10 +147,11 @@ public class Main {
                 "The Hobo's Cave",
                 "You are in a damp cave. There is a hole in the west wall and a long tunnel to the south with a faint light at the end.",
                 new Item[]{},
-                new Character[]{new Character("hobo", "He is an old man sitting in the corner, dressed in rags, holding a torch. He looks hungry.",
+                new Character[]{new CharacterHobo("hobo", "He is an old man sitting in the corner, dressed in rags, holding a torch. He looks hungry.",
                         new Item[]{
                                 new Weapon(new String[]{"steel sword", "sword", "steel"}, "The Hobo's steel sword.", 100, 40),
-                                new Item(new String[]{"the Hobo's torch", "torch"}, "It is a simple stick with coal on the end.  It is alight with a small flame.", 10)
+                                new Item(new String[]{"the Hobo's torch", "torch"}, "It is a simple stick with coal on the end.  It is alight with a small flame.", 10),
+                                new Item(new String[]{"a purple crystalline leaf", "leaf", "purple", "crystal", "crystalline"}, "A shiny purple crystalline leaf.", 5)
                         }, 100),
                         hoboHole
                 }
@@ -765,6 +766,7 @@ public class Main {
             case "tip":
             case "transmit":
             case "bless":
+            case "feed":
                 String rewarded;
                 String reward;
                 if (!trailing(t, 4)) {
@@ -772,7 +774,7 @@ public class Main {
                         System.out.println(firstCapital(t[0] + " what?"));
                         break;
                     } else if (t.length == 2) {
-                        System.out.println("wat");
+                        System.out.println("That's not specific enough.");
                         break;
                     } else if (t.length == 3) {
                         // give character item
