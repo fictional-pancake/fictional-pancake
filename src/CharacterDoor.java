@@ -93,6 +93,19 @@ public class CharacterDoor extends Character implements IUsable {
     }
 
     /**
+     * Lock/Unlock the door
+     */
+    public void toggleLocked() {
+        if (this.locked.value == true) {
+            locked.value = false;
+            System.out.println("You unlock the door.");
+        } else {
+            locked.value = true;
+            System.out.println("You lock the door.");
+        }
+    }
+
+    /**
      * Open/Close the door
      */
     public void toggleOpen() {
