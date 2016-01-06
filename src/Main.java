@@ -119,7 +119,9 @@ public class Main {
                 "You are in an old-looking prison cell.  It is dimly lit by a torch outside.  There is a door to the north.",
                 new Item[]{},
                 new Character[]{
-                        new Character("guard", "He looks tired, and he smells of onions.", new Item[]{}, 10).setBlockingExits(),
+                        new Character("guard", "He looks tired, and he smells of onions.", new Item[]{
+                                new ItemKeycard(new String[]{"a keycard", "keycard", "key", "card"}, "It's a white keycard, labeled in red marker with \"SCGLGD\"", 5)
+                        }, 10).setBlockingExits(),
                         new CharacterDoor("door", "It is a metal door.", Side.NORTH, cellDoor)
                 },
                 true
