@@ -112,10 +112,12 @@ public class Character implements IDescribable {
             // drop inventory
             Room r = Main.getCurrentRoom();
             r.removeCharacter(this);
-            Iterator<Item> it = inventory.iterator();
-            while (it.hasNext()) {
-                Item i = it.next();
-                r.addItem(i);
+            if(inventory != null) {
+                Iterator<Item> it = inventory.iterator();
+                while (it.hasNext()) {
+                    Item i = it.next();
+                    r.addItem(i);
+                }
             }
         } else if (!(this instanceof Player)) {
             // NPC, fight back

@@ -24,4 +24,9 @@ public class CharacterLock extends Character {
     public CharacterDoor getDoor() {
         return this.door;
     }
+
+    @Override
+    public void damage(double damage) {
+        System.out.println("You really expected that to work?");
+    }
 }

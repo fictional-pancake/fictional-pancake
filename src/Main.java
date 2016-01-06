@@ -117,11 +117,13 @@ public class Main {
                 true
         );
 
+        Character hoboHole = new CharacterScenery("hole", "It is quite narrow, but it looks like you could fit through.");
         Room corridor = new Room("East end of corridor",
                 "You are in a small corridor going west.  There is a open door to the south, and a hole to the east.",
                 new Item[]{new Item(new String[]{"a torch", "torch"}, "It is a simple stick with coal on the end.  It is alight with a small flame.", 15)},
                 new Character[]{
-                        new CharacterDoor("door", "It is a metal door.", Side.SOUTH, cellDoor)
+                        new CharacterDoor("door", "It is a metal door.", Side.SOUTH, cellDoor),
+                        hoboHole
                 }
         );
         corridor.connectTo(cell, Side.SOUTH);
@@ -134,7 +136,9 @@ public class Main {
                         new Item[]{
                                 new Weapon(new String[]{"steel sword", "sword", "steel"}, "The Hobo's steel sword.", 100, 40),
                                 new Item(new String[]{"the Hobo's torch", "torch"}, "It is a simple stick with coal on the end.  It is alight with a small flame.", 10)
-                        }, 100)}
+                        }, 100),
+                        hoboHole
+                }
         );
         hoboCave.connectTo(corridor, Side.WEST);
 
@@ -142,7 +146,9 @@ public class Main {
                 "Temple Hallway",
                 "You are in a long hallway with a bright light at the south end. To the north is an archway leading to a darker room.",
                 new Item[]{},
-                new Character[]{},
+                new Character[]{
+                        new CharacterScenery("archway", "There isn't much to say about it.")
+                },
                 true
         );
         hallway.connectTo(hoboCave, Side.NORTH);
@@ -152,7 +158,8 @@ public class Main {
                 "You are in a huge room with a very high ceiling. Although there is no discernable light source you can't find a shadow anywhere. In the center is a bronze tree. Around the base of the tree are seven elliptical holes.",
                 new Item[]{},
                 new Character[]{
-                        new CharacterLeafHole()
+                        new CharacterLeafHole(),
+                        new CharacterScenery("tree", "It is a large bronze tree.  The leaves are quite colorful.")
                 },
                 true
         );
@@ -163,17 +170,22 @@ public class Main {
                 "West end of corridor",
                 "You are in a small corridor going east.  There is a ladder on the wall here, leading through a hole in the ceiling.",
                 new Item[]{},
-                new Character[]{}
+                new Character[]{
+                        new CharacterScenery("ladder", "It is an old-looking wooden ladder, firmly attached to the wall.")
+                }
         );
         ladderRoom.connectTo(corridor, Side.EAST);
 
+        Character labStairs = new CharacterScenery("staircase", "It is a long concrete staircase.  You can't tell where it leads.");
         Room dangerousItemStorage = new Room(
                 "Dangerous item storage room",
                 "You are in a small storage room with a damp concrete floor. There are a variety of dangerous looking implements attached to the walls. The ceiling is so low that you can climb into the room above. A staircase leads downwards into the darkness.",
                 new Item[]{
                         new ItemPineappleBomb(new String[]{"pineapple bomb", "pineapple", "bomb", "fruit"}, "It is a delicious looking pineapple. You would assume it was harmless if it weren't for the fuse coming out of the top.", 100)
                 },
-                new Character[]{}
+                new Character[]{
+                        labStairs
+                }
         );
         dangerousItemStorage.setDir(Side.UP, ladderRoom);
 
@@ -187,7 +199,8 @@ public class Main {
                 new Item[]{},
                 new Character[]{
                         labEntranceDoor,
-                        new CharacterLock("scanner", "It is a high-tech keycard scanner that looks as though it can never be fooled.", labEntranceDoor)
+                        new CharacterLock("scanner", "It is a high-tech keycard scanner that looks as though it can never be fooled.", labEntranceDoor),
+                        labStairs
                 }
         );
         labEntrance.connectTo(dangerousItemStorage, Side.UP);
