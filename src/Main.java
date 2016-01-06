@@ -199,13 +199,12 @@ public class Main {
         );
         dangerousItemStorage.setDir(Side.UP, ladderRoom);
 
-        //TODO make keycard scanner to open door
-        LinkableBoolean labDoor = new LinkableBoolean();
-        labDoor.value = false;
+        //TODO make an instance of keycard scanner to open door
+        LinkableBoolean labDoor = new LinkableBoolean(false);
         CharacterDoor labEntranceDoor = new CharacterDoor("door", "It is a fancy glass door that you can't quite see through.", Side.EAST, labDoor);
         Room labEntrance = new Room(
                 "Lab Entrance",
-                "You are in front of a fancy translucent glass door with a keycard scanner next to it. The staircase behind you leads back upward.",
+                "You are in front of a fancy translucent glass door on the east wall with a keycard scanner next to it. The staircase leads back upward.",
                 new Item[]{},
                 new Character[]{
                         labEntranceDoor,
@@ -214,6 +213,19 @@ public class Main {
                 }
         );
         labEntrance.connectTo(dangerousItemStorage, Side.UP);
+
+        CharacterDoor labExitDoor = new CharacterDoor("door", "It is a fancy glass door that you can't quite see through.", Side.WEST, labDoor);
+        Room labRoomOne = new Room(
+                "Lab Room One",
+                "You are in a large room in what appears to be a laboratory. There is a glass door on the west wall controlled by a keycard scanner.",
+                new Item[]{
+                        new Usable(new String[] {"a beaker", "beaker", "vinegar", "acid", "liquid", "smelly"}, "It is a 1 Liter beaker filled with an unknown liquid. Smells terrible.", 30)
+                },
+                new Character[]{
+                        labExitDoor,
+                        new CharacterLock("scanner", "It is a high-tech keycard scanner that looks as though it can never be fooled.", labExitDoor)
+                }
+        );
 
         Room museumBasement = new Room(
                 "Museum Basement",
