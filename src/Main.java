@@ -151,7 +151,9 @@ public class Main {
                 "Holey Temple",
                 "You are in a huge room with a very high ceiling. Although there is no discernable light source you can't find a shadow anywhere. In the center is a bronze tree. Around the base of the tree are seven elliptical holes.",
                 new Item[]{},
-                new Character[]{},
+                new Character[]{
+                        new CharacterLeafHole()
+                },
                 true
         );
         temple.connectTo(hallway, Side.NORTH);
