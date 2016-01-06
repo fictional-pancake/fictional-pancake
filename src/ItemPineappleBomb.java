@@ -1,8 +1,7 @@
 /**
  * A class representing a Usable pineapple bomb
  *
- * @author Colin Reeder
- * @author Tony Brar
+ * @author Tony Brar and Colin Reeder
  */
 public class ItemPineappleBomb extends Usable {
     /**

@@ -1,3 +1,7 @@
+/**
+ * A class for working with directions
+ * @author Colin Reeder and Tony Brar
+ */
 public class Side {
     public static final int NORTH = 0;
     public static final int SOUTH = 1;

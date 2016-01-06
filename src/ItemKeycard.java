@@ -1,3 +1,7 @@
+/**
+ * A keycard for being a keycard
+ * @author Tony Brar and Colin Reeder
+ */
 public class ItemKeycard extends Usable {
 
     public ItemKeycard(String[] names, String description, int weight) {

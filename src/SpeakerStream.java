@@ -1,6 +1,10 @@
 import java.io.IOException;
 import java.io.PrintStream;
 
+/**
+ * An OutputStream wrapper for stdout
+ * @author Colin Reeder and Tony Brar
+ */
 public class SpeakerStream extends PrintStream {
 
     private String thing;

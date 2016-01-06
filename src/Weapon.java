@@ -1,3 +1,7 @@
+/**
+ * A weapon for being a weapon
+ * @author Tony Brar and Colin Reeder
+ */
 public class Weapon extends Usable {
 
     /**

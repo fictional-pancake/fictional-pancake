@@ -1,3 +1,7 @@
+/**
+ * An interface for usable things
+ * @author Colin Reeder and Tony Brar
+ */
 public interface IUsable {
     /**
      * Use the IUsable

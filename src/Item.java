@@ -1,3 +1,7 @@
+/**
+ * A class to represent Items
+ * @author Tony Brar and Colin Reeder
+ */
 public class Item implements IDescribable {
     /**
      * The valid names of the item

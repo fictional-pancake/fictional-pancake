@@ -2,6 +2,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * A room for being a room
+ * @author Tony Brar and Colin Reeder
+ */
 public class Room implements IDescribable {
     /**
      * The rooms in each direction (see {@link Side})

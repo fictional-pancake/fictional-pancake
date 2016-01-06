@@ -1,3 +1,7 @@
+/**
+ * An orb for being an orb
+ * @author Colin Reeder
+ */
 public class ItemOrb extends Usable {
     public ItemOrb(String[] names, String description, int weight) {
         super(names, description, weight);

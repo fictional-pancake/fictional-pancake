@@ -1,3 +1,7 @@
+/**
+ * A usable item
+ * @author Tony Brar and Colin Reeder
+ */
 public class Usable extends Item implements IUsable {
 
     /**

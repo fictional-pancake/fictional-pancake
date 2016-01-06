@@ -1,3 +1,7 @@
+/**
+ * An item that drops items when picked up
+ * @author Colin Reeder and Tony Brar
+ */
 public class ItemShirt extends Item {
     /**
      * The items contained in this shirt
