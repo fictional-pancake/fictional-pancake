@@ -20,7 +20,7 @@ public class Main {
     /**
      * List of objects which always exist, but cannot be interacted with
      */
-    public static final String[] omnipresent = {"narrator", "you", "sky", "air", "game", "room", "code", "intelligence"};
+    public static final String[] omnipresent = {"narrator", "you", "sky", "air", "game", "room", "code", "intelligence", "cell", "floor", "ceiling"};
 
     /**
      * The current room
