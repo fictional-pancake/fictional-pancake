@@ -1,3 +1,7 @@
+/**
+ * Useless Equippable class
+ * @author Tony Brar and Colin Reeder
+ */
 public class Equippable extends Item {
     /**
      * Construct an Equippable with a name and a description

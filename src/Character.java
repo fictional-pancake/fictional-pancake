@@ -2,6 +2,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Class to describe a Character
+ * @author Colin Reeder and Tony Brar
+ */
 public class Character implements IDescribable {
     /**
      * The Character's name

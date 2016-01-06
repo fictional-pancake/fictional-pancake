@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 
+/**
+ * A door for being a door
+ * @author Tony Brar and Colin Reeder
+ */
 public class CharacterDoor extends Character implements IUsable {
     /**
      * Whether the door is open

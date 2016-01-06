@@ -6,6 +6,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Main class for the game
+ * You just lost the game
+ * @author Colin Reeder and Tony Brar
+ */
 public class Main {
     /**
      * A room for temporary usage

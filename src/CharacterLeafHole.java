@@ -1,3 +1,7 @@
+/**
+ * Character that holds leaves
+ * @author Colin Reeder and Tony Brar
+ */
 public class CharacterLeafHole extends Character {
     public CharacterLeafHole() {
         super("hole", "It is a small elliptical hole in the ground, identical to the rest.", new Item[]{});

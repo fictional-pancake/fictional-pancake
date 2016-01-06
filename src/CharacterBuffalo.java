@@ -1,3 +1,7 @@
+/**
+ * A buffalo for being a buffalo
+ * @author Colin Reeder and Tony Brar
+ */
 public class CharacterBuffalo extends Character {
     public CharacterBuffalo(String name, String description, Item[] inventory) {
         super(name, description, inventory);

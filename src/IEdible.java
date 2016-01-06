@@ -1,3 +1,7 @@
+/**
+ * Interface for edible things
+ * @author Colin Reeder and Tony Brar
+ */
 public interface IEdible {
     /**
      * Eat the IEdible

@@ -1,3 +1,7 @@
+/**
+ * An interface for things that can be described
+ * @author Colin Reeder and Tony Brar
+ */
 public interface IDescribable {
     /**
      * Get the name of the object

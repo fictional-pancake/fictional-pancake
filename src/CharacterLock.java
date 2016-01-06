@@ -1,3 +1,7 @@
+/**
+ * A lock for being a lock
+ * @author Tony Brar and Colin Reeder
+ */
 public class CharacterLock extends Character {
     /**
      * The door this lock controls

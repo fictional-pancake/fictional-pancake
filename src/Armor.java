@@ -1,3 +1,7 @@
+/**
+ * An unused class to represent Armor
+ * @author Tony Brar and Colin Reeder
+ */
 public class Armor extends Equippable {
     /**
      * Construct an armor with a name and description

@@ -1,3 +1,7 @@
+/**
+ * A button to open holes in the floor
+ * @author Colin Reeder and Tony Brar
+ */
 public class CharacterDinoButton extends Character implements IUsable {
 
     /**

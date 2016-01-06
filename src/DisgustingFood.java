@@ -1,3 +1,7 @@
+/**
+ * Food the player refuses to eat
+ * @author Colin Reeder and Tony Brar
+ */
 public class DisgustingFood extends Item implements IEdible {
 
     public DisgustingFood(String[] names, String description, int weight) {

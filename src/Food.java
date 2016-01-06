@@ -1,3 +1,7 @@
+/**
+ * Food for being food
+ * @author Tony Brar and Colin Reeder
+ */
 public class Food extends Item implements IEdible {
 
     public Food(String[] names, String description, int weight) {
