@@ -200,8 +200,9 @@ public class Main {
         dangerousItemStorage.setDir(Side.UP, ladderRoom);
 
         //TODO make an instance of keycard scanner to open door
-        LinkableBoolean labDoor = new LinkableBoolean(false);
-        CharacterDoor labEntranceDoor = new CharacterDoor("door", "It is a fancy glass door that you can't quite see through.", Side.EAST, labDoor);
+        LinkableBoolean labDoorOpen = new LinkableBoolean(false);
+        LinkableBoolean labDoorLocked = new LinkableBoolean(true);
+        CharacterDoor labEntranceDoor = new CharacterDoor("door", "It is a fancy glass door that you can't quite see through.", Side.EAST, labDoorOpen, labDoorLocked);
         Room labEntrance = new Room(
                 "Lab Entrance",
                 "You are in front of a fancy translucent glass door on the east wall with a keycard scanner next to it. The staircase leads back upward.",
@@ -214,7 +215,7 @@ public class Main {
         );
         labEntrance.connectTo(dangerousItemStorage, Side.UP);
 
-        CharacterDoor labExitDoor = new CharacterDoor("door", "It is a fancy glass door that you can't quite see through.", Side.WEST, labDoor);
+        CharacterDoor labExitDoor = new CharacterDoor("door", "It is a fancy glass door that you can't quite see through.", Side.WEST, labDoorOpen, labDoorLocked);
         Room labRoomOne = new Room(
                 "Lab Room One",
                 "You are in a large room in what appears to be a laboratory. There is a glass door on the west wall controlled by a keycard scanner.",
@@ -226,6 +227,7 @@ public class Main {
                         new CharacterLock("scanner", "It is a high-tech keycard scanner that looks as though it can never be fooled.", labExitDoor)
                 }
         );
+        labRoomOne.connectTo(labEntrance, Side.WEST);
 
         Room museumBasement = new Room(
                 "Museum Basement",
