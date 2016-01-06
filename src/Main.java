@@ -180,6 +180,24 @@ public class Main {
         );
         temple.connectTo(hallway, Side.NORTH);
 
+        Room winRoom = new WinRoom(
+                "You Win!",
+                "For returning the missing leaves to the tree, you have earned this great ASCII ribbon!" +
+                        "\n  ****  " +
+                        "\n ******" +
+                        "\n********" +
+                        "\n********" +
+                        "\n ******" +
+                        "\n  ****" +
+                        "\n  ****" +
+                        "\n **  **" +
+                        "\n **  **" +
+                        "\n**    **" +
+                        "\n**    **",
+                new Item[] {},
+                new Character[]{}
+        );
+
         // TODO allow feeding the hobo
         Room ladderRoom = new Room(
                 "West end of corridor",
