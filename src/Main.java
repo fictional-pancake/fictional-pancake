@@ -51,9 +51,17 @@ public class Main {
         HashMap<String, Boolean> optMap = new HashMap<String, Boolean>();
         optMap.put("tts", true);
         optMap.put("cheat", false);
+        optMap.put("help", false);
         HashMap<String, Object> opts = parseOptions(args, new char[]{}, optMap);
         if(opts.containsKey("tts")) {
             System.setOut(new SpeakerStream((String)opts.get("tts")));
+        }
+        if(opts.containsKey("help")) {
+            System.out.println("Possible options are:");
+            System.out.println("\t--tts [program] (set program for TTS)");
+            System.out.println("\t--cheat (enable cheat mode)");
+            System.out.println("\t--help (print this message)");
+            System.exit(0);
         }
         if(opts.containsKey("cheat")) {
             cheatMode = true;
