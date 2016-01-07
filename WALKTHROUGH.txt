@@ -45,6 +45,13 @@ go down
 use keycard on scanner
 open door
 go east
+go east
+push button
+go west
+take leaf
+go east
+push button
+go west
 take beaker
 go south
 take powder
