@@ -1,6 +1,7 @@
 take spork
 kill guard
 take food
+take keycard
 go north
 take torch
 go east
@@ -20,6 +21,7 @@ read scroll
 go west
 go north
 go north
+take arrowhead
 use orb on buffalo
 take leaf
 go south
@@ -27,6 +29,22 @@ go west
 go down
 go down
 go down
+take bomb
+use bomb
+take leaf
+go down
+use keycard on scanner
+open door
+go east
+take beaker
+go south
+take powder
+give arrowhead to collector
+go north
+go north
+put powder in volcano
+put beaker in volcano
+take leaf
 ...
 go east
 go east
@@ -38,6 +56,5 @@ put leaf in hole
 put leaf in hole
 put leaf in hole
 put leaf in hole
-kill hobo somehow
 go south
 Win.
