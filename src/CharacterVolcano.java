@@ -14,7 +14,8 @@ public class CharacterVolcano extends Character {
             // check if the volcano has both ingredients
             if (this.hasItem("powder") && this.hasItem("vinegar")) {
                 // erupt
-                System.out.println("The volcano violently erupts in an awesome display of vinegar and baking soda fueled power!");
+                System.out.println("The volcano violently erupts in an awesome display of vinegar and baking soda fueled power! You notice a small brown item in the wave of \"lava\".");
+                Main.getCurrentRoom().addItem(new Item(new String[]{"a yellow crystalline leaf", "leaf", "yellow", "crystal", "crystalline"}, "A shiny yellow crystalline leaf.", 5));
             }
             return true;
         } else {
