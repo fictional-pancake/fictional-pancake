@@ -149,10 +149,10 @@ public class Main {
                 new Item[]{},
                 new Character[]{new CharacterHobo("hobo", "He is an old man sitting in the corner, dressed in rags, holding a torch. He looks hungry.",
                         new Item[]{
-                                new Weapon(new String[]{"steel sword", "sword", "steel"}, "The Hobo's steel sword.", 100, 40),
-                                new Item(new String[]{"the Hobo's torch", "torch"}, "It is a simple stick with coal on the end.  It is alight with a small flame.", 10),
+                                new Weapon(new String[]{"a steel sword", "sword", "steel"}, "The Hobo's steel sword.", 10, 40),
+                                new Item(new String[]{"a torch", "torch"}, "It is a simple stick with coal on the end.  It is alight with a small flame.", 10),
                                 new ItemLeaf("purple")
-                        }, 100),
+                        }, 20),
                         hoboHole
                 }
         );
@@ -171,7 +171,7 @@ public class Main {
 
         Room temple = new Room(
                 "Holey Temple",
-                "You are in a huge room with a very high ceiling. Although there is no discernable light source you can't find a shadow anywhere. In the center is a bronze tree. Around the base of the tree are seven elliptical holes.",
+                "You are in a huge room with a very high ceiling. There is no discernible light source, and you can't find a shadow anywhere. In the center is a bronze tree. Around the base of the tree are seven elliptical holes.",
                 new Item[]{},
                 new Character[]{
                         new CharacterLeafHole(),
@@ -214,14 +214,14 @@ public class Main {
                 "Dangerous item storage room",
                 "You are in a small storage room with a damp concrete floor. There are a variety of dangerous looking implements attached to the walls. The ceiling is so low that you can climb into the room above. A staircase leads downwards into the darkness.",
                 new Item[]{
-                        new ItemPineappleBomb(new String[]{"pineapple bomb", "pineapple", "bomb", "fruit"}, "It is a delicious looking pineapple. You would assume it was harmless if it weren't for the fuse coming out of the top.", 100)
+                        new ItemPineappleBomb(new String[]{"a pineapple bomb", "pineapple", "bomb", "fruit"}, "It is a delicious looking pineapple. You would assume it was harmless if it weren't for the fuse coming out of the top.", 100)
                 },
                 new Character[]{
                         labStairs
                 }
         );
         dangerousItemStorage.setDir(Side.UP, ladderRoom);
-        
+
         LinkableBoolean labDoorOpen = new LinkableBoolean(false);
         LinkableBoolean labDoorLocked = new LinkableBoolean(true);
         CharacterDoor labEntranceDoor = new CharacterDoor("door", "It is a fancy glass door that you can't quite see through.", Side.EAST, labDoorOpen, labDoorLocked);
