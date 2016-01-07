@@ -276,13 +276,13 @@ public class Main {
 
         Room labRoomTwo = new Room(
                 "Lab Room Two",
-                "You are in a small room in the lab. There is an exit to the north.",
+                "You are in a small room in the lab.  There is a sign here.  There is an exit to the north.",
                 new Item[]{
                         new Item(new String[] {"a powder", "powder", "baking", "soda"}, "It is a large heap of white powder.", 20)
                 },
                 new Character[]{
                         new CharacterCollector("collector", "He is a shady-looking character with a fine collection of Native American arrowheads.", new Item[]{new ItemLeaf("orange")}),
-                        new Character("sign", "It says:\nSomeone has stolen all the potato batteries.\nIf you have any information that could lead to their capture,\nplease discard it.", null)
+                        new CharacterScenery("sign", "It says:\nSomeone has stolen all the potato batteries.\nIf you have any information that could lead to their capture,\nplease discard it.")
                 },
                 null
         );
