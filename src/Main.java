@@ -187,6 +187,18 @@ public class Main {
         );
         hallway.connectTo(hoboCave, Side.NORTH);
 
+        Room goatGuard = new Room(
+                "Lamb Room",
+                "You are in a room with artificial grass, lit by an opening to the south.  There is also a hallway to the north.",
+                new Item[]{},
+                new Character[]{
+                        new Character("lamb", "It has a tag on its ear that says \"The Lamb Who's Gonna Kill You Someday\".", new Item[]{}, 77).setBlockingExits()
+                },
+                new Item[]{},
+                true
+        );
+        goatGuard.connectTo(hallway, Side.NORTH);
+
         Room temple = new Room(
                 "Holey Temple",
                 "You are in a huge room with a very high ceiling. There is no discernible light source, and you can't find a shadow anywhere. In the center is a bronze tree. Around the base of the tree are seven elliptical holes.",
@@ -197,7 +209,7 @@ public class Main {
                 new Item[]{},
                 true
         );
-        temple.connectTo(hallway, Side.NORTH);
+        temple.connectTo(goatGuard, Side.NORTH);
 
         Room winRoom = new WinRoom(
                 "You Win!",
