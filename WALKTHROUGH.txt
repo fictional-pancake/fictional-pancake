@@ -8,6 +8,8 @@ go east
 give food to hobo
 go west
 go west
+kill bat
+take key
 go up
 take orb
 go up
@@ -16,6 +18,8 @@ take leaf
 go east
 go south
 push button
+use key on lock
+open door
 go east
 read scroll
 go west
@@ -45,9 +49,18 @@ go north
 put powder in volcano
 put beaker in volcano
 take leaf
-...
+go south
+go west
+go up
+go up
 go east
 go east
+go south
+take shovel
+go north
+dig
+take leaf
+go south
 go south
 put leaf in hole
 put leaf in hole
