@@ -16,6 +16,11 @@ public class Side {
     public static int[] opposite = {SOUTH, NORTH, WEST, EAST, DOWN, UP};
 
     /**
+     * Map directions to their names
+     */
+    public static String[] names = {"north", "south", "east", "west", "up", "down"};
+
+    /**
      * Return a direction, given the first character
      *
      * @param c the character to use
@@ -38,5 +43,14 @@ public class Side {
             default:
                 throw new IllegalArgumentException("No direction for char " + c);
         }
+    }
+
+    /**
+     * Get the name for a side
+     * @param side the side to check
+     * @return the name for the side
+     */
+    public static String getName(int side) {
+        return names[side];
     }
 }

@@ -192,7 +192,7 @@ public class Main {
                 "You are in a room with artificial grass, lit by an opening to the south.  There is also a hallway to the north.",
                 new Item[]{},
                 new Character[]{
-                        new Character("lamb", "It has a tag on its ear that says \"The Lamb Who's Gonna Kill You Someday\".", new Item[]{}, 77).setBlockingExits()
+                        new CharacterLamb("lamb", "It has a tag on its ear that says \"The Lamb Who's Gonna Kill You Someday\".", new Item[]{}, 77, Side.SOUTH)
                 },
                 new Item[]{},
                 true
