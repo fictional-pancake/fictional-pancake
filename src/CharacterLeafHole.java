@@ -9,7 +9,7 @@ public class CharacterLeafHole extends Character {
 
     @Override
     public boolean give(Item item) {
-        if(item.matches("leaf") && item.matches("crystalline")) {
+        if(item instanceof ItemLeaf) {
             addToInventory(item);
             System.out.println("You place the leaf in the hole.");
             return true;

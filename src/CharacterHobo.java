@@ -13,7 +13,7 @@ public class CharacterHobo extends Character {
             addToInventory(item);
             Item[] inv = getInventory();
             for(int i = 0; i < inv.length; i++) {
-                if(inv[i].matches("leaf")) {
+                if(inv[i] instanceof ItemLeaf) {
                     System.out.println("\"Thanks, I was really hungry.  Take this.\"");
                     Item it = takeItem(i);
                     System.out.println("He hands you "+it.getName()+".");

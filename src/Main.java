@@ -151,7 +151,7 @@ public class Main {
                         new Item[]{
                                 new Weapon(new String[]{"steel sword", "sword", "steel"}, "The Hobo's steel sword.", 100, 40),
                                 new Item(new String[]{"the Hobo's torch", "torch"}, "It is a simple stick with coal on the end.  It is alight with a small flame.", 10),
-                                new Item(new String[]{"a purple crystalline leaf", "leaf", "purple", "crystal", "crystalline"}, "A shiny purple crystalline leaf.", 5)
+                                new ItemLeaf("purple")
                         }, 100),
                         hoboHole
                 }
@@ -287,7 +287,7 @@ public class Main {
                 "Museum Closet",
                 "You are in a small side closet. Stairs lead down out of sight. There is an entryway on the east wall that looks like it used to contain a door.",
                 new Item[]{
-                        new ItemShirt(new String[]{"a shirt", "shirt", "Hawaiian", "fancy"}, "A fancy Hawaiian shirt. It's exactly your size!", new Item[]{new Item(new String[]{"a blue crystalline leaf", "leaf", "blue", "crystal", "crystalline"}, "A shiny blue crystalline leaf.", 5)}, 30)
+                        new ItemShirt(new String[]{"a shirt", "shirt", "Hawaiian", "fancy"}, "A fancy Hawaiian shirt. It's exactly your size!", new Item[]{new ItemLeaf("blue")}, 30)
                 },
                 new Character[]{}
         );
