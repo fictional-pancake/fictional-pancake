@@ -145,11 +145,12 @@ public class Main {
                 "You are in a room that is completely empty except for a pile of dirt.  There is an exit to the south.",
                 new Item[]{},
                 new Character[] {
-                        new CharacterScenery(new String[]{"pile of dirt", "dirt", "pile"}, "It is a pile of dirt.  Hooray!")
+                        new CharacterScenery(new String[]{"pile of dirt", "dirt", "pile"}, "It is a pile of dirt.  Hooray!"),
                 },
                 new Item[]{
                         new Item(new String[] {"a slip of paper", "paper", "slip", "invitation"}, "It says:\nTo whoever finds this note:\nYou just found this note.\nI have resorted to a life as a hobo underground in a cave.\nIf you care, you will care.\nBy reading this note, you have read this note.\nSincerely,\nRobert Richard Stallman Schreiber"),
-                        new Item(new String[] {"some dirt", "dirt", "sediment"}, "It looks slightly fish-like.")
+                        new Item(new String[] {"some dirt", "dirt", "sediment"}, "It looks slightly fish-like."),
+                        new Item(new String[] {"a painting", "painting"}, "It is a lovely painting of a pineapple.")
                 }
         );
         danielsCardCollection.connectTo(corridor, Side.SOUTH);
