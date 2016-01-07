@@ -257,7 +257,9 @@ public class Main {
                 new Item[]{
                         new Item(new String[] {"a powder", "powder", "baking", "soda"}, "It is a large heap of white powder.", 20)
                 },
-                new Character[]{}
+                new Character[]{
+                        new CharacterCollector("collector", "He is a shady-looking character with a fine collection of Native American arrowheads.", new Item[]{new ItemLeaf("orange")})
+                }
         );
         labRoomTwo.connectTo(labRoomOne, Side.NORTH);
 
@@ -304,7 +306,7 @@ public class Main {
                 "You are in a museum exhibit room highlighting history and culture of Native American people.  The exit is to the south.",
                 new Item[]{
                         new Weapon(new String[]{"a spear", "spear"}, "It is a spear with a wooden handle.  You aren't sure what the tip is made of.", 15, 75),
-                        new Item(new String[]{"an arrowhead", "arrowhead"}, "It is an arrowhead, similar to the tip of the spear.", 25)
+                        new Item(new String[]{"an arrowhead", "arrowhead", "arrow", "head", "obsidian"}, "It is an arrowhead, similar to the tip of the spear.", 25)
                 },
                 new Character[]{
                         new CharacterBuffalo("buffalo", "It is a brownish-green buffalo.", null)
