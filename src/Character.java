@@ -121,6 +121,7 @@ public class Character implements IDescribable {
                 while (it.hasNext()) {
                     Item i = it.next();
                     r.addItem(i);
+                    System.out.println("The " + getName() + " dropped " + i.getName() + ".");
                 }
             }
         } else if (!(this instanceof Player)) {
