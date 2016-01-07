@@ -131,7 +131,7 @@ public class Main {
 
         Character hoboHole = new CharacterScenery("hole", "It is quite narrow, but it looks like you could fit through.");
         Room corridor = new Room("East end of corridor",
-                "You are in a small corridor going west.  There is a open door to the south, and a hole to the east.",
+                "You are in a small corridor going west.  There is a open door to the south, a hole to the east, and an opening to the north.",
                 new Item[]{new Item(new String[]{"a torch", "torch"}, "It is a simple stick with coal on the end.  It is alight with a small flame.", 15)},
                 new Character[]{
                         new CharacterDoor("door", "It is a metal door.", Side.SOUTH, cellDoor),
@@ -140,6 +140,18 @@ public class Main {
                 new Item[]{}
         );
         corridor.connectTo(cell, Side.SOUTH);
+
+        Room danielsCardCollection = new Room("Dirt Room",
+                "You are in a room that is completely empty except for a pile of dirt.  There is an exit to the south.",
+                new Item[]{},
+                new Character[] {
+                        new CharacterScenery(new String[]{"pile of dirt", "dirt", "pile"}, "It is a pile of dirt.  Hooray!")
+                },
+                new Item[]{
+                        new Item(new String[] {"a slip of paper", "paper", "slip", "invitation"}, "It says:\nTo whoever finds this note:\nYou just found this note.\nI have resorted to a life as a hobo underground in a cave.\nIf you care, you will care.\nBy reading this note, you have read this note.\nSincerely,\nRobert Richard Stallman Schreiber")
+                }
+        );
+        danielsCardCollection.connectTo(corridor, Side.SOUTH);
 
         Room hoboCave = new Room(
                 "The Hobo's Cave",
