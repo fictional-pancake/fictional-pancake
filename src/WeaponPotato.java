@@ -12,6 +12,8 @@ public class WeaponPotato extends Weapon {
     public void use(Character c) {
         if (!(c instanceof Player)) {
             System.out.println("Now you're thinking with potatoes");
+            System.out.println("The potato disappears in a cloud of starchy smoke.");
+            Main.player.removeItem(this);
         }
         super.use(c);
     }
