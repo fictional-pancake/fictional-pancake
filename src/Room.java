@@ -28,6 +28,11 @@ public class Room implements IDescribable {
     private List<Item> items;
 
     /**
+     * The buried items in the room
+     */
+    private List<Item> buriedItems;
+
+    /**
      * The characters in the room
      */
     private List<Character> chars;
@@ -220,9 +225,10 @@ public class Room implements IDescribable {
      * @param description the room's description
      * @param items       the room's items
      * @param chars       the room's characters
+     * @param buriedItems the items buried in this room (null for hard ground)
      * @param light       whether the room is always lit
      */
-    public Room(String name, String description, Item[] items, Character[] chars, boolean light) {
+    public Room(String name, String description, Item[] items, Character[] chars, Item[] buriedItems, boolean light) {
         this.name = name;
         this.description = description;
         this.items = new ArrayList<Item>();
@@ -232,6 +238,12 @@ public class Room implements IDescribable {
         this.chars = new ArrayList<Character>();
         for (int i = 0; i < chars.length; i++) {
             this.chars.add(chars[i]);
+        }
+        if(buriedItems != null) {
+            this.buriedItems = new ArrayList<Item>();
+            for(int i = 0; i < buriedItems.length; i++) {
+                this.buriedItems.add(buriedItems[i]);
+            }
         }
         this.alwaysLit = light;
     }
@@ -243,9 +255,10 @@ public class Room implements IDescribable {
      * @param description the room's description
      * @param items       the room's items
      * @param chars       the room's characters
+     * @param buriedItems the items buried in this room (null for hard ground)
      */
-    public Room(String name, String description, Item[] items, Character[] chars) {
-        this(name, description, items, chars, false);
+    public Room(String name, String description, Item[] items, Character[] chars, Item[] buriedItems) {
+        this(name, description, items, chars, buriedItems, false);
     }
 
     /**
@@ -255,6 +268,29 @@ public class Room implements IDescribable {
      */
     public Item[] getItems() {
         return items.toArray(new Item[0]);
+    }
+
+    /**
+     * Get whether you can dig in this room
+     * @return whether you can dig in this room
+     */
+    public boolean isDiggable() {
+        return buriedItems != null;
+    }
+
+    /**
+     * Dig up the items in this room
+     * @return items dug up or null if there aren't any
+     */
+    public Item[] dig() {
+        if(isDiggable()) {
+            Item[] tr = buriedItems.toArray(new Item[0]);
+            buriedItems.clear();
+            if(tr.length != 0) {
+                return tr;
+            }
+        }
+        return null;
     }
 
     /**

@@ -12,10 +12,6 @@ import java.util.List;
  * @author Colin Reeder and Tony Brar
  */
 public class Main {
-    /**
-     * A room for temporary usage
-     */
-    public static final Room nullRoom = new Room("Unimplemented Room", "You have stumbled upon a room that hasn't been coded yet.  There is no escape.", new Item[]{}, new Character[]{});
 
     /**
      * The player object
@@ -129,6 +125,7 @@ public class Main {
                         }, 10).setBlockingExits(),
                         new CharacterDoor("door", "It is a metal door.", Side.NORTH, cellDoor)
                 },
+                new Item[]{},
                 true
         );
 
@@ -139,7 +136,8 @@ public class Main {
                 new Character[]{
                         new CharacterDoor("door", "It is a metal door.", Side.SOUTH, cellDoor),
                         hoboHole
-                }
+                },
+                new Item[]{}
         );
         corridor.connectTo(cell, Side.SOUTH);
 
@@ -154,6 +152,9 @@ public class Main {
                                 new ItemLeaf("purple")
                         }, 20),
                         hoboHole
+                },
+                new Item[]{
+                        new ItemLeaf("magenta")
                 }
         );
         hoboCave.connectTo(corridor, Side.WEST);
@@ -161,10 +162,13 @@ public class Main {
         Room hallway = new Room(
                 "Temple Hallway",
                 "You are in a long hallway with a bright light at the south end. To the north is an archway leading to a darker room.",
-                new Item[]{},
+                new Item[]{
+                        new Weapon(new String[]{"a shovel", "shovel", "digger", "trowel", "scoop", "spade", "tool"}, "It is a simple digging implement, twice as long as it is wide.", 7, 100)
+                },
                 new Character[]{
                         new CharacterScenery("archway", "There isn't much to say about it.")
                 },
+                new Item[]{},
                 true
         );
         hallway.connectTo(hoboCave, Side.NORTH);
@@ -177,6 +181,7 @@ public class Main {
                         new CharacterLeafHole(),
                         new CharacterScenery("tree", "It is a large bronze tree.  The leaves are quite colorful.")
                 },
+                new Item[]{},
                 true
         );
         temple.connectTo(hallway, Side.NORTH);
@@ -206,7 +211,8 @@ public class Main {
                 new Character[]{
                         new Character("bat", "It is a small black bat, flying around the room. Upon closer inspection, you see it has the word \"Jal\" written on it in white. Whatever that means.", new Item[]{new ItemKey(new String[]{"a key", "key", "brass"}, "It is a very large and heavy brass key. Seems to be very old and well-used.", 10, "lock")}),
                         new CharacterScenery("ladder", "It is an old-looking wooden ladder, firmly attached to the wall.")
-                }
+                },
+                new Item[]{}
         );
         ladderRoom.connectTo(corridor, Side.EAST);
 
@@ -219,7 +225,8 @@ public class Main {
                 },
                 new Character[]{
                         labStairs
-                }
+                },
+                null
         );
         dangerousItemStorage.setDir(Side.UP, ladderRoom);
 
@@ -234,7 +241,8 @@ public class Main {
                         labEntranceDoor,
                         new CharacterLock("scanner", "It is a high-tech keycard scanner that looks as though it can never be fooled.", labEntranceDoor),
                         labStairs
-                }
+                },
+                null
         );
         labEntrance.connectTo(dangerousItemStorage, Side.UP);
 
@@ -248,7 +256,8 @@ public class Main {
                 new Character[]{
                         labExitDoor,
                         new CharacterLock("scanner", "It is a high-tech keycard scanner that looks as though it can never be fooled.", labExitDoor)
-                }
+                },
+                null
         );
         labRoomOne.connectTo(labEntrance, Side.WEST);
 
@@ -260,7 +269,8 @@ public class Main {
                 },
                 new Character[]{
                         new CharacterCollector("collector", "He is a shady-looking character with a fine collection of Native American arrowheads.", new Item[]{new ItemLeaf("orange")})
-                }
+                },
+                null
         );
         labRoomTwo.connectTo(labRoomOne, Side.NORTH);
 
@@ -270,7 +280,8 @@ public class Main {
                 new Item[]{},
                 new Character[]{
                         new CharacterVolcano(new String[] {"model volcano", "volcano", "model"}, "An incredibly elaborate clay model of a volcano.", new Item[]{})
-                }
+                },
+                null
         );
         labRoomThree.connectTo(labRoomOne, Side.SOUTH);
 
@@ -280,7 +291,8 @@ public class Main {
                 new Item[]{
                         new ItemOrb(new String[]{"an orb", "orb", "shiny"}, "A small orb. It is glowing softly but doesn't seem to light up anything around it.", 100)
                 },
-                new Character[]{}
+                new Character[]{},
+                null
         );
         museumBasement.connectTo(ladderRoom, Side.DOWN);
 
@@ -290,7 +302,8 @@ public class Main {
                 new Item[]{
                         new ItemShirt(new String[]{"a shirt", "shirt", "Hawaiian", "fancy"}, "A fancy Hawaiian shirt. It's exactly your size!", new Item[]{new ItemLeaf("blue")}, 30)
                 },
-                new Character[]{}
+                new Character[]{},
+                null
         );
         closet.connectTo(museumBasement, Side.DOWN);
 
@@ -298,7 +311,8 @@ public class Main {
                 "Museum Lobby",
                 "You are in the lobby of a museum. It appears to be abandoned. Hallways go off to the south and north, likely leading to various exhibits, and there is a small room to the west.",
                 new Item[]{},
-                new Character[]{}
+                new Character[]{},
+                null
         );
         lobby.connectTo(closet, Side.WEST);
 
@@ -311,7 +325,8 @@ public class Main {
                 },
                 new Character[]{
                         new CharacterBuffalo("buffalo", "It is a brownish-green buffalo.", null)
-                }
+                },
+                null
         );
         nativeAmericanExhibit.connectTo(lobby, Side.SOUTH);
 
@@ -329,7 +344,8 @@ public class Main {
                         scrollEntranceDoor,
                         new CharacterLock("lock", "A large, old lock that looks like it would fit a massive key.", scrollEntranceDoor),
                         new CharacterDinoButton("button", "It is a circular red button, about half an inch in diameter.", ladderRoom, dangerousItemStorage)
-                }
+                },
+                null
         );
         dinosaurExhibit.connectTo(lobby, Side.NORTH);
 
@@ -341,7 +357,8 @@ public class Main {
                 },
                 new Character[]{
                         new CharacterDoor("door", "A large, old-looking door.", Side.WEST, scrollDoorOpen, scrollDoorLocked)
-                }
+                },
+                null
         );
         scrollRoom.connectTo(dinosaurExhibit, Side.WEST);
 
@@ -497,25 +514,21 @@ public class Main {
                 }
                 break;
             case "punch":
-                if(!trailing(t, 3)) {
-                    if(t.length == 1) {
-                        System.out.println(firstCapital(t[0])+" what?");
+                if (!trailing(t, 3)) {
+                    if (t.length == 1) {
+                        System.out.println(firstCapital(t[0]) + " what?");
                         break;
-                    }
-                    else if(t.length == 2) {
+                    } else if (t.length == 2) {
                         t = new String[]{"attack", t[1], "with", "hands"};
-                    }
-                    else if(t.length == 3) {
-                        if(t[1].equals("the")) {
+                    } else if (t.length == 3) {
+                        if (t[1].equals("the")) {
                             t = new String[]{"attack", t[2], "with", "hands"};
-                        }
-                        else {
+                        } else {
                             System.out.println("Too much information!");
                             break;
                         }
                     }
-                }
-                else {
+                } else {
                     break;
                 }
             case "attack":
@@ -534,8 +547,7 @@ public class Main {
                     } else {
                         t = new String[]{"use", t[3], "on", t[1]};
                     }
-                }
-                else {
+                } else {
                     break;
                 }
             case "press":
@@ -704,12 +716,10 @@ public class Main {
                     // just the word "drop"
                     System.out.println("Drop what?");
                     break;
-                }
-                else if (t.length > 2) {
+                } else if (t.length > 2) {
                     // statement of type drop x y (attempted to drop multiple or used 2-word name)
                     System.out.println("Drop things one at a time or use 'drop all'.");
-                }
-                else {
+                } else {
                     // valid drop
                     Item[] playerItems = player.getInventory();
                     if (t[1].equalsIgnoreCase("all")) {
@@ -782,20 +792,17 @@ public class Main {
                 }
                 break;
             case "put":
-                if(!trailing(t, 4)) {
-                    if(t.length == 1) {
-                        System.out.println(firstCapital(t[0])+" what?");
+                if (!trailing(t, 4)) {
+                    if (t.length == 1) {
+                        System.out.println(firstCapital(t[0]) + " what?");
                         break;
-                    }
-                    else if(t.length == 2 || t.length == 3) {
+                    } else if (t.length == 2 || t.length == 3) {
                         System.out.println("wut");
                         break;
+                    } else {
+                        t = new String[]{"give", t[1], "to", t[3]};
                     }
-                    else {
-                        t = new String[] {"give", t[1], "to", t[3]};
-                    }
-                }
-                else {
+                } else {
                     break;
                 }
             case "give":
@@ -880,14 +887,38 @@ public class Main {
                     if (item == null) {
                         System.out.println("I don't see that here.");
                     } else {
-                        if(!tophat.give(item)) {
+                        if (!tophat.give(item)) {
                             player.addToInventory(item);
                         }
                     }
                 }
                 break;
+            case "dig":
+            case "excavate":
+            case "unearth":
+            case "quarry":
+            case "mine":
+            case "scoop":
+                if (player.hasItem("shovel")) {
+                    if (!room.isDiggable()) {
+                        System.out.println("You can't dig here.");
+                    } else {
+                        Item[] dug = room.dig();
+                        if (dug == null) {
+                            System.out.println("Digging here reveals nothing.");
+                        } else {
+                            for (int i = 0; i < dug.length; i++) {
+                                room.addItem(dug[i]);
+                            }
+                            System.out.println("I think you found something.");
+                        }
+                    }
+                } else {
+                    System.out.println("You don't have a shovel.");
+                }
+                break;
             case "cheatoff":
-                if(cheatMode) {
+                if (cheatMode) {
                     cheatMode = false;
                     System.out.println("Cheat mode off.");
                     break;
