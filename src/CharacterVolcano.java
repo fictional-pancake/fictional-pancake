@@ -1,5 +1,9 @@
 import java.util.List;
 
+/**
+ * A volcano for being a volcano
+ * @author Tony Brar and Colin Reeder
+ */
 public class CharacterVolcano extends Character {
 
     public CharacterVolcano(String name, String description, Item[] inventory) {

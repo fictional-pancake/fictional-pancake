@@ -718,10 +718,10 @@ public class Main {
                                 Item it = player.takeItem(i);
                                 room.addItem(it);
                                 System.out.println("Dropped " + it.getName() + ".");
-                                break;
+                                return;
                             }
-                            System.out.println("You don't have that!");
                         }
+                        System.out.println("You don't have that!");
                     }
                 }
                 break;
