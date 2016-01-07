@@ -67,6 +67,7 @@ public class Main {
         if(opts.containsKey("cheat")) {
             cheatMode = true;
         }
+        System.out.println("Welcome to Fictional-Pancake");
         //setup
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         goTo(setupRooms());
