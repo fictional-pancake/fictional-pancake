@@ -349,4 +349,12 @@ public class Room implements IDescribable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    /**
+     * Add a character to the room
+     * @param chr the character to add
+     */
+    public void addCharacter(Character chr) {
+        chars.add(chr);
+    }
 }

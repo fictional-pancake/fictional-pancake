@@ -178,7 +178,6 @@ public class Main {
                 "You are in a huge room with a very high ceiling. There is no discernible light source, and you can't find a shadow anywhere. In the center is a bronze tree. Around the base of the tree are seven elliptical holes.",
                 new Item[]{},
                 new Character[]{
-                        new CharacterLeafHole(),
                         new CharacterScenery("tree", "It is a large bronze tree.  The leaves are quite colorful.")
                 },
                 new Item[]{},
@@ -203,6 +202,7 @@ public class Main {
                 new Item[] {},
                 new Character[]{}
         );
+        temple.addCharacter(new CharacterLeafHole(7, temple, winRoom));
 
         Room ladderRoom = new Room(
                 "West end of corridor",
