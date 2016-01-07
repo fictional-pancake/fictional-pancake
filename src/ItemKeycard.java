@@ -23,8 +23,10 @@ public class ItemKeycard extends Usable {
     @Override
     public void use(Character c) {
         if (!(c instanceof CharacterLock)) {
-            System.out.println("This item must be used on a lock!");
+            System.out.println("This item must be used on a lock, not a "+c.getName());
         }
-        ((CharacterLock)c).getDoor().toggleLocked();
+        else {
+            ((CharacterLock) c).getDoor().toggleLocked();
+        }
     }
 }

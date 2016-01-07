@@ -241,7 +241,7 @@ public class Character implements IDescribable {
      */
     public boolean matches(String name) {
         for(int i = 0; i < names.length; i++) {
-            if(name.equalsIgnoreCase(name)) {
+            if(names[i].equalsIgnoreCase(name)) {
                 return true;
             }
         }
