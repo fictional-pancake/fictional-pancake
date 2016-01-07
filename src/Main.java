@@ -199,7 +199,6 @@ public class Main {
                 new Character[]{}
         );
 
-        // TODO allow feeding the hobo
         Room ladderRoom = new Room(
                 "West end of corridor",
                 "You are in a small corridor going east.  There is a ladder on the wall here, leading through a hole in the ceiling.",
@@ -222,8 +221,7 @@ public class Main {
                 }
         );
         dangerousItemStorage.setDir(Side.UP, ladderRoom);
-
-        //TODO make an instance of keycard scanner to open door
+        
         LinkableBoolean labDoorOpen = new LinkableBoolean(false);
         LinkableBoolean labDoorLocked = new LinkableBoolean(true);
         CharacterDoor labEntranceDoor = new CharacterDoor("door", "It is a fancy glass door that you can't quite see through.", Side.EAST, labDoorOpen, labDoorLocked);
