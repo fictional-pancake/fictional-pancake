@@ -209,7 +209,7 @@ public class Main {
         );
         ladderRoom.connectTo(corridor, Side.EAST);
 
-        Character labStairs = new CharacterScenery("staircase", "It is a long concrete staircase.  You can't tell where it leads.");
+        Character labStairs = new CharacterScenery(new String[]{"staircase", "stairs", "stair"}, "It is a long concrete staircase.  You can't tell where it leads.");
         Room dangerousItemStorage = new Room(
                 "Dangerous item storage room",
                 "You are in a small storage room with a damp concrete floor. There are a variety of dangerous looking implements attached to the walls. The ceiling is so low that you can climb into the room above. A staircase leads downwards into the darkness.",
@@ -266,7 +266,7 @@ public class Main {
                 "You are in a small room in the lab. There is an exit to the south.",
                 new Item[]{},
                 new Character[]{
-                        new CharacterVolcano("volcano", "An incredibly elaborate clay model of a volcano.", new Item[]{})
+                        new CharacterVolcano(new String[] {"model volcano", "volcano", "model"}, "An incredibly elaborate clay model of a volcano.", new Item[]{})
                 }
         );
         labRoomThree.connectTo(labRoomOne, Side.SOUTH);
@@ -474,7 +474,7 @@ public class Main {
                     // you can't take characters
                     Character[] roomChars = room.getCharacters();
                     for (Character c : roomChars) {
-                        if (c.getName().equalsIgnoreCase(t[1])) {
+                        if (c.matches(t[1])) {
                             System.out.println("You can't " + t[0] + " that.");
                             found = true;
                             break;
@@ -551,7 +551,7 @@ public class Main {
                             // look for a character
                             Character[] chars = room.getCharacters();
                             for (Character c : chars) {
-                                if (c.getName().equalsIgnoreCase(t[1])) {
+                                if (c.matches(t[1])) {
                                     item = c;
                                     break;
                                 }
@@ -572,7 +572,7 @@ public class Main {
                                 // search for character to use on
                                 Character[] roomChars = room.getCharacters();
                                 for (int i = 0; i < roomChars.length; i++) {
-                                    if (roomChars[i].getName().equalsIgnoreCase(t[3])) {
+                                    if (roomChars[i].matches(t[3])) {
                                         ((IUsable) item).use(roomChars[i]);
                                         break;
                                     }
@@ -672,7 +672,7 @@ public class Main {
                             // still no match, check characters in room
                             Character[] roomChars = room.getCharacters();
                             for (Character c : roomChars) {
-                                if (c.getName().equals(t[1])) {
+                                if (c.matches(t[1])) {
                                     item = c;
                                     break;
                                 }
@@ -837,7 +837,7 @@ public class Main {
                     Character tophat = null;
                     Character[] roomChars = room.getCharacters();
                     for (int i = 0; i < roomChars.length; i++) {
-                        if (roomChars[i].getName().equalsIgnoreCase(rewarded)) {
+                        if (roomChars[i].matches(rewarded)) {
                             tophat = roomChars[i];
                             break;
                         }

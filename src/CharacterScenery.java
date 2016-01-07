@@ -4,7 +4,11 @@
  */
 public class CharacterScenery extends Character {
     public CharacterScenery(String name, String description) {
-        super(name, description, null);
+        this(new String[]{name}, description);
+    }
+
+    public CharacterScenery(String[] names, String description) {
+        super(names, description, null);
     }
 
     @Override

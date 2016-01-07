@@ -6,8 +6,8 @@ import java.util.List;
  */
 public class CharacterVolcano extends Character {
 
-    public CharacterVolcano(String name, String description, Item[] inventory) {
-        super(name, description, inventory);
+    public CharacterVolcano(String[] names, String description, Item[] inventory) {
+        super(names, description, inventory);
     }
 
     @Override

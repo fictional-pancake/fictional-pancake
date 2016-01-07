@@ -8,9 +8,9 @@ import java.util.List;
  */
 public class Character implements IDescribable {
     /**
-     * The Character's name
+     * The Character's names
      */
-    private String name;
+    private String[] names;
 
     /**
      * The Character's description
@@ -38,7 +38,7 @@ public class Character implements IDescribable {
     public static final Weapon hands = new Weapon(new String[]{"pair of hands", "hands"}, "You can't tell much about it.", 1, 10);
 
     public String getName() {
-        return name;
+        return names[0];
     }
 
     public String getDescription() {
@@ -57,15 +57,26 @@ public class Character implements IDescribable {
     }
 
     /**
-     * Construct a character with a name, a description, a starting inventory, and a starting health value
+     * Construct a character with names, a description, a starting inventory, and a default health of 1
      *
-     * @param name        The Character's name
+     * @param names       The Character's names
+     * @param description The Character's description
+     * @param inventory   The Character's starting inventory
+     */
+    public Character(String[] names, String description, Item[] inventory) {
+        this(names, description, inventory, 1);
+    }
+
+    /**
+     * Construct a character with names, a description, a starting inventory, and a starting health value
+     *
+     * @param names       The Character's names
      * @param description The Character's description
      * @param inventory   The Character's starting inventory
      * @param health      The Character's starting health value
      */
-    public Character(String name, String description, Item[] inventory, double health) {
-        this.name = name;
+    public Character(String[] names, String description, Item[] inventory, double health) {
+        this.names = names;
         this.description = description;
         if (inventory != null) {
             this.inventory = new ArrayList<Item>();
@@ -76,6 +87,18 @@ public class Character implements IDescribable {
             this.inventory = null;
         }
         this.health = health;
+    }
+
+    /**
+     * Construct a character with a name, a description, a starting inventory, and a starting health value
+     *
+     * @param name       The Character's name
+     * @param description The Character's description
+     * @param inventory   The Character's starting inventory
+     * @param health      The Character's starting health value
+     */
+    public Character(String name, String description, Item[] inventory, double health) {
+        this(new String[]{name}, description, inventory, health);
     }
 
     /**
@@ -209,6 +232,20 @@ public class Character implements IDescribable {
             totalWeight += i.getWeight();
         }
         return totalWeight;
+    }
+
+    /**
+     * Check if this Character matches a string
+     * @param name the string to check
+     * @return whether the string describes this character
+     */
+    public boolean matches(String name) {
+        for(int i = 0; i < names.length; i++) {
+            if(name.equalsIgnoreCase(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
