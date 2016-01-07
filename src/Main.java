@@ -121,7 +121,7 @@ public class Main {
                 new Item[]{},
                 new Character[]{
                         new Character("guard", "He looks tired, and he smells of onions.", new Item[]{
-                                new ItemKey(new String[]{"a keycard", "keycard", "card"}, "It's a white keycard, labeled in red marker with \"SCGLGD\"", 5, "scanner")
+                                new ItemKey(new String[]{"a keycard", "keycard", "card", "scglgd"}, "It's a white keycard, labeled in red marker with \"SCGLGD\"", 5, "scanner")
                         }, 10).setBlockingExits(),
                         new CharacterDoor("door", "It is a metal door.", Side.NORTH, cellDoor)
                 },
@@ -148,7 +148,8 @@ public class Main {
                         new CharacterScenery(new String[]{"pile of dirt", "dirt", "pile"}, "It is a pile of dirt.  Hooray!")
                 },
                 new Item[]{
-                        new Item(new String[] {"a slip of paper", "paper", "slip", "invitation"}, "It says:\nTo whoever finds this note:\nYou just found this note.\nI have resorted to a life as a hobo underground in a cave.\nIf you care, you will care.\nBy reading this note, you have read this note.\nSincerely,\nRobert Richard Stallman Schreiber")
+                        new Item(new String[] {"a slip of paper", "paper", "slip", "invitation"}, "It says:\nTo whoever finds this note:\nYou just found this note.\nI have resorted to a life as a hobo underground in a cave.\nIf you care, you will care.\nBy reading this note, you have read this note.\nSincerely,\nRobert Richard Stallman Schreiber"),
+                        new Item(new String[] {"some dirt", "dirt", "sediment"}, "It looks slightly fish-like.")
                 }
         );
         danielsCardCollection.connectTo(corridor, Side.SOUTH);
@@ -221,7 +222,7 @@ public class Main {
                 "You are in a small corridor going east.  There is a ladder on the wall here, leading through a hole in the ceiling.",
                 new Item[]{},
                 new Character[]{
-                        new Character("bat", "It is a small black bat, flying around the room. Upon closer inspection, you see it has the word \"Jal\" written on it in white. Whatever that means.", new Item[]{new ItemKey(new String[]{"a key", "key", "brass"}, "It is a very large and heavy brass key. Seems to be very old and well-used.", 10, "lock")}),
+                        new Character(new String[] {"bat", "jal", "jai"}, "It is a small black bat, flying around the room. Upon closer inspection, you see it has the word \"Jal\" written on it in white. Whatever that means.", new Item[]{new ItemKey(new String[]{"a key", "key", "brass"}, "It is a very large and heavy brass key. Seems to be very old and well-used.", 10, "lock")}),
                         new CharacterScenery("ladder", "It is an old-looking wooden ladder, firmly attached to the wall.")
                 },
                 new Item[]{}
@@ -280,7 +281,8 @@ public class Main {
                         new Item(new String[] {"a powder", "powder", "baking", "soda"}, "It is a large heap of white powder.", 20)
                 },
                 new Character[]{
-                        new CharacterCollector("collector", "He is a shady-looking character with a fine collection of Native American arrowheads.", new Item[]{new ItemLeaf("orange")})
+                        new CharacterCollector("collector", "He is a shady-looking character with a fine collection of Native American arrowheads.", new Item[]{new ItemLeaf("orange")}),
+                        new Character("sign", "It says:\nSomeone has stolen all the potato batteries.\nIf you have any information that could lead to their capture,\nplease discard it.", null)
                 },
                 null
         );
@@ -682,6 +684,10 @@ public class Main {
             case "regard":
             case "notice":
             case "scrutinize":
+                if(t.length == 9 && str.indexOf("what does the scouter say about his power level") == 0) {
+                    System.out.println("It's OVER 9000!");
+                    break;
+                }
                 if (t.length == 3 && t[1].equals("at")) {
                     t = new String[]{t[0], t[2]};
                 }
