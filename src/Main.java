@@ -200,12 +200,14 @@ public class Main {
         );
         goatGuard.connectTo(hallway, Side.NORTH);
 
+        CharacterLeafHole leafHoles = new CharacterLeafHole();
         Room temple = new Room(
                 "Holey Temple",
                 "You are in a huge room with a very high ceiling. There is no discernible light source, and you can't find a shadow anywhere. In the center is a bronze tree. Around the base of the tree are nine elliptical holes.",
                 new Item[]{},
                 new Character[]{
-                        new CharacterScenery("tree", "It is a large bronze tree.  The leaves are quite colorful.")
+                        new CharacterScenery("tree", "It is a large bronze tree.  The leaves are quite colorful."),
+                        leafHoles
                 },
                 new Item[]{},
                 true
@@ -229,7 +231,7 @@ public class Main {
                 new Item[] {},
                 new Character[]{}
         );
-        temple.addCharacter(new CharacterLeafHole(9, temple, winRoom));
+        temple.addCharacter(new CharacterLeafLever("lever", "It is a fancy hawaiian glass lever.", winRoom, leafHoles, 9));
 
         Room ladderRoom = new Room(
                 "West end of corridor",

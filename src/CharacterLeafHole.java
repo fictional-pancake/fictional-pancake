@@ -5,25 +5,10 @@
 public class CharacterLeafHole extends Character {
 
     /**
-     * The room to connect
-     */
-    private Room room1;
-
-    /**
-     * The room to connect to
-     */
-    private Room room2;
-
-    /**
      * Construct a set of leaf holes
-     * @param numHoles the number of holes
-     * @param room1 the room to connect
-     * @param room2 the room to connect to
      */
-    public CharacterLeafHole(int numHoles, Room room1, Room room2) {
+    public CharacterLeafHole() {
         super("hole", "It is a small elliptical hole in the ground, identical to the rest.", new Item[]{});
-        this.room1 = room1;
-        this.room2 = room2;
     }
 
     @Override
