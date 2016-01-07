@@ -6,6 +6,10 @@
         <javac srcdir="${src}" destdir="${build}"/>
     </target>
     <target name="jar" depends="compile">
-        <jar jarfile="apcsgame.jar" basedir="${build}" manifest="MANIFEST.MF"/>
+        <jar jarfile="apcsgame.jar" basedir="${build}" includes="*.class" manifest="MANIFEST.MF"/>
+    </target>
+    <target name="schreiber" depends="compile">
+        <copy file="WALKTHROUGH.txt" todir="${build}" />
+        <jar jarfile="6TonyAndColinProject14.jar" basedir="${build}" manifest="MANIFEST.MF" />
     </target>
 </project>
