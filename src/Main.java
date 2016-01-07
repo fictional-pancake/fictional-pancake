@@ -680,7 +680,7 @@ public class Main {
                     t = new String[]{t[0], t[2]};
                 }
                 if (trailing(t, 2)) {
-                } else if (t.length == 1 || (t.length == 2 && (t.equals("room") || t.equals("around") || t.equals("cell")))) {
+                } else if (t.length == 1 || (t.length == 2 && (t[1].equals("room") || t[1].equals("around") || t[1].equals("cell")))) {
                     // look at room
                     System.out.println(room.getFullDescription(false));
                 } else {
