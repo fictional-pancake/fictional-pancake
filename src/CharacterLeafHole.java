@@ -27,6 +27,8 @@ public class CharacterLeafHole extends Character {
     public CharacterLeafHole(int numHoles, Room room1, Room room2) {
         super("hole", "It is a small elliptical hole in the ground, identical to the rest.", new Item[]{});
         this.numHoles = numHoles;
+        this.room1 = room1;
+        this.room2 = room2;
     }
 
     @Override

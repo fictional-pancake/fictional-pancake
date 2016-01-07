@@ -357,4 +357,9 @@ public class Room implements IDescribable {
     public void addCharacter(Character chr) {
         chars.add(chr);
     }
+
+    /**
+     * Trigger after entry
+     */
+    public void afterVisit() {}
 }

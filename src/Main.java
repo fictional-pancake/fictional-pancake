@@ -941,6 +941,9 @@ public class Main {
         boolean v = r.getVisited();
         r.visit();
         System.out.println(r.getFullDescription(v));
+        if(!v) {
+            r.afterVisit();
+        }
     }
 
     /**

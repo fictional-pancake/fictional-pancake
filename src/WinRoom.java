@@ -9,8 +9,8 @@ public class WinRoom extends Room {
     }
 
     @Override
-    public void visit() {
-        super.visit();
+    public void afterVisit() {
+        super.afterVisit();
         System.exit(0);
     }
 }
