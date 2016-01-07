@@ -242,9 +242,9 @@ public class Main {
         CharacterDoor labExitDoor = new CharacterDoor("door", "It is a fancy glass door that you can't quite see through.", Side.WEST, labDoorOpen, labDoorLocked);
         Room labRoomOne = new Room(
                 "Lab Room One",
-                "You are in a large room in what appears to be a laboratory. There is a glass door on the west wall controlled by a keycard scanner.",
+                "You are in a large room in what appears to be a laboratory. There is a glass door on the west wall controlled by a keycard scanner. There are exits to the north and south.",
                 new Item[]{
-                        new Usable(new String[] {"a beaker", "beaker", "vinegar", "acid", "liquid", "smelly"}, "It is a 1 Liter beaker filled with an unknown liquid. Smells terrible.", 30)
+                        new Item(new String[] {"a beaker", "beaker", "vinegar", "acid", "liquid", "smelly"}, "It is a 1 Liter beaker filled with an unknown liquid. Smells terrible.", 30)
                 },
                 new Character[]{
                         labExitDoor,
@@ -252,6 +252,26 @@ public class Main {
                 }
         );
         labRoomOne.connectTo(labEntrance, Side.WEST);
+
+        Room labRoomTwo = new Room(
+                "Lab Room Two",
+                "You are in a small room in the lab. There is an exit to the north.",
+                new Item[]{
+                        new Item(new String[] {"a powder", "powder", "baking", "soda"}, "It is a large heap of white powder.", 20)
+                },
+                new Character[]{}
+        );
+        labRoomTwo.connectTo(labRoomOne, Side.NORTH);
+
+        Room labRoomThree = new Room(
+                "Lab Room Three",
+                "You are in a small room in the lab. There is an exit to the south.",
+                new Item[]{},
+                new Character[]{
+                        new CharacterVolcano("volcano", "An incredibly elaborate clay model of a volcano.", new Item[]{})
+                }
+        );
+        labRoomThree.connectTo(labRoomOne, Side.SOUTH);
 
         Room museumBasement = new Room(
                 "Museum Basement",

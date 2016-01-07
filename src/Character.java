@@ -20,7 +20,7 @@ public class Character implements IDescribable {
     /**
      * The Character's inventory
      */
-    private List<Item> inventory;
+    protected List<Item> inventory;
 
     /**
      * The Character's health
