@@ -125,7 +125,7 @@ public class Main {
                 new Item[]{},
                 new Character[]{
                         new Character("guard", "He looks tired, and he smells of onions.", new Item[]{
-                                new ItemKeycard(new String[]{"a keycard", "keycard", "key", "card"}, "It's a white keycard, labeled in red marker with \"SCGLGD\"", 5)
+                                new ItemKey(new String[]{"a keycard", "keycard", "card"}, "It's a white keycard, labeled in red marker with \"SCGLGD\"", 5, "scanner")
                         }, 10).setBlockingExits(),
                         new CharacterDoor("door", "It is a metal door.", Side.NORTH, cellDoor)
                 },
@@ -204,6 +204,7 @@ public class Main {
                 "You are in a small corridor going east.  There is a ladder on the wall here, leading through a hole in the ceiling.",
                 new Item[]{},
                 new Character[]{
+                        new Character("bat", "It is a small black bat, flying around the room. Upon closer inspection, you see it has the word \"Jal\" written on it in white. Whatever that means.", new Item[]{new ItemKey(new String[]{"a key", "key", "brass"}, "It is a very large and heavy brass key. Seems to be very old and well-used.", 10, "lock")}),
                         new CharacterScenery("ladder", "It is an old-looking wooden ladder, firmly attached to the wall.")
                 }
         );
@@ -314,6 +315,10 @@ public class Main {
         );
         nativeAmericanExhibit.connectTo(lobby, Side.SOUTH);
 
+        LinkableBoolean scrollDoorOpen = new LinkableBoolean(false);
+        LinkableBoolean scrollDoorLocked = new LinkableBoolean(true);
+        CharacterDoor scrollEntranceDoor = new CharacterDoor("door", "A large, old-looking door.", Side.EAST, scrollDoorOpen, scrollDoorLocked);
+
         Room dinosaurExhibit = new Room(
                 "Dinosaur Exhibit",
                 "You are in a museum exhibit room celebrating the discovery of dinosaur bones.  There are several reconstructions of dinosaur skeletons around the room.  There are exits to the north and east.",
@@ -321,6 +326,8 @@ public class Main {
 
                 },
                 new Character[]{
+                        scrollEntranceDoor,
+                        new CharacterLock("lock", "A large, old lock that looks like it would fit a massive key.", scrollEntranceDoor),
                         new CharacterDinoButton("button", "It is a circular red button, about half an inch in diameter.", ladderRoom, dangerousItemStorage)
                 }
         );
@@ -332,7 +339,9 @@ public class Main {
                 new Item[]{
                         new Item(new String[]{"a scroll", "scroll", "proclamation", "letter", "legend", "prophecy"}, "The scroll says:\n\"A very long time ago,\nwhen this town was new,\nsomeone came and hid some leaves,\nwhose name nobody knew.\nThe legends say that someone\nwho finds these leaves of old\nmay find the greatest treasure\nthat man could ever hold.\"", 10)
                 },
-                new Character[]{}
+                new Character[]{
+                        new CharacterDoor("door", "A large, old-looking door.", Side.WEST, scrollDoorOpen, scrollDoorLocked)
+                }
         );
         scrollRoom.connectTo(dinosaurExhibit, Side.WEST);
 
