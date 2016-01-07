@@ -202,7 +202,7 @@ public class Main {
 
         Room temple = new Room(
                 "Holey Temple",
-                "You are in a huge room with a very high ceiling. There is no discernible light source, and you can't find a shadow anywhere. In the center is a bronze tree. Around the base of the tree are eight elliptical holes.",
+                "You are in a huge room with a very high ceiling. There is no discernible light source, and you can't find a shadow anywhere. In the center is a bronze tree. Around the base of the tree are nine elliptical holes.",
                 new Item[]{},
                 new Character[]{
                         new CharacterScenery("tree", "It is a large bronze tree.  The leaves are quite colorful.")
@@ -229,7 +229,7 @@ public class Main {
                 new Item[] {},
                 new Character[]{}
         );
-        temple.addCharacter(new CharacterLeafHole(8, temple, winRoom));
+        temple.addCharacter(new CharacterLeafHole(9, temple, winRoom));
 
         Room ladderRoom = new Room(
                 "West end of corridor",
@@ -277,7 +277,7 @@ public class Main {
         CharacterDoor labExitDoor = new CharacterDoor("door", "It is a fancy glass door that you can't quite see through.", Side.WEST, labDoorOpen, labDoorLocked);
         Room labRoomOne = new Room(
                 "Lab Room One",
-                "You are in a large room in what appears to be a laboratory. There is a glass door on the west wall controlled by a keycard scanner. There are exits to the north and south.",
+                "You are in a large room in what appears to be a laboratory. There is a glass door on the west wall controlled by a keycard scanner. There are exits to the north and south and an archway to the east labeled \"TELEPORTER\".",
                 new Item[]{
                         new Item(new String[] {"a beaker", "beaker", "vinegar", "acid", "liquid", "smelly"}, "It is a 1 Liter beaker filled with an unknown liquid. Smells terrible.", 30)
                 },
@@ -288,6 +288,37 @@ public class Main {
                 null
         );
         labRoomOne.connectTo(labEntrance, Side.WEST);
+
+        Room teleporter1 = new Room(
+                "Teleporter",
+                "You are in a small room with a carpeted floor.  The exit is to the west.",
+                new Item[]{},
+                new Character[]{},
+                null
+        );
+        teleporter1.connectTo(labRoomOne, Side.WEST);
+
+        Room teleleaf = new Room(
+                "Room of Leaf",
+                "You are in a small cave.  There's not much here except for drawings of fireworks on the walls.  There is an exit to the east.",
+                new Item[]{
+                        new ItemLeaf("cyan")
+                },
+                new Character[]{},
+                new Item[]{}
+        );
+
+        Room teleporter2 = new Room(
+                "Teleporter",
+                "You are in a small room with a carpeted floor.  The exit is to the west.",
+                new Item[]{},
+                new Character[]{},
+                null
+        );
+        teleporter2.connectTo(teleleaf, Side.WEST);
+
+        teleporter1.addCharacter(new CharacterTeleportButton("button", "It is a small cyan button, about two centimeters wide.", teleporter2));
+        teleporter2.addCharacter(new CharacterTeleportButton("button", "It is a small grey button, about two centimeters wide.", teleporter1));
 
         Room labRoomTwo = new Room(
                 "Lab Room Two",
