@@ -691,15 +691,34 @@ public class Main {
                 }
                 break;
             case "drop":
-                if (!trailing(t, 2)) {
-                    // look through player inventory
+                if (t.length == 1) {
+                    // just the word "drop"
+                    System.out.println("Drop what?");
+                    break;
+                }
+                else if (t.length > 2) {
+                    // statement of type drop x y (attempted to drop multiple or used 2-word name)
+                    System.out.println("Drop things one at a time or use 'drop all'.");
+                }
+                else {
+                    // valid drop
                     Item[] playerItems = player.getInventory();
-                    for (int i = 0; i < playerItems.length; i++) {
-                        if (playerItems[i].matches(t[1])) {
-                            // found it!
-                            Item it = player.takeItem(i);
+                    if (t[1].equalsIgnoreCase("all")) {
+                        // drop everything
+                        for (int i = 0; i < playerItems.length; i++) {
+                            Item it = player.takeItem(0);
                             room.addItem(it);
                             System.out.println("Dropped " + it.getName() + ".");
+                        }
+                    } else {
+                        // drop one item
+                        for (int i = 0; i < playerItems.length; i++) {
+                            if (playerItems[i].matches(t[1])) {
+                                // found it!
+                                Item it = player.takeItem(i);
+                                room.addItem(it);
+                                System.out.println("Dropped " + it.getName() + ".");
+                            }
                         }
                     }
                 }
