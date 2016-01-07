@@ -636,24 +636,30 @@ public class Main {
             case "index":
             case "items":
                 if (!trailing(t, 1)) {
-                    System.out.println("You have the following items:");
-                    Item[] playerItems = player.getInventory();
-                    for (int i = 0; i < playerItems.length; i++) {
-                        System.out.println(playerItems[i].getInventoryEntry());
+                    if(player.getInventoryWeight() != 0) {
+                        System.out.println("You have the following items:");
+                        Item[] playerItems = player.getInventory();
+                        for (int i = 0; i < playerItems.length; i++) {
+                            System.out.println(playerItems[i].getInventoryEntry());
+                        }
+                        // print a message about how much weight the player is carrying
+                        String loadMessage;
+                        int totalWeight = player.getInventoryWeight();
+                        if (totalWeight < 100) {
+                            loadMessage = "light";
+                        } else if (totalWeight > 100 && totalWeight < 250) {
+                            loadMessage = "medium weight";
+                        } else if (totalWeight > 250 && totalWeight < 400) {
+                            loadMessage = "heavy";
+                        } else {
+                            loadMessage = "very heavy";
+                        }
+                        System.out.println("Your load is " + loadMessage + ".");
                     }
-                    // print a message about how much weight the player is carrying
-                    String loadMessage;
-                    int totalWeight = player.getInventoryWeight();
-                    if (totalWeight < 100) {
-                        loadMessage = "light";
-                    } else if (totalWeight > 100 && totalWeight < 250) {
-                        loadMessage = "medium weight";
-                    } else if (totalWeight > 250 && totalWeight < 400) {
-                        loadMessage = "heavy";
-                    } else {
-                        loadMessage = "very heavy";
+                    else {
+                        System.out.println("You don't have any items.");
+                        System.out.println("Your load is nonexistent.");
                     }
-                    System.out.println("Your load is " + loadMessage + ".");
                 }
                 break;
             case "look":
