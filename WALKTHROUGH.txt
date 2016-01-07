@@ -91,5 +91,6 @@ put leaf in hole
 put leaf in hole
 put leaf in hole
 put leaf in hole
+use lever
 go south
 Win.
