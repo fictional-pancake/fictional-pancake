@@ -26,9 +26,14 @@ go west
 go north
 go north
 take arrowhead
+take spear
 use orb on buffalo
 take leaf
 go south
+go south
+kill slug
+take leaf
+go north
 go west
 go down
 go down
@@ -60,8 +65,18 @@ take shovel
 go north
 dig
 take leaf
+go west
+go north
+dig
+take paper
+read paper
+go south
+go east
 go south
 go south
+kill lamb
+go south
+put leaf in hole
 put leaf in hole
 put leaf in hole
 put leaf in hole
