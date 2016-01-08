@@ -228,7 +228,7 @@ public class Main {
                 new Item[] {},
                 new Character[]{}
         );
-        temple.addCharacter(new CharacterLeafHole(7, temple, winRoom));
+        temple.addCharacter(new CharacterLeafHole(8, temple, winRoom));
 
         Room ladderRoom = new Room(
                 "West end of corridor",
@@ -371,7 +371,7 @@ public class Main {
                         scrollEntranceDoor,
                         new CharacterLock("lock", "A large, old lock that looks like it would fit a massive key.", scrollEntranceDoor),
                         new CharacterDinoButton("button", "It is a circular red button, about half an inch in diameter.", ladderRoom, dangerousItemStorage),
-                        new Character("slug", "An extremely large slug that is almost as tall as you. It smells of potatoes.", new Item[]{new WeaponPotato(), new WeaponPotato(), new WeaponPotato(), new WeaponPotato(), new WeaponPotato()}, 2)
+                        new Character("slug", "An extremely large slug that is almost as tall as you. It smells of potatoes.", new Item[]{new WeaponPotato(), new WeaponPotato(), new WeaponPotato(), new WeaponPotato(), new WeaponPotato(), new ItemLeaf("pink")}, 2)
                 },
                 null
         );
