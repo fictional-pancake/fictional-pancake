@@ -3,10 +3,6 @@
  * @author Colin Reeder and Tony Brar
  */
 public class CharacterLeafHole extends Character {
-    /**
-     * The number of holes
-     */
-    private int numHoles;
 
     /**
      * The room to connect
@@ -26,7 +22,6 @@ public class CharacterLeafHole extends Character {
      */
     public CharacterLeafHole(int numHoles, Room room1, Room room2) {
         super("hole", "It is a small elliptical hole in the ground, identical to the rest.", new Item[]{});
-        this.numHoles = numHoles;
         this.room1 = room1;
         this.room2 = room2;
     }
@@ -36,11 +31,6 @@ public class CharacterLeafHole extends Character {
         if(item instanceof ItemLeaf) {
             addToInventory(item);
             System.out.println("You place the leaf in the hole.");
-            if(getInventory().length >= numHoles) {
-                room1.setDir(Side.SOUTH, room2);
-                room1.setDescription(room1.getDescription()+"  There is an opening to the south.");
-                System.out.println("You hear a crumbling noise to the south.");
-            }
             return true;
         }
         else {
