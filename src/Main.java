@@ -338,9 +338,11 @@ public class Main {
 
         Room lobby = new Room(
                 "Museum Lobby",
-                "You are in the lobby of a museum. It appears to be abandoned. Hallways go off to the south and north, likely leading to various exhibits, and there is a small room to the west.",
+                "You are in the lobby of a museum. It appears to be abandoned. Hallways go off to the south and north, likely leading to various exhibits, and there is a small room to the west. There is writing on the walls here.",
                 new Item[]{},
-                new Character[]{},
+                new Character[]{
+                        new CharacterScenery("writing", "All over the walls, written in what looks (and smells) like blood, are the words \"The pancake is a lie\".")
+                },
                 null
         );
         lobby.connectTo(closet, Side.WEST);

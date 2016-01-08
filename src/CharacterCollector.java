@@ -10,7 +10,7 @@ public class CharacterCollector extends Character {
             Item[] inv = getInventory();
             for(int i = 0; i < inv.length; i++) {
                 if(inv[i] instanceof ItemLeaf) {
-                    System.out.println("\"Now I can finally complete my collection! Here, have some trinket I found.\"");
+                    System.out.println("\"Now I can finally complete my collection! Here, have some trinket I found.\" By the way, if you happen across a pancake somewhere in the museum, I'd be willing to buy it from you.");
                     Item it = takeItem(i);
                     System.out.println("He hands you "+it.getName()+".");
                     Main.player.addToInventory(it);
