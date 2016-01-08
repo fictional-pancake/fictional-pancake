@@ -150,7 +150,7 @@ public class Main {
                 new Item[]{
                         new Item(new String[] {"a slip of paper", "paper", "slip", "invitation"}, "It says:\nTo whoever finds this note:\nYou just found this note.\nI have resorted to a life as a hobo underground in a cave.\nIf you care, you will care.\nBy reading this note, you have read this note.\nSincerely,\nRobert Richard Stallman Schreiber"),
                         new Item(new String[] {"some dirt", "dirt", "sediment"}, "It looks slightly fish-like."),
-                        new Item(new String[] {"a painting", "painting"}, "It is a lovely painting of a pineapple.")
+                        new ItemKey(new String[] {"a painting", "painting"}, "It is a lovely painting of a pineapple.", 10, "scanner")
                 }
         );
         danielsCardCollection.connectTo(corridor, Side.SOUTH);
@@ -266,7 +266,7 @@ public class Main {
                 new Item[]{},
                 new Character[]{
                         labEntranceDoor,
-                        new CharacterLock("scanner", "It is a high-tech keycard scanner that looks as though it can never be fooled.", labEntranceDoor),
+                        new CharacterLock("scanner", "It is a high-tech keycard scanner that looks as though it can never be fooled. Labelled \"Aperture Science, Inc.\"", labEntranceDoor),
                         labStairs
                 },
                 null
@@ -282,7 +282,7 @@ public class Main {
                 },
                 new Character[]{
                         labExitDoor,
-                        new CharacterLock("scanner", "It is a high-tech keycard scanner that looks as though it can never be fooled.", labExitDoor)
+                        new CharacterLock("scanner", "It is a high-tech keycard scanner that looks as though it can never be fooled. Labelled \"Aperture Science, Inc.\"", labExitDoor)
                 },
                 null
         );
