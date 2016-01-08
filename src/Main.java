@@ -244,7 +244,7 @@ public class Main {
 
         LinkableBoolean labDoorOpen = new LinkableBoolean(false);
         LinkableBoolean labDoorLocked = new LinkableBoolean(true);
-        CharacterDoor labEntranceDoor = new CharacterDoor("door", "It is a fancy glass door that you can't quite see through.", Side.EAST, labDoorOpen, labDoorLocked);
+        CharacterDoor labEntranceDoor = new CharacterDoor("door", "It is a fancy glass door that you can't quite see through. Labeled \"Microsoft R&D\", they must do some pretty impressive stuff in here.", Side.EAST, labDoorOpen, labDoorLocked);
         Room labEntrance = new Room(
                 "Lab Entrance",
                 "You are in front of a fancy translucent glass door on the east wall with a keycard scanner next to it. The staircase leads back upward.",
