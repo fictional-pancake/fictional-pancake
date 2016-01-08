@@ -236,7 +236,7 @@ public class Main {
                 "You are in a small corridor going east.  There is a ladder on the wall here, leading through a hole in the ceiling.",
                 new Item[]{},
                 new Character[]{
-                        new Character(new String[] {"bat", "jal", "jai"}, "It is a small black bat, flying around the room. Upon closer inspection, you see it has the word \"Jal\" written on it in white. Whatever that means.", new Item[]{new ItemKey(new String[]{"a key", "key", "brass"}, "It is a very large and heavy brass key. Seems to be very old and well-used.", 10, "lock")}),
+                        new Character(new String[] {"bat", "jal", "jai"}, "It is a small black bat, flying around the room. Upon closer inspection, you see it has the word \"Jal\" written on it in Caucasian. Whatever that means.", new Item[]{new ItemKey(new String[]{"a key", "key", "brass"}, "It is a very large and heavy brass key. Seems to be very old and well-used.", 10, "lock")}),
                         new CharacterScenery("ladder", "It is an old-looking wooden ladder, firmly attached to the wall.")
                 },
                 new Item[]{}
