@@ -247,6 +247,7 @@ public class Main {
                 "Dangerous item storage room",
                 "You are in a small storage room with a damp concrete floor. There are a variety of dangerous looking implements attached to the walls. The ceiling is so low that you can climb into the room above. A staircase leads downwards into the darkness.",
                 new Item[]{
+                        new Weapon(new String[]{"a salt shaker", "salt", "shaker", "sodium"}, "The description on the side reads: \"Microsoft Assault Shaker: Saltier than Daniels in Hearthstone.\"", 2, 5),
                         new ItemPineappleBomb(new String[]{"a pineapple bomb", "pineapple", "bomb", "fruit"}, "It is a delicious looking pineapple. You would assume it was harmless if it weren't for the fuse coming out of the top.", 100)
                 },
                 new Character[]{
@@ -365,12 +366,12 @@ public class Main {
                 "Dinosaur Exhibit",
                 "You are in a museum exhibit room celebrating the discovery of dinosaur bones.  There are several reconstructions of dinosaur skeletons around the room.  There are exits to the north and east.",
                 new Item[]{
-
                 },
                 new Character[]{
                         scrollEntranceDoor,
                         new CharacterLock("lock", "A large, old lock that looks like it would fit a massive key.", scrollEntranceDoor),
-                        new CharacterDinoButton("button", "It is a circular red button, about half an inch in diameter.", ladderRoom, dangerousItemStorage)
+                        new CharacterDinoButton("button", "It is a circular red button, about half an inch in diameter.", ladderRoom, dangerousItemStorage),
+                        new Character("slug", "An extremely large slug that is almost as tall as you. It smells of potatoes.", new Item[]{new WeaponPotato(), new WeaponPotato(), new WeaponPotato(), new WeaponPotato(), new WeaponPotato()}, 2)
                 },
                 null
         );
