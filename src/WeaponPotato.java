@@ -10,7 +10,9 @@ public class WeaponPotato extends Weapon {
 
     @Override
     public void use(Character c) {
-        System.out.println("Now you're thinking with potatoes");
+        if (!(c instanceof Player)) {
+            System.out.println("Now you're thinking with potatoes");
+        }
         super.use(c);
     }
 }
